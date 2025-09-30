@@ -6,12 +6,20 @@
 /*   By: syukna <syukna@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 16:01:33 by syukna            #+#    #+#             */
-/*   Updated: 2025/09/29 16:57:40 by syukna           ###   ########.fr       */
+/*   Updated: 2025/09/30 13:38:31 by syukna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTURES_H
 # define STRUCTURES_H
+
+typedef struct  s_color t_color;
+typedef struct  s_plane t_plane;
+typedef struct  s_sphere t_sphere;
+typedef struct  s_cyl t_cyl;
+typedef struct  s_light t_light;
+typedef struct  s_cam t_cam;
+typedef struct  s_scene t_scene;
 
 typedef struct  s_color
 {

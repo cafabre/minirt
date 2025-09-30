@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vakozhev <vakozhev@student.42.fr>          +#+  +:+       +#+         #
+#    By: syukna <syukna@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/03 17:37:30 by rshin             #+#    #+#              #
-#    Updated: 2025/09/23 15:18:05 by rshin            ###   ########.fr        #
+#    Updated: 2025/09/30 13:53:14 by syukna           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,8 @@ SRC_DIR = src
 
 BLD_DIR = .build
 
-SRC = $(SRC_DIR)/main.c
+SRC = 	$(SRC_DIR)/main.c\
+		$(SRC_DIR)/parse_scene.c
 
 INC = include
 
