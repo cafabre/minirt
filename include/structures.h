@@ -6,7 +6,7 @@
 /*   By: syukna <syukna@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 16:01:33 by syukna            #+#    #+#             */
-/*   Updated: 2025/09/30 13:38:31 by syukna           ###   ########.fr       */
+/*   Updated: 2025/10/01 17:47:17 by syukna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,13 @@ typedef struct  s_light t_light;
 typedef struct  s_cam t_cam;
 typedef struct  s_scene t_scene;
 
+typedef struct  s_coor
+{
+	float	x;
+	float	y;
+	float	z;
+}				t_coor;
+
 typedef struct  s_color
 {
 	int		r;
@@ -31,7 +38,7 @@ typedef struct  s_color
 // OBJECTS
 typedef struct  s_plane
 {
-	float		coor[3];
+	t_coor		coor;
 	float		rot[3];
 	t_color		*color;
     t_plane		*next;
@@ -39,7 +46,7 @@ typedef struct  s_plane
 
 typedef struct  s_sphere
 {
-	float		coor[3];
+	t_coor		coor;
 	int			diameter;
 	t_color		*color;
     t_sphere	*next;
@@ -47,7 +54,7 @@ typedef struct  s_sphere
 
 typedef struct  s_cyl
 {
-	float		coor[3];
+	t_coor		coor;
 	float		rot[3];
 	float		diameter;
 	float		height;
@@ -58,15 +65,15 @@ typedef struct  s_cyl
 // TOOLS
 typedef struct  s_light
 {
-	float		coor[3];
+	t_coor		coor;
 	float		brightness;
-	t_color		*color;
+	t_color		color;
     t_light		*next;
 }				t_light;
 
 typedef struct  s_cam
 {
-	float		coor[3];
+	t_coor		coor;
 	float		rot[3];
 	int			fov;
 }				t_cam;
