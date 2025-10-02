@@ -6,7 +6,7 @@
 /*   By: rshin <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 14:48:30 by rshin             #+#    #+#             */
-/*   Updated: 2025/10/02 14:48:42 by rshin            ###   ########.fr       */
+/*   Updated: 2025/10/02 15:48:24 by rshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 
 // use case : get len of vecs, get distance
 
-double	vec3_dist(t_vec3 vec)
+double	vec3_dist(t_vec3 a, t_vec3 b)
 {
+	t_vec3	diff;
 	double	dist;
 
-	dist = sqrt(vec.x * vec.x + vec.y * vec.y + vec.z * vec.z);
+	diff = vec3_sub(a, b);
+	dist = vec3_len(diff);
 	return (dist);
 }

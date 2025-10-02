@@ -6,7 +6,7 @@
 /*   By: rshin <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 14:47:59 by rshin             #+#    #+#             */
-/*   Updated: 2025/10/02 15:01:04 by rshin            ###   ########.fr       */
+/*   Updated: 2025/10/02 16:06:50 by rshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_vec3	vec3_norm(t_vec3 vec)
 	t_vec3	res;
 	double	len;
 
-	len = vec3_dist(vec);
+	len = vec3_len(vec);
 	if (len == 0)
 	{
 		res.x = 0;
@@ -27,6 +27,6 @@ t_vec3	vec3_norm(t_vec3 vec)
 		res.z = 0;
 	}
 	else
-		vec3_scalar_div(vec, len);
+		res = vec3_scalar_div(vec, len);
 	return (res);
 }

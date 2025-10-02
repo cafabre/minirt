@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec3_sub.c                                         :+:      :+:    :+:   */
+/*   vec3_neg.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rshin <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/02 11:46:40 by rshin             #+#    #+#             */
-/*   Updated: 2025/10/02 15:54:08 by rshin            ###   ########.fr       */
+/*   Created: 2025/10/02 15:27:19 by rshin             #+#    #+#             */
+/*   Updated: 2025/10/02 15:50:38 by rshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vec3.h"
 
-// use case : find direction from point b to point a
+// use case : reverse a direction (reflection / refraction)
 
-t_vec3	vec3_sub(t_vec3 a, t_vec3 b)
+t_vec3	vec3_neg(t_vec3 vec)
 {
 	t_vec3	res;
 
-	res.x = a.x - b.x;
-	res.y = a.y - b.y;
-	res.z = a.z - b.z;
+	res.x = -vec.x;
+	res.y = -vec.y;
+	res.z = -vec.z;
 	return (res);
 }

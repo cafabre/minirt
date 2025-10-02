@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec3_sub.c                                         :+:      :+:    :+:   */
+/*   vec3_len.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rshin <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/02 11:46:40 by rshin             #+#    #+#             */
-/*   Updated: 2025/10/02 15:54:08 by rshin            ###   ########.fr       */
+/*   Created: 2025/10/02 15:49:12 by rshin             #+#    #+#             */
+/*   Updated: 2025/10/02 15:51:03 by rshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vec3.h"
 
-// use case : find direction from point b to point a
+// use case : calculate length || magnitude of a single vector
 
-t_vec3	vec3_sub(t_vec3 a, t_vec3 b)
+double	vec3_len(t_vec3 vec)
 {
-	t_vec3	res;
+	double	len;
 
-	res.x = a.x - b.x;
-	res.y = a.y - b.y;
-	res.z = a.z - b.z;
-	return (res);
+	len = sqrt(vec.x * vec.x + vec.y * vec.y + vec.z * vec.z);
+	return (len);
 }
