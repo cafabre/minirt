@@ -6,7 +6,7 @@
 #    By: syukna <syukna@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/03 17:37:30 by rshin             #+#    #+#              #
-#    Updated: 2025/10/01 15:34:26 by syukna           ###   ########.fr        #
+#    Updated: 2025/10/02 15:02:44 by syukna           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,10 +30,12 @@ BLD_DIR = .build
 
 SRC = 	$(SRC_DIR)/main.c\
 		$(SRC_DIR)/parse_scene.c\
+		$(SRC_DIR)/parse_light.c\
 		$(SRC_DIR)/parse_coor.c\
 		$(SRC_DIR)/parse_color.c\
 		$(SRC_DIR)/parse_utils.c\
-		$(SRC_DIR)/print.c
+		$(SRC_DIR)/print.c \
+		$(SRC_DIR)/free.c
 
 INC = include
 

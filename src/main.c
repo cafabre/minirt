@@ -6,7 +6,7 @@
 /*   By: syukna <syukna@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:54 by rshin             #+#    #+#             */
-/*   Updated: 2025/10/01 13:46:53 by syukna           ###   ########.fr       */
+/*   Updated: 2025/10/02 15:23:58 by syukna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,15 @@ int	main(int argc, char **argv)
 {
 	// t_env	env;
 	int		fd;
+	t_scene	scene;
 
+	ft_memset(&scene, '\0', sizeof(t_scene));
 	if (!check_args(argc, argv))
 		return (EXIT_FAILURE);
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		return (EXIT_FAILURE);
-	if (!parse_scene(fd))
+	if (parse_scene(fd, &scene) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	// if (!init_env(&env))
 	// {
@@ -45,5 +47,6 @@ int	main(int argc, char **argv)
 	// }
 	// if (!render_scene(&env))
 	// 	return (EXIT_FAILURE);
+	free_all(&scene);
 	return (EXIT_SUCCESS);
 }
