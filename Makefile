@@ -6,7 +6,7 @@
 #    By: syukna <syukna@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/03 17:37:30 by rshin             #+#    #+#              #
-#    Updated: 2025/10/02 17:47:08 by rshin            ###   ########.fr        #
+#    Updated: 2025/10/02 17:50:35 by rshin            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,8 @@ SRC = 	$(SRC_DIR)/main.c\
 
 SRC += $(SRC_DIR)/vec3/vec3_add.c \
 	   $(SRC_DIR)/vec3/vec3_sub.c \
+	   $(SRC_DIR)/vec3/vec3_cross_prod.c \
+	   $(SRC_DIR)/vec3/vec3_dot_prod.c \
 	   $(SRC_DIR)/vec3/vec3_scalar_prod.c \
 	   $(SRC_DIR)/vec3/vec3_scalar_div.c \
 	   $(SRC_DIR)/vec3/vec3_len.c \
