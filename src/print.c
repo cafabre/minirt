@@ -6,7 +6,7 @@
 /*   By: syukna <syukna@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 11:26:57 by syukna            #+#    #+#             */
-/*   Updated: 2025/10/01 15:16:01 by syukna           ###   ########.fr       */
+/*   Updated: 2025/10/02 17:24:10 by syukna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	print_light(t_light *light, int amb)
 	else 
 		printf("      LIGHT\n");
 	print_coor(&light->coor);
-	printf("        Brightness = %f\n", light->brightness);
+	printf("        Brightness = %f\n", light->bri);
 	print_color(&light->color);
 	printf("      **************************************************************\n");
 }

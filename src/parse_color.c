@@ -6,7 +6,7 @@
 /*   By: syukna <syukna@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 15:21:20 by syukna            #+#    #+#             */
-/*   Updated: 2025/10/02 16:05:32 by syukna           ###   ########.fr       */
+/*   Updated: 2025/10/02 17:27:26 by syukna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,19 @@ int	get_color(char *str, t_color *color)
 	if (!args[0] || (ft_strlen(args[0]) >= 10 && ft_strncmp(args[0], "2147483647", 10) > 0))
 	{
 		perror("The RGB values must remain between 0 and 255.\n");
-		free_splitted(args);
+		ft_free_sptr(args);
 		return (EXIT_FAILURE);
 	}
 	if (!args[1] || (ft_strlen(args[1]) >= 10 && ft_strncmp(args[1], "2147483647", 10) > 0))
 	{
 		perror("The RGB values must remain between 0 and 255.\n");
-		free_splitted(args);
+		ft_free_sptr(args);
 		return (EXIT_FAILURE);
 	}
 	if (!args[2] || (ft_strlen(args[2]) >= 10 && ft_strncmp(args[2], "2147483647", 10) > 0))
 	{
 		perror("The RGB values must remain between 0 and 255.\n");
-		free_splitted(args);
+		ft_free_sptr(args);
 		return (EXIT_FAILURE);
 	}
 	color->r = ft_atoi(args[0]);
@@ -46,9 +46,9 @@ int	get_color(char *str, t_color *color)
 	if (color->r < 0 || color->r > 255 || color->g < 0 || color->g > 255 || color->b < 0 || color->b > 255)
 	{
 		perror("The RGB values must remain between 0 and 255.\n");
-		free_splitted(args);
+		ft_free_sptr(args);
 		return (EXIT_FAILURE);
 	}
-	free_splitted(args);
+	ft_free_sptr(args);
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: syukna <syukna@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 15:16:38 by syukna            #+#    #+#             */
-/*   Updated: 2025/10/02 15:35:29 by syukna           ###   ########.fr       */
+/*   Updated: 2025/10/02 17:27:26 by syukna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@ int parse_element(char *element, t_scene *scene)
 		args = ft_split(element, ' ');
 		if (find_element(args, scene) == EXIT_FAILURE)
 		{
-			free_splitted(args);
+			ft_free_sptr(args);
 			return (EXIT_FAILURE);
 		}
-		free_splitted(args);
+		ft_free_sptr(args);
 		return (EXIT_SUCCESS);
 	}
 	return (EXIT_SUCCESS);

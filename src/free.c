@@ -6,7 +6,7 @@
 /*   By: syukna <syukna@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 18:32:15 by syukna            #+#    #+#             */
-/*   Updated: 2025/10/02 15:34:16 by syukna           ###   ########.fr       */
+/*   Updated: 2025/10/02 17:24:41 by syukna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,5 @@ void	free_splitted(char **args)
 void	free_all(t_scene *scene)
 {
 	if (scene->amb)
-	{
-		printf("REMOVING AMB\n");
 		free(scene->amb);
-	}
 }

@@ -6,7 +6,7 @@
 /*   By: syukna <syukna@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 16:01:33 by syukna            #+#    #+#             */
-/*   Updated: 2025/10/01 17:47:17 by syukna           ###   ########.fr       */
+/*   Updated: 2025/10/02 17:23:52 by syukna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ typedef struct  s_cyl
 typedef struct  s_light
 {
 	t_coor		coor;
-	float		brightness;
+	float		bri;
 	t_color		color;
     t_light		*next;
 }				t_light;

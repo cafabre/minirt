@@ -6,16 +6,16 @@
 /*   By: syukna <syukna@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 17:49:17 by syukna            #+#    #+#             */
-/*   Updated: 2025/10/02 16:07:42 by syukna           ###   ########.fr       */
+/*   Updated: 2025/10/02 17:24:03 by syukna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	get_brightness(char *str, t_light **light)
+int	get_bri(char *str, t_light **light)
 {
 	
-	(*light)->brightness = atof(str);
+	(*light)->bri = atof(str);
 	if (!str || (ft_strlen(str) >= 10 && ft_strncmp(str, "2147483647", 10) > 0))
 	{
 		perror("The light must remain between 0.0 and 1.0\n");
@@ -27,7 +27,7 @@ int	get_brightness(char *str, t_light **light)
 		perror("The light brightness must not include other characters than numbers, '-' and '.'\n");
 		return (EXIT_FAILURE);
 	}
-	if ((*light)->brightness > 1 || (*light)->brightness < 0)
+	if ((*light)->bri > 1 || (*light)->bri < 0)
 	{
 		perror("The light must remain between 0.0 and 1.0\n");
 		return (EXIT_FAILURE);
@@ -49,7 +49,7 @@ int	init_ambient(char **args, t_scene *scene)
 	coor.y = 0;
 	coor.z = 0;
 	amb->coor = coor;
-	if (get_brightness(args[1], &amb) == EXIT_FAILURE)
+	if (get_bri(args[1], &amb) == EXIT_FAILURE)
 	{
 		free(amb);
 		return (EXIT_FAILURE);
