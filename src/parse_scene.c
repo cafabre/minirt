@@ -6,7 +6,7 @@
 /*   By: syukna <syukna@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 15:16:38 by syukna            #+#    #+#             */
-/*   Updated: 2025/10/02 17:27:26 by syukna           ###   ########.fr       */
+/*   Updated: 2025/10/06 15:56:13 by syukna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	find_element(char **args, t_scene *scene)
 	else if (ft_strncmp(args[0], "C", 2) == 0)
 		return (EXIT_SUCCESS);
 	else if (ft_strncmp(args[0], "L", 2) == 0)
-		return (EXIT_SUCCESS);
+		return (init_light(args, scene));
 	else if (ft_strncmp(args[0], "pl", 3) == 0)
 		return (EXIT_SUCCESS);
 	else if (ft_strncmp(args[0], "sp", 3) == 0)

@@ -6,7 +6,7 @@
 /*   By: syukna <syukna@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 11:26:57 by syukna            #+#    #+#             */
-/*   Updated: 2025/10/02 17:24:10 by syukna           ###   ########.fr       */
+/*   Updated: 2025/10/06 15:58:33 by syukna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,7 @@ void	print_scene(t_scene *scene)
 	printf("     SCENE\n\n");
 	if (scene->amb)
 		print_light(scene->amb, 1);
+	if (scene->l)
+		print_light(scene->l, 0);
 	printf("**************************************************************************\n");
 }
