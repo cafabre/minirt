@@ -6,7 +6,7 @@
 /*   By: syukna <syukna@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:45 by rshin             #+#    #+#             */
-/*   Updated: 2025/10/01 14:49:22 by syukna           ###   ########.fr       */
+/*   Updated: 2025/10/02 17:47:20 by rshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include "libft.h"
 # include "mlx.h"
 # include "mlx_int.h"
+# include "vec3.h"
 
 typedef struct s_env
 {

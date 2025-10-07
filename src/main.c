@@ -6,7 +6,7 @@
 /*   By: syukna <syukna@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:54 by rshin             #+#    #+#             */
-/*   Updated: 2025/10/02 15:23:58 by syukna           ###   ########.fr       */
+/*   Updated: 2025/10/02 17:48:47 by rshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ bool	check_args(int argc, char **argv)
 
 int	main(int argc, char **argv)
 {
-	// t_env	env;
+//	t_env	env;
 	int		fd;
 	t_scene	scene;
 
