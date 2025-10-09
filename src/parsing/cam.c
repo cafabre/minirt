@@ -6,7 +6,7 @@
 /*   By: syukna <syukna@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 13:06:56 by syukna            #+#    #+#             */
-/*   Updated: 2025/10/09 13:10:43 by syukna           ###   ########.fr       */
+/*   Updated: 2025/10/09 13:19:46 by syukna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	init_cam(char **args, t_scene *scene)
 		free(cam);
 		return (EXIT_FAILURE);
 	}
-	cam->fov = atof(args[3]);
+	cam->fov = ft_atoi(args[3]);
 	scene->cam = cam;
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: syukna <syukna@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 11:26:57 by syukna            #+#    #+#             */
-/*   Updated: 2025/10/09 13:13:29 by syukna           ###   ########.fr       */
+/*   Updated: 2025/10/09 13:20:19 by syukna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	print_cam(t_cam *cam)
 	printf("      CAMERA\n");
 	print_coor(&cam->coor);
 	print_vector(&cam->vector);
-	printf("        Focal of view = %d\n", cam->fov);
+	printf("        Field of view = %d\n", cam->fov);
 	printf("      **************************************************************\n");
 }
 

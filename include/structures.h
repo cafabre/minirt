@@ -6,7 +6,7 @@
 /*   By: syukna <syukna@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 16:01:33 by syukna            #+#    #+#             */
-/*   Updated: 2025/10/09 12:40:13 by syukna           ###   ########.fr       */
+/*   Updated: 2025/10/09 13:21:08 by syukna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "vec3.h"
 
+// MODULES
 typedef struct  s_color t_color;
 typedef struct  s_plane t_plane;
 typedef struct  s_sphere t_sphere;
