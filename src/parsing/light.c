@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_light.c                                      :+:      :+:    :+:   */
+/*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syukna <syukna@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 17:49:17 by syukna            #+#    #+#             */
-/*   Updated: 2025/10/06 16:12:24 by syukna           ###   ########.fr       */
+/*   Updated: 2025/10/09 12:50:37 by syukna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,13 @@ int	get_bri(char *str, t_light **light)
 int	init_ambient(char **args, t_scene *scene)
 {
 	t_light *amb;
-	t_coor	coor;
 	t_color	color;
 
 	amb = malloc(sizeof(t_light));
 	if (!amb)
 		return (EXIT_FAILURE);
 	ft_memset(amb, '\0', sizeof(t_light));
-	coor.x = 0;
-	coor.y = 0;
-	coor.z = 0;
-	amb->coor = coor;
+	amb->coor = init_vec3();
 	if (get_bri(args[1], &amb) == EXIT_FAILURE)
 	{
 		free(amb);
@@ -65,17 +61,13 @@ int	init_ambient(char **args, t_scene *scene)
 int	init_light(char **args, t_scene *scene)
 {
 	t_light *light;
-	t_coor	coor;
 	t_color	color;
 
 	light = malloc(sizeof(t_light));
 	if (!light)
 		return (EXIT_FAILURE);
 	ft_memset(light, '\0', sizeof(t_light));
-	coor.x = 0;
-	coor.y = 0;
-	coor.z = 0;
-	light->coor = coor;
+	light->coor = init_vec3();
 	if (get_coor(args[1], &light->coor) == EXIT_FAILURE)
 	{
 		free(light);

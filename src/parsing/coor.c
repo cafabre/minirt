@@ -6,13 +6,23 @@
 /*   By: syukna <syukna@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 16:55:44 by syukna            #+#    #+#             */
-/*   Updated: 2025/10/06 16:11:28 by syukna           ###   ########.fr       */
+/*   Updated: 2025/10/07 15:37:25 by syukna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	get_coor(char *str, t_coor *coor)
+t_vec3 init_vec3(void)
+{
+	t_vec3	vec;
+
+	vec.x = 0;
+	vec.y = 0;
+	vec.z = 0;
+	return (vec);
+}
+
+int	get_coor(char *str, t_vec3 *coor)
 {
 	char **args;
 	if (!ft_accept_chars(str, "0123456789-.,"))

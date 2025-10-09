@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   vec3.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syukna <syukna@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/01 18:32:15 by syukna            #+#    #+#             */
-/*   Updated: 2025/10/06 16:10:11 by syukna           ###   ########.fr       */
+/*   Created: 2025/10/07 14:36:46 by syukna            #+#    #+#             */
+/*   Updated: 2025/10/07 14:36:56 by syukna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#ifndef VEC3_H
+# define VEC3_H
 
-void	free_all(t_scene *scene)
+# include <math.h>
+
+typedef struct s_vector_3d
 {
-	if (scene->amb)
-		free(scene->amb);
-	if (scene->l)
-		free(scene->l);
-}
+	double	x;
+	double	y;
+	double	z;
+}	t_vec3;
+
+#endif
