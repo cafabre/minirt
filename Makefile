@@ -1,6 +1,4 @@
 # **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: syukna <syukna@student.42.fr>              +#+  +:+       +#+         #
@@ -40,6 +38,18 @@ SRC += 	$(SRC_DIR)/parsing/scene.c\
 		$(SRC_DIR)/parsing/norm.c\
 		$(SRC_DIR)/parsing/color.c\
 		$(SRC_DIR)/parsing/utils.c\
+
+SRC += $(SRC_DIR)/vec3/vec3_add.c \
+	   $(SRC_DIR)/vec3/vec3_sub.c \
+	   $(SRC_DIR)/vec3/vec3_cross_prod.c \
+	   $(SRC_DIR)/vec3/vec3_dot_prod.c \
+	   $(SRC_DIR)/vec3/vec3_scalar_prod.c \
+	   $(SRC_DIR)/vec3/vec3_scalar_div.c \
+	   $(SRC_DIR)/vec3/vec3_len.c \
+	   $(SRC_DIR)/vec3/vec3_dist.c \
+	   $(SRC_DIR)/vec3/vec3_neg.c \
+	   $(SRC_DIR)/vec3/vec3_norm.c \
+	   $(SRC_DIR)/vec3/vec3_lerp.c
 
 INC = include
 
