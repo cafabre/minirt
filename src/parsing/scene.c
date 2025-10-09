@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_scene.c                                      :+:      :+:    :+:   */
+/*   scene.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syukna <syukna@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 15:16:38 by syukna            #+#    #+#             */
-/*   Updated: 2025/10/02 17:27:26 by syukna           ###   ########.fr       */
+/*   Updated: 2025/10/09 13:06:42 by syukna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,20 @@
 
 int	find_element(char **args, t_scene *scene)
 {
+	if (ft_strncmp(args[0], "#", 1) == 0)
+		return (EXIT_SUCCESS);
 	if (ft_strncmp(args[0], "A", 2) == 0)
 		return (init_ambient(args, scene));
 	else if (ft_strncmp(args[0], "C", 2) == 0)
-		return (EXIT_SUCCESS);
+		return (init_cam(args, scene));
 	else if (ft_strncmp(args[0], "L", 2) == 0)
-		return (EXIT_SUCCESS);
+		return (init_light(args, scene));
 	else if (ft_strncmp(args[0], "pl", 3) == 0)
-		return (EXIT_SUCCESS);
+		return (init_plane(args, scene));
 	else if (ft_strncmp(args[0], "sp", 3) == 0)
-		return (EXIT_SUCCESS);
+		return (init_sphere(args, scene));
 	else if (ft_strncmp(args[0], "cy", 3) == 0)
-		return (EXIT_SUCCESS);
+		return (init_cyl(args, scene));
 	perror("The element you entered does not exist, or is not known to this program. \nHere is a list of acceptable elements: A C L pl sp cy.\n");
 	return (EXIT_FAILURE);
 }
@@ -74,7 +76,8 @@ int parse_scene(int fd, t_scene	*scene)
 	{
 		if (parse_element(element, scene) == EXIT_FAILURE)
 		{
-			// TODO add free all
+			printf("parsing\n");
+			
 			free(element);
 			free_all(scene);
 			return (EXIT_FAILURE);
@@ -85,3 +88,5 @@ int parse_scene(int fd, t_scene	*scene)
 	print_scene(scene);
 	return (EXIT_SUCCESS);
 }
+
+//TODO create parsing folder
