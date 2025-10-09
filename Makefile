@@ -6,7 +6,7 @@
 #    By: syukna <syukna@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/03 17:37:30 by rshin             #+#    #+#              #
-#    Updated: 2025/10/07 16:03:42 by syukna           ###   ########.fr        #
+#    Updated: 2025/10/09 13:10:02 by syukna           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRC += 	$(SRC_DIR)/parsing/scene.c\
 		$(SRC_DIR)/parsing/print.c \
 		$(SRC_DIR)/parsing/free.c\
 		$(SRC_DIR)/parsing/light.c\
+		$(SRC_DIR)/parsing/cam.c\
 		$(SRC_DIR)/parsing/shapes.c\
 		$(SRC_DIR)/parsing/coor.c\
 		$(SRC_DIR)/parsing/norm.c\

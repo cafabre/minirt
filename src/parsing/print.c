@@ -6,7 +6,7 @@
 /*   By: syukna <syukna@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 11:26:57 by syukna            #+#    #+#             */
-/*   Updated: 2025/10/09 12:40:40 by syukna           ###   ########.fr       */
+/*   Updated: 2025/10/09 13:13:29 by syukna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,16 @@ void	print_vector(t_vec3 *vector)
 void	print_color(t_color *color)
 {
 	printf("        Color: X=%d Y=%d Z=%d\n", color->r, color->g, color->b);
+}
+
+void	print_cam(t_cam *cam)
+{
+	printf("      **************************************************************\n");
+	printf("      CAMERA\n");
+	print_coor(&cam->coor);
+	print_vector(&cam->vector);
+	printf("        Focal of view = %d\n", cam->fov);
+	printf("      **************************************************************\n");
 }
 
 void	print_light(t_light *light, int amb)
@@ -102,6 +112,8 @@ void	print_scene(t_scene *scene)
 {
 	printf("\n\n**************************************************************************\n");
 	printf("     SCENE\n\n");
+	if (scene->cam)
+		print_cam(scene->cam);
 	if (scene->amb)
 		print_light(scene->amb, 1);
 	if (scene->l)

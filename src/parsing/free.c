@@ -6,7 +6,7 @@
 /*   By: syukna <syukna@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 18:32:15 by syukna            #+#    #+#             */
-/*   Updated: 2025/10/07 17:03:30 by syukna           ###   ########.fr       */
+/*   Updated: 2025/10/09 13:13:58 by syukna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ void	free_planes(t_plane *lst)
 
 void	free_all(t_scene *scene)
 {
+	if (scene->cam)
+		free(scene->cam);
 	if (scene->amb)
 		free(scene->amb);
 	if (scene->l)

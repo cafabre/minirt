@@ -6,7 +6,7 @@
 /*   By: syukna <syukna@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 13:31:14 by syukna            #+#    #+#             */
-/*   Updated: 2025/10/07 15:37:36 by syukna           ###   ########.fr       */
+/*   Updated: 2025/10/09 13:09:44 by syukna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int		get_norm(char *str, t_vec3 *vector);
 t_vec3	init_vec3(void);
 
 // PARSING OBJECTS
+int		init_cam(char **args, t_scene *scene);
 int		init_ambient(char **args, t_scene *scene);
 int		init_light(char **args, t_scene *scene);
 int		init_sphere(char **args, t_scene *scene);
