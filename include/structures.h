@@ -6,7 +6,7 @@
 /*   By: syukna <syukna@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 16:01:33 by syukna            #+#    #+#             */
-/*   Updated: 2025/10/09 13:21:08 by syukna           ###   ########.fr       */
+/*   Updated: 2025/10/11 17:40:36 by syukna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,32 +31,25 @@ typedef struct  s_color
 	int		b;
 }				t_color;
 
+// Enum for object types
+typedef enum e_objtype {
+    SPHERE,
+    PLANE,
+    CYLINDER
+} t_objtype;
+
 // OBJECTS
-typedef struct  s_plane
-{
-	t_vec3		coor;
-	t_vec3		vector;
-	t_color		color;
-    t_plane		*next;
-}				t_plane;
 
-typedef struct  s_sphere
+typedef struct  s_obj
 {
-	t_vec3		coor;
-	float		diameter;
-	t_color		color;
-    t_sphere	*next;
-}				t_sphere;
-
-typedef struct  s_cyl
-{
+	t_objtype	type;
 	t_vec3		coor;
 	t_vec3		vector;
 	float		diameter;
 	float		height;
 	t_color		color;
-    t_cyl		*next;
-}				t_cyl;
+    t_obj		*next;
+}				t_obj;
 
 // TOOLS
 typedef struct  s_light
