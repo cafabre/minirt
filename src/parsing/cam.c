@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cam.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syukna <syukna@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sandykds <sandykds@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 13:06:56 by syukna            #+#    #+#             */
-/*   Updated: 2025/10/09 13:19:46 by syukna           ###   ########.fr       */
+/*   Updated: 2025/10/12 14:46:54 by sandykds         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,11 @@ int	init_cam(char **args, t_scene *scene)
 		return (EXIT_FAILURE);
 	ft_memset(cam, '\0', sizeof(t_cam));
 	cam->coor = init_vec3();
-	if (get_coor(args[1], &cam->coor) == EXIT_FAILURE)
-	{
-		free(cam);
-		return (EXIT_FAILURE);
-	}
+	if (!get_coor(args[1], &cam->coor))
+		return (free(cam), EXIT_FAILURE);
 	cam->vector = init_vec3();
-	if (get_norm(args[2], &cam->vector) == EXIT_FAILURE)
-	{
-		free(cam);
-		return (EXIT_FAILURE);
-	}
+	if (!get_norm(args[2], &cam->vector))
+		return (free(cam), EXIT_FAILURE);
 	cam->fov = ft_atoi(args[3]);
 	scene->cam = cam;
 	return (EXIT_SUCCESS);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syukna <syukna@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sandykds <sandykds@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 16:01:33 by syukna            #+#    #+#             */
-/*   Updated: 2025/10/11 17:40:36 by syukna           ###   ########.fr       */
+/*   Updated: 2025/10/12 15:16:35 by sandykds         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@
 
 // MODULES
 typedef struct  s_color t_color;
-typedef struct  s_plane t_plane;
-typedef struct  s_sphere t_sphere;
-typedef struct  s_cyl t_cyl;
+typedef struct  s_obj t_obj;
 typedef struct  s_light t_light;
 typedef struct  s_cam t_cam;
 typedef struct  s_scene t_scene;
@@ -48,7 +46,8 @@ typedef struct  s_obj
 	float		diameter;
 	float		height;
 	t_color		color;
-    t_obj		*next;
+	t_obj		*next_objs;
+	t_obj		*next;
 }				t_obj;
 
 // TOOLS
@@ -71,11 +70,12 @@ typedef struct  s_cam
 typedef struct  s_scene
 {
 	t_light		*amb;
-    t_plane		*pl;
-    t_sphere	*sp;
-	t_cyl		*cy;
 	t_light		*l;
 	t_cam		*cam;
-}               t_scene;
+	t_obj   *objs;
+	t_obj		*pl;
+	t_obj		*sp;
+	t_obj	 	*cy;
+}	            t_scene;
 
 #endif

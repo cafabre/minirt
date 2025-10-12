@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syukna <syukna@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sandykds <sandykds@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 11:26:57 by syukna            #+#    #+#             */
-/*   Updated: 2025/10/09 13:20:19 by syukna           ###   ########.fr       */
+/*   Updated: 2025/10/12 15:32:12 by sandykds         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	print_light(t_light *light, int amb)
 	printf("      **************************************************************\n");
 	if (amb)
 		printf("      AMBIENT LIGHT\n");
-	else 
+	else
 		printf("      LIGHT\n");
 	print_coor(&light->coor);
 	printf("        Brightness = %f\n", light->bri);
@@ -49,60 +49,53 @@ void	print_light(t_light *light, int amb)
 	printf("      **************************************************************\n");
 }
 
-void	print_planes(t_plane *plane)
+void	print_planes(t_obj *obj)
 {
-	t_plane	*temp;
-	
-	temp = plane;
+	t_obj	*temp;
+
+	temp = obj;
 	printf("      **************************************************************\n");
 	printf("      PLANES\n");
 	while (temp)
 	{
-		printf("         Plane\n");
-		print_coor(&temp->coor);
-		print_vector(&temp->vector);
-		print_color(&temp->color);
-		temp = temp->next;
-		printf("      ********************\n");
-	}
-	printf("      **************************************************************\n");
-}
-
-void	print_spheres(t_sphere *sphere)
-{
-	t_sphere	*temp;
-	
-	temp = sphere;
-	printf("      **************************************************************\n");
-	printf("      SPHERES\n");
-	while (temp)
-	{
-		printf("         Sphere\n");
-		print_coor(&temp->coor);
-		printf("        Diameter: %f\n", temp->diameter);
-		print_color(&temp->color);
-		temp = temp->next;
-		printf("      ********************\n");
-	}
-	printf("      **************************************************************\n");
-}
-
-void	print_cyl(t_cyl *cyl)
-{
-	t_cyl	*temp;
-	
-	temp = cyl;
-	printf("      **************************************************************\n");
-	printf("      CYLINDERS\n");
-	while (temp)
-	{
-		printf("         Cylinder\n");
-		print_coor(&temp->coor);
-		print_vector(&temp->vector);
-		printf("        Diameter: %f\n", temp->diameter);
+		printf("        TYPE = %d\n", temp->type);
+		if (&temp->coor)
+      print_coor(&temp->coor);
+    if (&temp->vector)
+		  print_vector(&temp->vector);
+    if (temp->diameter)
+		  printf("        Diameter: %f\n", temp->diameter);
+    if (temp->height)
 		printf("        Height: %f\n", temp->height);
-		print_color(&temp->color);
+    if (&temp->color)
+		  print_color(&temp->color);
 		temp = temp->next;
+		printf("      ********************\n");
+	}
+	printf("      **************************************************************\n");
+}
+
+void	print_obj(t_obj *obj)
+{
+	t_obj	*temp;
+
+	temp = obj;
+	printf("      **************************************************************\n");
+	printf("      OBJECTS\n");
+	while (temp)
+	{
+		printf("        TYPE = %d\n", temp->type);
+		if (&temp->coor)
+      print_coor(&temp->coor);
+    if (&temp->vector)
+		  print_vector(&temp->vector);
+    if (temp->diameter)
+		  printf("        Diameter: %f\n", temp->diameter);
+    if (temp->height)
+		printf("        Height: %f\n", temp->height);
+    if (&temp->color)
+		  print_color(&temp->color);
+		temp = temp->next_objs;
 		printf("      ********************\n");
 	}
 	printf("      **************************************************************\n");
@@ -118,11 +111,9 @@ void	print_scene(t_scene *scene)
 		print_light(scene->amb, 1);
 	if (scene->l)
 		print_light(scene->l, 0);
+	if (scene->objs)
+		print_obj(scene->objs);
 	if (scene->pl)
 		print_planes(scene->pl);
-	if (scene->sp)
-		print_spheres(scene->sp);
-	if (scene->cy)
-		print_cyl(scene->cy);
 	printf("**************************************************************************\n");
 }

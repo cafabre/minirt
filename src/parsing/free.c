@@ -3,62 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syukna <syukna@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sandykds <sandykds@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 18:32:15 by syukna            #+#    #+#             */
-/*   Updated: 2025/10/09 13:13:58 by syukna           ###   ########.fr       */
+/*   Updated: 2025/10/12 15:52:59 by sandykds         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	free_spheres(t_sphere *lst)
+void	free_objs(t_obj *lst)
 {
-	t_sphere *tmp;
-	t_sphere *next;
+	t_obj *tmp;
 
-	tmp = lst;
-	next = tmp->next;
-	while (next)
+	while (lst)
 	{
-		free(tmp);
-		tmp = next;
-		next = tmp->next;
+		tmp = lst->next_objs;
+		free(lst);
+		lst = tmp;
 	}
-	free(tmp);
 }
 
-void	free_cyls(t_cyl *lst)
-{
-	t_cyl *tmp;
-	t_cyl *next;
-
-	tmp = lst;
-	next = tmp->next;
-	while (next)
-	{
-		free(tmp);
-		tmp = next;
-		next = tmp->next;
-	}
-	free(tmp);
-}
-
-void	free_planes(t_plane *lst)
-{
-	t_plane *tmp;
-	t_plane *next;
-
-	tmp = lst;
-	next = tmp->next;
-	while (next)
-	{
-		free(tmp);
-		tmp = next;
-		next = tmp->next;
-	}
-	free(tmp);
-}
 
 void	free_all(t_scene *scene)
 {
@@ -68,10 +33,12 @@ void	free_all(t_scene *scene)
 		free(scene->amb);
 	if (scene->l)
 		free(scene->l);
-	if (scene->sp)
-		free_spheres(scene->sp);
+	if (scene->objs)
+		free_objs(scene->objs);
 	if (scene->cy)
-		free_cyls(scene->cy);
+		scene->cy = NULL;
 	if (scene->pl)
-		free_planes(scene->pl);
+		scene->pl = NULL;
+    if (scene->sp)
+		scene->sp = NULL;
 }
