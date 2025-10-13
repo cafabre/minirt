@@ -12,6 +12,19 @@
 
 #include "minirt.h"
 
+void replace_char(char **str, char old, char new)
+{
+	int i;
+
+	i = 0;
+	while ((*str)[i])
+	{
+		if ((*str)[i] == old)
+			(*str)[i] = new;
+		i++;
+	}
+}
+
 int	ft_accept_char(char *ref, char letter)
 {
 	int i;
@@ -26,14 +39,12 @@ int	ft_accept_char(char *ref, char letter)
 	return (0);
 }
 
-// If there are letters outside of the reference, the function returns 0. Otherwise, the function returns 1. 
+// If there are letters outside of the reference, the function returns 0. Otherwise, the function returns 1.
 int	ft_accept_chars(char *str, char *ref)
 {
 	size_t i;
-	size_t j;
 
 	i = 0;
-	j = 0;
 	while (str[i] != '\0')
 	{
 		if (!ft_accept_char(ref, str[i]))

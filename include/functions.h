@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syukna <syukna@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sandykds <sandykds@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 13:31:14 by syukna            #+#    #+#             */
-/*   Updated: 2025/10/09 13:09:44 by syukna           ###   ########.fr       */
+/*   Updated: 2025/10/12 15:50:20 by sandykds         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,24 @@
 # define FUNCTIONS_H
 
 // PARSING
-int		parse_scene(int fd, t_scene *scene);
-int		get_coor(char *str, t_vec3 *coor);
-int		get_color(char *str, t_color *color);
-int		get_norm(char *str, t_vec3 *vector);
+int		  parse_scene(int fd, t_scene *scene);
+int		  get_coor(char *str, t_vec3 *coor);
+int     get_color(char *str, t_obj *obj);
+int			get_color_light(char *str, t_light *light);
+int		  get_norm(char *str, t_vec3 *vector);
 t_vec3	init_vec3(void);
+t_color init_color(void);
 
 // PARSING OBJECTS
 int		init_cam(char **args, t_scene *scene);
 int		init_ambient(char **args, t_scene *scene);
 int		init_light(char **args, t_scene *scene);
-int		init_sphere(char **args, t_scene *scene);
-int		init_plane(char **args, t_scene *scene);
-int		init_cyl(char **args, t_scene *scene);
+int   init_obj(char **args, t_scene *scene, t_objtype objt);
 
 // PARSING UTILS
 int	ft_accept_chars(char *str, char *ref);
+int	ft_accept_char(char *ref, char letter);
+void replace_char(char **str, char old, char new);
 
 // PRINT ALL
 void	print_scene(t_scene *scene);
