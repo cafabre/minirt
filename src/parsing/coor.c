@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_coor.c                                       :+:      :+:    :+:   */
+/*   coor.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syukna <syukna@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 16:55:44 by syukna            #+#    #+#             */
-/*   Updated: 2025/10/07 15:37:25 by syukna           ###   ########.fr       */
+/*   Updated: 2025/10/14 12:11:31 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_vec3 init_vec3(void)
+t_vec4 init_vec3(void)
 {
-	t_vec3	vec;
+	t_vec4	vec;
 
 	vec.x = 0;
 	vec.y = 0;
@@ -22,7 +22,7 @@ t_vec3 init_vec3(void)
 	return (vec);
 }
 
-int	get_coor(char *str, t_vec3 *coor)
+int	get_coor(char *str, t_vec4 *coor)
 {
 	char **args;
 	if (!ft_accept_chars(str, "0123456789-.,"))

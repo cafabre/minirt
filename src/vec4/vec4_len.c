@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec3_lerp.c                                        :+:      :+:    :+:   */
+/*   vec4_len.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rshin <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/02 15:45:55 by rshin             #+#    #+#             */
-/*   Updated: 2025/10/02 15:46:22 by rshin            ###   ########.fr       */
+/*   Created: 2025/10/02 15:49:12 by rshin             #+#    #+#             */
+/*   Updated: 2025/10/07 19:02:47 by rshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vec3.h"
+#include "vec4.h"
 
-// use case : linear interpolation for smooth blending (light, color, vecs...)
+// use case : calculate length || magnitude of a single vector
 
-t_vec3	vec3_lerp(t_vec3 a, t_vec3 b, double factor)
+double	vec4_len(t_vec4 vec)
 {
-	t_vec3	res;
+	double	len;
 
-	res.x = a.x + (b.x - a.x) * factor;
-	res.y = a.y + (b.y - a.y) * factor;
-	res.z = a.z + (b.z - a.z) * factor;
-	return (res);
+	len = sqrt(vec4_dot_prod(vec, vec));
+	return (len);
 }

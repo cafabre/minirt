@@ -1,25 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec3_scalar_prod.c                                 :+:      :+:    :+:   */
+/*   mat4_prod.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rshin <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/02 14:45:49 by rshin             #+#    #+#             */
-/*   Updated: 2025/10/02 14:46:17 by rshin            ###   ########.fr       */
+/*   Created: 2025/10/02 19:28:10 by rshin             #+#    #+#             */
+/*   Updated: 2025/10/13 15:16:59 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vec3.h"
+#include "vec4.h"
 
-// use case : scaling vectors || directions, convert normalized vecs to desired len
-
-t_vec3	vec3_scalar_prod(t_vec3 vec, double scalar)
+t_mat4	mat4_prod(t_mat4 a, t_mat4 b)
 {
-	t_vec3	res;
+	t_mat4	res;
+	int		i;
+	int		j;
+	int		k;
 
-	res.x = vec.x * scalar;
-	res.y = vec.y * scalar;
-	res.z = vec.z * scalar;
+	i = 0;
+	while (i < 4)
+	{
+		j = 0;
+		while (j < 4)
+		{
+			res.m[i][j] = 0;
+			k = 0;
+			while (k < 4)
+			{
+				res.m[i][j] += a.m[i][k] * b.m[k][j];
+				k++;
+			}
+			j++;
+		}
+		i++;
+	}
 	return (res);
 }

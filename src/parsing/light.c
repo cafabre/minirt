@@ -6,7 +6,7 @@
 /*   By: sandykds <sandykds@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 17:49:17 by syukna            #+#    #+#             */
-/*   Updated: 2025/10/12 16:17:49 by sandykds         ###   ########.fr       */
+/*   Updated: 2025/10/14 12:11:54 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	init_ambient(char **args, t_scene *scene)
 	if (!amb)
 		return (EXIT_FAILURE);
 	ft_memset(amb, '\0', sizeof(t_light));
-	amb->coor = init_vec3();
+	amb->coor = init_vec4();
 	if (!get_bri(args[1], &amb))
 		return (free(amb),EXIT_FAILURE);
 	if (!get_color_light(args[2], amb))
@@ -58,7 +58,7 @@ int	init_light(char **args, t_scene *scene)
 	if (!light)
 		return (EXIT_FAILURE);
 	ft_memset(light, '\0', sizeof(t_light));
-	light->coor = init_vec3();
+	light->coor = init_vec4();
 	if (!get_coor(args[1], &light->coor))
 		return (free(light),EXIT_FAILURE);
 	if (!get_bri(args[2], &light))

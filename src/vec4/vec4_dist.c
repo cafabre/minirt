@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec3_sub.c                                         :+:      :+:    :+:   */
+/*   vec4_dist.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rshin <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/02 11:46:40 by rshin             #+#    #+#             */
-/*   Updated: 2025/10/02 15:54:08 by rshin            ###   ########.fr       */
+/*   Created: 2025/10/02 14:48:30 by rshin             #+#    #+#             */
+/*   Updated: 2025/10/08 11:44:05 by rshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vec3.h"
+#include "vec4.h"
 
-// use case : find direction from point b to point a
+// use case : get len of vecs, get distance
 
-t_vec3	vec3_sub(t_vec3 a, t_vec3 b)
+double	vec4_dist(t_vec4 a, t_vec4 b)
 {
-	t_vec3	res;
+	t_vec4	diff;
+	double	dist;
 
-	res.x = a.x - b.x;
-	res.y = a.y - b.y;
-	res.z = a.z - b.z;
-	return (res);
+	diff = vec4_sub(a, b);
+	dist = vec4_len(diff);
+	return (dist);
 }

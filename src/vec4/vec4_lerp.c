@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec3_dot_prod.c                                    :+:      :+:    :+:   */
+/*   vec4_lerp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rshin <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/02 14:46:29 by rshin             #+#    #+#             */
-/*   Updated: 2025/10/02 14:46:40 by rshin            ###   ########.fr       */
+/*   Created: 2025/10/02 15:45:55 by rshin             #+#    #+#             */
+/*   Updated: 2025/10/08 11:44:15 by rshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vec3.h"
+#include "vec4.h"
 
-// use case : calc angles between vecs, light intensity (Lambertian), tests for perpendicularity
+// use case : linear interpolation for smooth blending (light, color, vecs...)
 
-double	dot_prod(t_vec3 a, t_vec3 b)
+t_vec4	vec4_lerp(t_vec4 a, t_vec4 b, double factor)
 {
-	double	res;
+	t_vec4	res;
 
-	res = a.x * b.x + a.y * b.y + a.z * b.z;
+	res.x = a.x + (b.x - a.x) * factor;
+	res.y = a.y + (b.y - a.y) * factor;
+	res.z = a.z + (b.z - a.z) * factor;
 	return (res);
 }

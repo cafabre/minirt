@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec3_dist.c                                        :+:      :+:    :+:   */
+/*   vec4_add.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rshin <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/02 14:48:30 by rshin             #+#    #+#             */
-/*   Updated: 2025/10/02 15:48:24 by rshin            ###   ########.fr       */
+/*   Created: 2025/10/02 14:44:16 by rshin             #+#    #+#             */
+/*   Updated: 2025/10/08 11:44:35 by rshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vec3.h"
+#include "vec4.h"
 
-// use case : get len of vecs, get distance
+// use case : move points (pos update)
 
-double	vec3_dist(t_vec3 a, t_vec3 b)
+t_vec4	vec4_add(t_vec4 a, t_vec4 b)
 {
-	t_vec3	diff;
-	double	dist;
+	t_vec4	res;
 
-	diff = vec3_sub(a, b);
-	dist = vec3_len(diff);
-	return (dist);
+	res.x = a.x + b.x;
+	res.y = a.y + b.y;
+	res.z = a.z + b.z;
+	return (res);
 }

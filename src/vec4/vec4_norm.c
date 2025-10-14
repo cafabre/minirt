@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec3_norm.c                                        :+:      :+:    :+:   */
+/*   vec4_norm.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rshin <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,16 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vec3.h"
+#include "vec4.h"
 
 // use case : converts any vec to a unit vector
 
-t_vec3	vec3_norm(t_vec3 vec)
+t_vec4	vec4_norm(t_vec4 vec)
 {
-	t_vec3	res;
+	t_vec4	res;
 	double	len;
 
-	len = vec3_len(vec);
+	len = vec4_len(vec);
 	if (len == 0)
 	{
 		res.x = 0;
@@ -27,6 +27,6 @@ t_vec3	vec3_norm(t_vec3 vec)
 		res.z = 0;
 	}
 	else
-		res = vec3_scalar_div(vec, len);
+		res = vec4_scalar_div(vec, len);
 	return (res);
 }

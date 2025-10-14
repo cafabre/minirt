@@ -6,13 +6,13 @@
 /*   By: sandykds <sandykds@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 17:42:28 by syukna            #+#    #+#             */
-/*   Updated: 2025/10/12 10:53:56 by sandykds         ###   ########.fr       */
+/*   Updated: 2025/10/14 12:12:03 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int get_norm(char *str, t_vec3 *vector)
+int get_norm(char *str, t_vec4 *vector)
 {
 	char **args;
 

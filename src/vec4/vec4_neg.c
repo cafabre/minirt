@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec3_len.c                                         :+:      :+:    :+:   */
+/*   vec4_neg.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rshin <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/02 15:49:12 by rshin             #+#    #+#             */
-/*   Updated: 2025/10/02 15:51:03 by rshin            ###   ########.fr       */
+/*   Created: 2025/10/02 15:27:19 by rshin             #+#    #+#             */
+/*   Updated: 2025/10/02 15:50:38 by rshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vec3.h"
+#include "vec4.h"
 
-// use case : calculate length || magnitude of a single vector
+// use case : reverse a direction (reflection / refraction)
 
-double	vec3_len(t_vec3 vec)
+t_vec4	vec4_neg(t_vec4 vec)
 {
-	double	len;
+	t_vec4	res;
 
-	len = sqrt(vec.x * vec.x + vec.y * vec.y + vec.z * vec.z);
-	return (len);
+	res.x = -vec.x;
+	res.y = -vec.y;
+	res.z = -vec.z;
+	return (res);
 }

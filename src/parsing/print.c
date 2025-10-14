@@ -6,17 +6,17 @@
 /*   By: sandykds <sandykds@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 11:26:57 by syukna            #+#    #+#             */
-/*   Updated: 2025/10/12 15:32:12 by sandykds         ###   ########.fr       */
+/*   Updated: 2025/10/14 12:15:10 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	print_coor(t_vec3 *coor)
+void	print_coor(t_vec4 *coor)
 {
 	printf("        Coor: X=%f Y=%f Z=%f\n", coor->x, coor->y, coor->z);
 }
-void	print_vector(t_vec3 *vector)
+void	print_vector(t_vec4 *vector)
 {
 	printf("        vector: %f,%f,%f\n",vector->x, vector->y, vector->z);
 }
@@ -60,15 +60,15 @@ void	print_planes(t_obj *obj)
 	{
 		printf("        TYPE = %d\n", temp->type);
 		if (&temp->coor)
-      print_coor(&temp->coor);
-    if (&temp->vector)
-		  print_vector(&temp->vector);
-    if (temp->diameter)
-		  printf("        Diameter: %f\n", temp->diameter);
-    if (temp->height)
-		printf("        Height: %f\n", temp->height);
-    if (&temp->color)
-		  print_color(&temp->color);
+			print_coor(&temp->coor);
+		if (&temp->vector)
+			print_vector(&temp->vector);
+		if (temp->diameter)
+			printf("        Diameter: %f\n", temp->diameter);
+		if (temp->height)
+			printf("        Height: %f\n", temp->height);
+		if (&temp->color)
+			print_color(&temp->color);
 		temp = temp->next;
 		printf("      ********************\n");
 	}
@@ -86,15 +86,15 @@ void	print_obj(t_obj *obj)
 	{
 		printf("        TYPE = %d\n", temp->type);
 		if (&temp->coor)
-      print_coor(&temp->coor);
-    if (&temp->vector)
-		  print_vector(&temp->vector);
-    if (temp->diameter)
-		  printf("        Diameter: %f\n", temp->diameter);
-    if (temp->height)
-		printf("        Height: %f\n", temp->height);
-    if (&temp->color)
-		  print_color(&temp->color);
+			print_coor(&temp->coor);
+		if (&temp->vector)
+			print_vector(&temp->vector);
+		if (temp->diameter)
+			printf("        Diameter: %f\n", temp->diameter);
+		if (temp->height)
+			printf("        Height: %f\n", temp->height);
+		if (&temp->color)
+			print_color(&temp->color);
 		temp = temp->next_objs;
 		printf("      ********************\n");
 	}
