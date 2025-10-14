@@ -39,7 +39,9 @@ SRC += 	$(SRC_DIR)/parsing/scene.c\
 		$(SRC_DIR)/parsing/color.c\
 		$(SRC_DIR)/parsing/utils.c
 
-SRC += $(SRC_DIR)/vec4/vec4_add.c \
+SRC += $(SRC_DIR)/vec4/vec4_point.c \
+	   $(SRC_DIR)/vec4/vec4_vector.c \
+	   $(SRC_DIR)/vec4/vec4_add.c \
 	   $(SRC_DIR)/vec4/vec4_sub.c \
 	   $(SRC_DIR)/vec4/vec4_cross_prod.c \
 	   $(SRC_DIR)/vec4/vec4_dot_prod.c \

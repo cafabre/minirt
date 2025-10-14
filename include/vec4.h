@@ -6,7 +6,7 @@
 /*   By: syukna <syukna@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 14:36:46 by syukna            #+#    #+#             */
-/*   Updated: 2025/10/14 20:13:28 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2025/10/14 20:36:04 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct  s_matrix_4x4
 }   t_mat4;
 
 t_vec4	vec4_point(float x, float y, float z);
-t_vec4	vec4_dir(float x, float y, float z);
+t_vec4	vec4_vector(float x, float y, float z);
 
 t_vec4	vec4_add(t_vec4 a, t_vec4 b);
 t_vec4	vec4_sub(t_vec4 a, t_vec4 b);
