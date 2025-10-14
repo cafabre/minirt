@@ -6,7 +6,7 @@
 /*   By: sandykds <sandykds@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 16:01:33 by syukna            #+#    #+#             */
-/*   Updated: 2025/10/14 12:10:04 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2025/10/14 19:47:11 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,11 @@ typedef enum e_objtype
 typedef struct	s_obj
 {
 	t_objtype	type;
-	t_vec4		coor;
-	t_vec4		vector;
-	float		diameter;
+	t_vec4		pos;
+	t_vec4		dir;
+	float		diam;
 	float		height;
-	t_color		color;
+	t_color		col;
 	t_obj		*next_objs;
 	t_obj		*next;
 }	t_obj;
@@ -54,16 +54,16 @@ typedef struct	s_obj
 // TOOLS
 typedef struct  s_light
 {
-	t_vec4		coor;
+	t_vec4		pos;
 	float		bri;
-	t_color		color;
+	t_color		col;
     t_light		*next;
 }	t_light;
 
 typedef struct  s_cam
 {
-	t_vec4		coor;
-	t_vec4		vector;
+	t_vec4		pos;
+	t_vec4		dir;
 	int			fov;
 }	t_cam;
 

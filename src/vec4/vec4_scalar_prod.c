@@ -6,7 +6,7 @@
 /*   By: rshin <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 14:45:49 by rshin             #+#    #+#             */
-/*   Updated: 2025/10/02 14:46:17 by rshin            ###   ########.fr       */
+/*   Updated: 2025/10/14 20:11:45 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // use case : scaling vectors || directions, convert normalized vecs to desired len
 
-t_vec4	vec4_scalar_prod(t_vec4 vec, double scalar)
+t_vec4	vec4_scalar_prod(t_vec4 vec, float scalar)
 {
 	t_vec4	res;
 

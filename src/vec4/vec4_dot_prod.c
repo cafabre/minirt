@@ -6,7 +6,7 @@
 /*   By: rshin <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 14:46:29 by rshin             #+#    #+#             */
-/*   Updated: 2025/10/08 20:27:40 by rshin            ###   ########.fr       */
+/*   Updated: 2025/10/14 20:08:38 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 // use case : calc angles between vecs, light intensity (Lambertian), tests for perpendicularity
 
-double	vec4_dot_prod(t_vec4 a, t_vec4 b)
+float	vec4_dot_prod(t_vec4 a, t_vec4 b)
 {
-	double	res;
+	float	res;
 
 	res = a.x * b.x + a.y * b.y + a.z * b.z;
 	return (res);

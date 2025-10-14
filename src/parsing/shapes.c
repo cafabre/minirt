@@ -6,7 +6,7 @@
 /*   By: sandykds <sandykds@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 17:01:50 by syukna            #+#    #+#             */
-/*   Updated: 2025/10/14 12:12:34 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2025/10/14 19:59:06 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,14 @@ int init_obj(char **args, t_scene *scene, t_objtype objt)
 		return (0);
 	ft_memset(obj, '\0', sizeof(t_obj));
 	obj->type = objt;
-	obj->coor = init_vec4();
-	obj->vector = init_vec4();
-	if (!get_coor(args[i++], &obj->coor))
+	obj->pos = init_vec4();
+	obj->dir = init_vec4();
+	if (!get_pos(args[i++], &obj->pos))
 		return (free(obj),EXIT_FAILURE);
-	if (obj->type != SPHERE && !get_norm(args[i++], &obj->vector))
+	if (obj->type != SPHERE && !get_dir(args[i++], &obj->dir))
 		return (free(obj),EXIT_FAILURE);
 	if (obj->type != PLANE)
-		obj->diameter = atof(args[i++]);
+		obj->diam = atof(args[i++]);
 	if (obj->type == CYLINDER)
 		obj->height = atof(args[i++]);
 	if (!get_color(args[i], obj))

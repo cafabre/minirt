@@ -6,7 +6,7 @@
 /*   By: sandykds <sandykds@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 15:21:20 by syukna            #+#    #+#             */
-/*   Updated: 2025/10/14 12:11:18 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2025/10/14 20:03:11 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	get_color(char *str, t_obj *obj)
 	char **args;
 	t_color	*color;
 
-	obj->color = init_color();
-	color = &obj->color;
+	obj->col = init_color();
+	color = &obj->col;
 	if (!ft_accept_chars(str, "0123456789,"))
 	{
 		perror("The colors must not include other characters than numbers separated by ','.\n");
@@ -71,8 +71,8 @@ int	get_color_light(char *str, t_light *light)
 	char **args;
 	t_color *color;
 
-	light->color = init_color();
-	color = &light->color;
+	light->col = init_color();
+	color = &light->col;
 	if (!ft_accept_chars(str, "0123456789,"))
 	{
 		perror("The colors must not include other characters than numbers separated by ','.\n");

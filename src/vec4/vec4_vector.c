@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec4_dist.c                                        :+:      :+:    :+:   */
+/*   vec4_vector.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rshin <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/02 14:48:30 by rshin             #+#    #+#             */
-/*   Updated: 2025/10/14 20:10:08 by rshin            ###   ########lyon.fr   */
+/*   Created: 2025/10/02 14:47:59 by rshin             #+#    #+#             */
+/*   Updated: 2025/10/14 20:07:33 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vec4.h"
 
-// use case : get len of vecs, get distance
+// use case : create a new vector
 
-float	vec4_dist(t_vec4 a, t_vec4 b)
+t_vec4	vec4_vector(float x, float y, float z)
 {
-	t_vec4	diff;
-	float	dist;
+	t_vec4	vector;
 
-	diff = vec4_sub(a, b);
-	dist = vec4_len(diff);
-	return (dist);
+	vector.x = x;
+	vector.y = y;
+	vector.z = z;
+	vector.w = 0.0;
+	return (vector);
 }

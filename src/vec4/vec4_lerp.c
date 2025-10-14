@@ -6,7 +6,7 @@
 /*   By: rshin <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 15:45:55 by rshin             #+#    #+#             */
-/*   Updated: 2025/10/08 11:44:15 by rshin            ###   ########.fr       */
+/*   Updated: 2025/10/14 20:08:57 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // use case : linear interpolation for smooth blending (light, color, vecs...)
 
-t_vec4	vec4_lerp(t_vec4 a, t_vec4 b, double factor)
+t_vec4	vec4_lerp(t_vec4 a, t_vec4 b, float factor)
 {
 	t_vec4	res;
 

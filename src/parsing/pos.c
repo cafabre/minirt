@@ -6,23 +6,24 @@
 /*   By: syukna <syukna@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 16:55:44 by syukna            #+#    #+#             */
-/*   Updated: 2025/10/14 12:11:31 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2025/10/14 19:53:20 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_vec4 init_vec3(void)
+t_vec4 init_vec4(void)
 {
 	t_vec4	vec;
 
 	vec.x = 0;
 	vec.y = 0;
 	vec.z = 0;
+	vec.w = 0;
 	return (vec);
 }
 
-int	get_coor(char *str, t_vec4 *coor)
+int	get_pos(char *str, t_vec4 *pos)
 {
 	char **args;
 	if (!ft_accept_chars(str, "0123456789-.,"))
@@ -37,9 +38,10 @@ int	get_coor(char *str, t_vec4 *coor)
 		ft_free_sptr(args);
 		return (0);
 	}
-	coor->x = atof(args[0]);
-	coor->y = atof(args[1]);
-	coor->z = atof(args[2]);
+	pos->x = atof(args[0]);
+	pos->y = atof(args[1]);
+	pos->z = atof(args[2]);
+	pos->w = 1.0;
 	ft_free_sptr(args);
 	return (1);
 }

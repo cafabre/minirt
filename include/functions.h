@@ -6,7 +6,7 @@
 /*   By: sandykds <sandykds@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 13:31:14 by syukna            #+#    #+#             */
-/*   Updated: 2025/10/14 12:07:32 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2025/10/14 20:00:10 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 
 // PARSING
 int		parse_scene(int fd, t_scene *scene);
-int		get_coor(char *str, t_vec4 *coor);
+int		get_pos(char *str, t_vec4 *pos);
 int		get_color(char *str, t_obj *obj);
 int		get_color_light(char *str, t_light *light);
-int		get_norm(char *str, t_vec4 *vector);
-t_vec4	init_vec3(void);
+int		get_dir(char *str, t_vec4 *dir);
+t_vec4	init_vec4(void);
 t_color	init_color(void);
 
 // PARSING OBJECTS

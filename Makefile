@@ -34,8 +34,8 @@ SRC += 	$(SRC_DIR)/parsing/scene.c\
 		$(SRC_DIR)/parsing/light.c\
 		$(SRC_DIR)/parsing/cam.c\
 		$(SRC_DIR)/parsing/shapes.c\
-		$(SRC_DIR)/parsing/coor.c\
-		$(SRC_DIR)/parsing/norm.c\
+		$(SRC_DIR)/parsing/pos.c\
+		$(SRC_DIR)/parsing/dir.c\
 		$(SRC_DIR)/parsing/color.c\
 		$(SRC_DIR)/parsing/utils.c
 

@@ -6,13 +6,13 @@
 /*   By: sandykds <sandykds@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 17:42:28 by syukna            #+#    #+#             */
-/*   Updated: 2025/10/14 12:12:03 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2025/10/14 19:52:58 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int get_norm(char *str, t_vec4 *vector)
+int get_dir(char *str, t_vec4 *dir)
 {
 	char **args;
 
@@ -28,9 +28,10 @@ int get_norm(char *str, t_vec4 *vector)
 		ft_free_sptr(args);
 		return (0);
 	}
-	vector->x = atof(args[0]);
-	vector->y = atof(args[1]);
-	vector->z = atof(args[2]);
+	dir->x = atof(args[0]);
+	dir->y = atof(args[1]);
+	dir->z = atof(args[2]);
+	dir->w = 0.0;
 	ft_free_sptr(args);
 	return (1);
 }

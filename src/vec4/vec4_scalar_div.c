@@ -6,7 +6,7 @@
 /*   By: rshin <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 14:46:55 by rshin             #+#    #+#             */
-/*   Updated: 2025/10/08 11:44:26 by rshin            ###   ########.fr       */
+/*   Updated: 2025/10/14 20:11:37 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // use case :  normalizing vectors (after computing len), scaling down vecs
 
-t_vec4	vec4_scalar_div(t_vec4 vec, double scalar)
+t_vec4	vec4_scalar_div(t_vec4 vec, float scalar)
 {
 	t_vec4	res;
 
