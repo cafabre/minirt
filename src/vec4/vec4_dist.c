@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec3_scalar_div.c                                  :+:      :+:    :+:   */
+/*   vec4_dist.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rshin <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/02 14:46:55 by rshin             #+#    #+#             */
-/*   Updated: 2025/10/02 14:47:44 by rshin            ###   ########.fr       */
+/*   Created: 2025/10/02 14:48:30 by rshin             #+#    #+#             */
+/*   Updated: 2025/10/14 20:10:08 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vec3.h"
+#include "vec4.h"
 
-// use case :  normalizing vectors (after computing len), scaling down vecs
+// use case : get len of vecs, get distance
 
-t_vec3	vec3_scalar_div(t_vec3 vec, double scalar)
+float	vec4_dist(t_vec4 a, t_vec4 b)
 {
-	t_vec3	res;
+	t_vec4	diff;
+	float	dist;
 
-	if (scalar == 0)
-		return (vec);
-	res.x = vec.x / scalar;
-	res.y = vec.y / scalar;
-	res.z = vec.z / scalar;
-	return (res);
+	diff = vec4_sub(a, b);
+	dist = vec4_len(diff);
+	return (dist);
 }

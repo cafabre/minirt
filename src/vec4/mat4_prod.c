@@ -1,32 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec3_norm.c                                        :+:      :+:    :+:   */
+/*   mat4_prod.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rshin <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/02 14:47:59 by rshin             #+#    #+#             */
-/*   Updated: 2025/10/02 16:06:50 by rshin            ###   ########.fr       */
+/*   Created: 2025/10/02 19:28:10 by rshin             #+#    #+#             */
+/*   Updated: 2025/10/13 15:16:59 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vec3.h"
+#include "vec4.h"
 
-// use case : converts any vec to a unit vector
-
-t_vec3	vec3_norm(t_vec3 vec)
+t_mat4	mat4_prod(t_mat4 a, t_mat4 b)
 {
-	t_vec3	res;
-	double	len;
+	t_mat4	res;
+	int		i;
+	int		j;
+	int		k;
 
-	len = vec3_len(vec);
-	if (len == 0)
+	i = 0;
+	while (i < 4)
 	{
-		res.x = 0;
-		res.y = 0;
-		res.z = 0;
+		j = 0;
+		while (j < 4)
+		{
+			res.m[i][j] = 0;
+			k = 0;
+			while (k < 4)
+			{
+				res.m[i][j] += a.m[i][k] * b.m[k][j];
+				k++;
+			}
+			j++;
+		}
+		i++;
 	}
-	else
-		res = vec3_scalar_div(vec, len);
 	return (res);
 }

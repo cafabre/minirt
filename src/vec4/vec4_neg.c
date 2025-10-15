@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec3_dot_prod.c                                    :+:      :+:    :+:   */
+/*   vec4_neg.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rshin <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/02 14:46:29 by rshin             #+#    #+#             */
-/*   Updated: 2025/10/02 14:46:40 by rshin            ###   ########.fr       */
+/*   Created: 2025/10/02 15:27:19 by rshin             #+#    #+#             */
+/*   Updated: 2025/10/02 15:50:38 by rshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vec3.h"
+#include "vec4.h"
 
-// use case : calc angles between vecs, light intensity (Lambertian), tests for perpendicularity
+// use case : reverse a direction (reflection / refraction)
 
-double	dot_prod(t_vec3 a, t_vec3 b)
+t_vec4	vec4_neg(t_vec4 vec)
 {
-	double	res;
+	t_vec4	res;
 
-	res = a.x * b.x + a.y * b.y + a.z * b.z;
+	res.x = -vec.x;
+	res.y = -vec.y;
+	res.z = -vec.z;
 	return (res);
 }

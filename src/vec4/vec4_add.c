@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec3_scalar_prod.c                                 :+:      :+:    :+:   */
+/*   vec4_add.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rshin <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/02 14:45:49 by rshin             #+#    #+#             */
-/*   Updated: 2025/10/02 14:46:17 by rshin            ###   ########.fr       */
+/*   Created: 2025/10/02 14:44:16 by rshin             #+#    #+#             */
+/*   Updated: 2025/10/14 20:08:09 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vec3.h"
+#include "vec4.h"
 
-// use case : scaling vectors || directions, convert normalized vecs to desired len
+// use case : move points (pos update)
 
-t_vec3	vec3_scalar_prod(t_vec3 vec, double scalar)
+t_vec4	vec4_add(t_vec4 a, t_vec4 b)
 {
-	t_vec3	res;
+	t_vec4	res;
 
-	res.x = vec.x * scalar;
-	res.y = vec.y * scalar;
-	res.z = vec.z * scalar;
+	res.x = a.x + b.x;
+	res.y = a.y + b.y;
+	res.z = a.z + b.z;
 	return (res);
 }

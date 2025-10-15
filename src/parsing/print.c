@@ -6,19 +6,19 @@
 /*   By: sandykds <sandykds@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 11:26:57 by syukna            #+#    #+#             */
-/*   Updated: 2025/10/12 15:32:12 by sandykds         ###   ########.fr       */
+/*   Updated: 2025/10/14 20:02:16 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	print_coor(t_vec3 *coor)
+void	print_pos(t_vec4 *pos)
 {
-	printf("        Coor: X=%f Y=%f Z=%f\n", coor->x, coor->y, coor->z);
+	printf("        Coor: X=%f Y=%f Z=%f\n", pos->x, pos->y, pos->z);
 }
-void	print_vector(t_vec3 *vector)
+void	print_dir(t_vec4 *dir)
 {
-	printf("        vector: %f,%f,%f\n",vector->x, vector->y, vector->z);
+	printf("        vector: %f,%f,%f\n", dir->x, dir->y, dir->z);
 }
 
 void	print_color(t_color *color)
@@ -30,8 +30,8 @@ void	print_cam(t_cam *cam)
 {
 	printf("      **************************************************************\n");
 	printf("      CAMERA\n");
-	print_coor(&cam->coor);
-	print_vector(&cam->vector);
+	print_pos(&cam->pos);
+	print_dir(&cam->dir);
 	printf("        Field of view = %d\n", cam->fov);
 	printf("      **************************************************************\n");
 }
@@ -43,9 +43,9 @@ void	print_light(t_light *light, int amb)
 		printf("      AMBIENT LIGHT\n");
 	else
 		printf("      LIGHT\n");
-	print_coor(&light->coor);
+	print_pos(&light->pos);
 	printf("        Brightness = %f\n", light->bri);
-	print_color(&light->color);
+	print_color(&light->col);
 	printf("      **************************************************************\n");
 }
 
@@ -59,16 +59,16 @@ void	print_planes(t_obj *obj)
 	while (temp)
 	{
 		printf("        TYPE = %d\n", temp->type);
-		if (&temp->coor)
-      print_coor(&temp->coor);
-    if (&temp->vector)
-		  print_vector(&temp->vector);
-    if (temp->diameter)
-		  printf("        Diameter: %f\n", temp->diameter);
-    if (temp->height)
-		printf("        Height: %f\n", temp->height);
-    if (&temp->color)
-		  print_color(&temp->color);
+	//	if (&temp->pos)
+	//		print_pos(&temp->pos);
+	//	if (&temp->dir)
+	//		print_dir(&temp->dir);
+		if (temp->diam)
+			printf("        Diameter: %f\n", temp->diam);
+		if (temp->height)
+			printf("        Height: %f\n", temp->height);
+	//	if (&temp->col)
+	//		print_color(&temp->col);
 		temp = temp->next;
 		printf("      ********************\n");
 	}
@@ -85,16 +85,16 @@ void	print_obj(t_obj *obj)
 	while (temp)
 	{
 		printf("        TYPE = %d\n", temp->type);
-		if (&temp->coor)
-      print_coor(&temp->coor);
-    if (&temp->vector)
-		  print_vector(&temp->vector);
-    if (temp->diameter)
-		  printf("        Diameter: %f\n", temp->diameter);
-    if (temp->height)
-		printf("        Height: %f\n", temp->height);
-    if (&temp->color)
-		  print_color(&temp->color);
+	//	if (&temp->pos)
+	//		print_pos(&temp->pos);
+	//	if (&temp->dir)
+			print_dir(&temp->dir);
+		if (temp->diam)
+			printf("        Diameter: %f\n", temp->diam);
+		if (temp->height)
+			printf("        Height: %f\n", temp->height);
+	//	if (&temp->col)
+	//		print_color(&temp->col);
 		temp = temp->next_objs;
 		printf("      ********************\n");
 	}

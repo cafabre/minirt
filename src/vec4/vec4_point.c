@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec3_add.c                                         :+:      :+:    :+:   */
+/*   vec4_point.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rshin <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/02 14:44:16 by rshin             #+#    #+#             */
-/*   Updated: 2025/10/02 14:44:50 by rshin            ###   ########.fr       */
+/*   Created: 2025/10/02 14:47:59 by rshin             #+#    #+#             */
+/*   Updated: 2025/10/14 20:07:12 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vec3.h"
+#include "vec4.h"
 
-// use case : move points (pos update)
+// use case : create a new point
 
-t_vec3	vec3_add(t_vec3 a, t_vec3 b)
+t_vec4	vec4_point(float x, float y, float z)
 {
-	t_vec3	res;
+	t_vec4	point;
 
-	res.x = a.x + b.x;
-	res.y = a.y + b.y;
-	res.z = a.z + b.z;
-	return (res);
+    point.x = x;
+    point.y = y;
+    point.z = z;
+    point.w = 1.0;
+    return (point);
 }

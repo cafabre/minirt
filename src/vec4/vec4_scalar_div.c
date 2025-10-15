@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec3_prod.c                                        :+:      :+:    :+:   */
+/*   vec4_scalar_div.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rshin <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/02 14:45:10 by rshin             #+#    #+#             */
-/*   Updated: 2025/10/02 14:45:37 by rshin            ###   ########.fr       */
+/*   Created: 2025/10/02 14:46:55 by rshin             #+#    #+#             */
+/*   Updated: 2025/10/14 20:11:37 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vec3.h"
+#include "vec4.h"
 
-// use case : find surface normals for polygons, computes perpendicular vecs, calc tangent spaces
+// use case :  normalizing vectors (after computing len), scaling down vecs
 
-t_vec3	vec3_prod(t_vec3 a, t_vec3 b)
+t_vec4	vec4_scalar_div(t_vec4 vec, float scalar)
 {
-	t_vec3	res;
+	t_vec4	res;
 
-	res.x = a.y * b.z - a.z * b.y;
-	res.y = a.z * b.x - a.x * b.z;
-	res.z = a.x * b.y - a.y * b.x;
+	if (scalar == 0)
+		return (vec);
+	res.x = vec.x / scalar;
+	res.y = vec.y / scalar;
+	res.z = vec.z / scalar;
 	return (res);
 }

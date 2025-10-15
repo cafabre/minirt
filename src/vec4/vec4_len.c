@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec3_dist.c                                        :+:      :+:    :+:   */
+/*   vec4_len.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rshin <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/02 14:48:30 by rshin             #+#    #+#             */
-/*   Updated: 2025/10/02 15:48:24 by rshin            ###   ########.fr       */
+/*   Created: 2025/10/02 15:49:12 by rshin             #+#    #+#             */
+/*   Updated: 2025/10/14 20:10:22 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vec3.h"
+#include "vec4.h"
 
-// use case : get len of vecs, get distance
+// use case : calculate length || magnitude of a single vector
 
-double	vec3_dist(t_vec3 a, t_vec3 b)
+float	vec4_len(t_vec4 vec)
 {
-	t_vec3	diff;
-	double	dist;
+	float	len;
 
-	diff = vec3_sub(a, b);
-	dist = vec3_len(diff);
-	return (dist);
+	len = sqrt(vec4_dot_prod(vec, vec));
+	return (len);
 }

@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec3_neg.c                                         :+:      :+:    :+:   */
+/*   vec4_lerp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rshin <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/02 15:27:19 by rshin             #+#    #+#             */
-/*   Updated: 2025/10/02 15:50:38 by rshin            ###   ########.fr       */
+/*   Created: 2025/10/02 15:45:55 by rshin             #+#    #+#             */
+/*   Updated: 2025/10/14 20:08:57 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vec3.h"
+#include "vec4.h"
 
-// use case : reverse a direction (reflection / refraction)
+// use case : linear interpolation for smooth blending (light, color, vecs...)
 
-t_vec3	vec3_neg(t_vec3 vec)
+t_vec4	vec4_lerp(t_vec4 a, t_vec4 b, float factor)
 {
-	t_vec3	res;
+	t_vec4	res;
 
-	res.x = -vec.x;
-	res.y = -vec.y;
-	res.z = -vec.z;
+	res.x = a.x + (b.x - a.x) * factor;
+	res.y = a.y + (b.y - a.y) * factor;
+	res.z = a.z + (b.z - a.z) * factor;
 	return (res);
 }

@@ -34,22 +34,26 @@ SRC += 	$(SRC_DIR)/parsing/scene.c\
 		$(SRC_DIR)/parsing/light.c\
 		$(SRC_DIR)/parsing/cam.c\
 		$(SRC_DIR)/parsing/shapes.c\
-		$(SRC_DIR)/parsing/coor.c\
-		$(SRC_DIR)/parsing/norm.c\
+		$(SRC_DIR)/parsing/pos.c\
+		$(SRC_DIR)/parsing/dir.c\
 		$(SRC_DIR)/parsing/color.c\
-		$(SRC_DIR)/parsing/utils.c\
+		$(SRC_DIR)/parsing/utils.c
 
-SRC += $(SRC_DIR)/vec3/vec3_add.c \
-	   $(SRC_DIR)/vec3/vec3_sub.c \
-	   $(SRC_DIR)/vec3/vec3_cross_prod.c \
-	   $(SRC_DIR)/vec3/vec3_dot_prod.c \
-	   $(SRC_DIR)/vec3/vec3_scalar_prod.c \
-	   $(SRC_DIR)/vec3/vec3_scalar_div.c \
-	   $(SRC_DIR)/vec3/vec3_len.c \
-	   $(SRC_DIR)/vec3/vec3_dist.c \
-	   $(SRC_DIR)/vec3/vec3_neg.c \
-	   $(SRC_DIR)/vec3/vec3_norm.c \
-	   $(SRC_DIR)/vec3/vec3_lerp.c
+SRC += $(SRC_DIR)/vec4/vec4_point.c \
+	   $(SRC_DIR)/vec4/vec4_vector.c \
+	   $(SRC_DIR)/vec4/vec4_add.c \
+	   $(SRC_DIR)/vec4/vec4_sub.c \
+	   $(SRC_DIR)/vec4/vec4_cross_prod.c \
+	   $(SRC_DIR)/vec4/vec4_dot_prod.c \
+	   $(SRC_DIR)/vec4/vec4_scalar_prod.c \
+	   $(SRC_DIR)/vec4/vec4_mat4_prod.c \
+	   $(SRC_DIR)/vec4/vec4_scalar_div.c \
+	   $(SRC_DIR)/vec4/vec4_len.c \
+	   $(SRC_DIR)/vec4/vec4_dist.c \
+	   $(SRC_DIR)/vec4/vec4_neg.c \
+	   $(SRC_DIR)/vec4/vec4_norm.c \
+	   $(SRC_DIR)/vec4/vec4_lerp.c \
+	   $(SRC_DIR)/vec4/mat4_prod.c
 
 INC = include
 

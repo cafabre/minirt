@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec3_sub.c                                         :+:      :+:    :+:   */
+/*   vec4_sub.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rshin <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,13 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vec3.h"
+#include "vec4.h"
 
 // use case : find direction from point b to point a
 
-t_vec3	vec3_sub(t_vec3 a, t_vec3 b)
+t_vec4	vec4_sub(t_vec4 a, t_vec4 b)
 {
-	t_vec3	res;
+	t_vec4	res;
 
 	res.x = a.x - b.x;
 	res.y = a.y - b.y;
