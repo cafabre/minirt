@@ -6,7 +6,7 @@
 /*   By: syukna <syukna@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:45 by rshin             #+#    #+#             */
-/*   Updated: 2025/10/14 12:07:41 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2025/10/15 15:44:59 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,10 @@
 # include "mlx_int.h"
 # include "vec4.h"
 
-typedef struct s_env
-{
-	void	*mlx;
-	void	*win;
-	void	*img;
-	char	*addr;
-	int		bpp;
-	int		size_line;
-	int		endian;
-}	t_env;
+# define WIN_W 1600
+# define WIN_H 900
+# define CX (WIN_W * 0.5f)
+# define CY (WIN_H * 0.5f)
+# define ESC_KEY 65307
 
 #endif

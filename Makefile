@@ -28,6 +28,12 @@ BLD_DIR = .build
 
 SRC = 	$(SRC_DIR)/main.c\
 
+SRC += 	$(SRC_DIR)/exec/render.c\
+		$(SRC_DIR)/exec/ray.c \
+		$(SRC_DIR)/exec/ray.c \
+		$(SRC_DIR)/exec/intersect.c \
+		$(SRC_DIR)/exec/controls.c 
+
 SRC += 	$(SRC_DIR)/parsing/scene.c\
 		$(SRC_DIR)/parsing/print.c \
 		$(SRC_DIR)/parsing/free.c\

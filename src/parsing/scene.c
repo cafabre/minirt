@@ -1,5 +1,4 @@
 /* ************************************************************************** */
-/*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   scene.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
@@ -58,17 +57,22 @@ int parse_element(char *element, t_scene *scene)
 	return (EXIT_SUCCESS);
 }
 
-int parse_scene(int fd, t_scene	*scene)
+int parse_scene(int fd, t_env *env) //changed from scene to env
 {
-	char *element;
+	t_scene	*scene; //added
+	char	*element;
 
+	scene = malloc(1 * sizeof(t_scene)); //added
+	if (!scene) //added
+		return (EXIT_FAILURE); //added
+	env->scene = scene; //added
 	element = ft_gnl(fd);
 	while (element)
 	{
 		if (parse_element(element, scene) == EXIT_FAILURE)
 		{
 			free(element);
-			free_all(scene);
+			free_scene(scene);
 			return (EXIT_FAILURE);
 		}
 		free(element);

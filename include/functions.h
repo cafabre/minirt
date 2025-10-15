@@ -6,7 +6,7 @@
 /*   By: sandykds <sandykds@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 13:31:14 by syukna            #+#    #+#             */
-/*   Updated: 2025/10/14 20:00:10 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2025/10/15 14:00:27 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,23 @@
 # define FUNCTIONS_H
 
 // PARSING
-int		parse_scene(int fd, t_scene *scene);
+int		parse_scene(int fd, t_env *env);
 int		get_pos(char *str, t_vec4 *pos);
 int		get_color(char *str, t_obj *obj);
 int		get_color_light(char *str, t_light *light);
 int		get_dir(char *str, t_vec4 *dir);
 t_vec4	init_vec4(void);
 t_color	init_color(void);
+
+// EXEC
+bool			render_scene(t_env *env);
+unsigned int	cast_ray(t_scene *s, t_vec4 ray);
+t_vec4			compute_ray(t_cam camm, t_pix p);
+t_obj			*compute_nearest_obj(t_scene *s, t_vec4 *ray);
+
+// UTILS
+int		close_win(void *param);
+void	hook_controls(t_env *env);
 
 // PARSING OBJECTS
 int	init_cam(char **args, t_scene *scene);
@@ -37,7 +47,8 @@ void	replace_char(char **str, char old, char new);
 void	print_scene(t_scene *scene);
 
 // FREE ALL
-void	free_all(t_scene *scene);
+void	free_env(t_env *env);
+void	free_scene(t_scene *scene);
 void	free_splitted(char **args);
 
 #endif
