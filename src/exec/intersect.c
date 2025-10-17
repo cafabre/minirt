@@ -6,11 +6,13 @@
 /*   By: rshin <rshin@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 16:34:37 by rshin             #+#    #+#             */
-/*   Updated: 2025/10/15 16:36:24 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2025/10/17 12:55:10 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-double  intersect_sphere(t_cam cam, t_vec4 *r, t_sp sp)
+#include "minirt.h"
+
+double  intersect_sphere(t_cam *cam, t_vec4 *r, t_obj *sp)
 {
 	t_vec4	s;
 	double	b;
@@ -18,9 +20,9 @@ double  intersect_sphere(t_cam cam, t_vec4 *r, t_sp sp)
 	double	delta;
 	double	t;
 
-	s = vec4_sub(cam.pos, sp.pos);
+	s = vec4_sub(cam->pos, sp->pos);
 	b = vec4_dot_prod(s, *r);
-	c = vec4_dot_prod(s, s) - sp.rad * sp.rad;
+	c = vec4_dot_prod(s, s) - sp->rad * sp->rad;
 	delta = b * b - c;
 	if (delta < 0.0)
 		return (INFINITY);
@@ -40,11 +42,11 @@ t_obj   *compute_nearest_obj(t_scene *s, t_vec4 *ray)
 
 	mag = INFINITY;
 	keep = NULL;
-	curr = s->obj;
+	curr = s->objs;
 	while (curr)
 	{
 		if (curr->type == SPHERE)
-			t = intersect_sphere(s->cam, ray, curr->shape.sp);
+			t = intersect_sphere(s->cam, ray, curr);
 		if (t < mag)
 		{
 			keep = curr;
@@ -54,6 +56,6 @@ t_obj   *compute_nearest_obj(t_scene *s, t_vec4 *ray)
 	}
 	if (mag == INFINITY)
 		return (NULL);
-	*ray = vec4_add(s->cam.pos, vec4_scalar_prod(*ray, mag));
+	*ray = vec4_add(s->cam->pos, vec4_scalar_prod(*ray, mag));
 	return (keep);
 }

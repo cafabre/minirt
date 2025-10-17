@@ -6,7 +6,7 @@
 /*   By: syukna <syukna@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:54 by rshin             #+#    #+#             */
-/*   Updated: 2025/10/15 15:06:02 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2025/10/17 13:13:49 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,7 @@ int	main(int argc, char **argv)
 		free_env(&env);
 		return (EXIT_FAILURE);
 	}
+	hook_controls(&env);
+	mlx_loop(env.mlx);
 	return (EXIT_SUCCESS);
 }
