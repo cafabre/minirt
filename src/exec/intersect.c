@@ -6,13 +6,13 @@
 /*   By: rshin <rshin@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 16:34:37 by rshin             #+#    #+#             */
-/*   Updated: 2025/10/17 12:55:10 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2025/10/20 16:43:42 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-double  intersect_sphere(t_cam *cam, t_vec4 *r, t_obj *sp)
+double  intersect_sphere(t_ray *r, t_obj *sp)
 {
 	t_vec4	s;
 	double	b;
@@ -20,8 +20,8 @@ double  intersect_sphere(t_cam *cam, t_vec4 *r, t_obj *sp)
 	double	delta;
 	double	t;
 
-	s = vec4_sub(cam->pos, sp->pos);
-	b = vec4_dot_prod(s, *r);
+	s = vec4_sub(r->pos, sp->pos);
+	b = vec4_dot_prod(s, r->dir);
 	c = vec4_dot_prod(s, s) - sp->rad * sp->rad;
 	delta = b * b - c;
 	if (delta < 0.0)
@@ -33,29 +33,28 @@ double  intersect_sphere(t_cam *cam, t_vec4 *r, t_obj *sp)
 	return (t);
 }
 
-t_obj   *compute_nearest_obj(t_scene *s, t_vec4 *ray)
+t_obj   *compute_nearest_obj(t_scene *s, t_ray *ray)
 {
 	t_obj	*curr;
 	t_obj	*keep;
-	double	mag;
 	double	t;
 
-	mag = INFINITY;
+	ray->t = INFINITY;
 	keep = NULL;
 	curr = s->objs;
 	while (curr)
 	{
 		if (curr->type == SPHERE)
-			t = intersect_sphere(s->cam, ray, curr);
-		if (t < mag)
+			t = intersect_sphere(ray, curr);
+		if (t < ray->t)
 		{
 			keep = curr;
-			mag = t;
+			ray->t = t;
 		}
 		curr = curr->next;
 	}
-	if (mag == INFINITY)
+	if (ray->t == INFINITY)
 		return (NULL);
-	*ray = vec4_add(s->cam->pos, vec4_scalar_prod(*ray, mag));
+	ray->hit = vec4_add(ray->pos, vec4_scalar_prod(ray->dir, ray->t));
 	return (keep);
 }

@@ -111,7 +111,7 @@ static void	compute_cache(t_scene *s)
 	s->cache.cy_scale = s->cache.cy * s->cache.fov_scale;
 }
 
-t_vec4	compute_ray(t_scene *s, t_pix p, t_mat4 view_mat)
+void	compute_ray(t_ray *ray, t_scene *s, t_pix p, t_mat4 view_mat)
 {
 	t_vec4	d_local;
 	t_vec4	d_world;
@@ -126,28 +126,35 @@ t_vec4	compute_ray(t_scene *s, t_pix p, t_mat4 view_mat)
 	d_local = vec4_norm(d_local);
 	d_world = vec4_mat4_prod(d_local, view_mat);
 //	d_world = vec4_norm(d_world);
-	return (d_world);
+	ray->pos = s->cam->pos;
+	ray->dir = d_world;
 }
 
-unsigned int	cast_ray(t_scene *s, t_vec4 ray)
+unsigned int	trace_ray(t_scene *s, t_ray *ray)
 {
-	t_obj	*target;
 	t_vec4	color;
-	t_vec4	light_dir;
-	t_vec4	obj_norm;
+	t_obj	*target;
+	t_ray	shadow;
+	t_ray	light;
 	float	diffuse;
 
-	target = compute_nearest_obj(s, &ray);
+	target = compute_nearest_obj(s, ray);
 	if (target == NULL)
 		return (pack_to_uint(s->amb->col));
+	ray->recur_depth++;
 	if (target->type == SPHERE)
-		obj_norm = vec4_norm(vec4_sub(ray, target->pos));
+		ray->norm = vec4_norm(vec4_sub(ray->hit, target->pos));
 	else
-		obj_norm = vec4_norm(vec4_sub(ray, target->dir));
-	light_dir = vec4_norm(vec4_sub(ray, s->l->pos));
-	diffuse = fmax(vec4_dot_prod(obj_norm, light_dir), 0.0);
-	color = vec4_point(target->col.r, target->col.g, target->col.b);
-	color = vec4_scalar_prod(color, diffuse * s->l->col.a);
+		ray->norm = vec4_norm(vec4_sub(ray->hit, target->dir));
+	shadow.pos = vec4_add(ray->hit, vec4_scalar_prod(ray->norm, 0.001f));
+	light.dir = vec4_norm(vec4_sub(s->l->pos, ray->hit));
+	light.t = vec4_len(vec4_sub(s->l->pos, shadow.pos));
+	shadow.dir = light.dir;
+	diffuse = fmax(vec4_dot_prod(ray->norm, light.dir), 0.0);
+	color = vec4_scalar_prod(target->col, diffuse * s->l->col.a);
+	target = compute_nearest_obj(s, &shadow);
+	if (target)
+		return (pack_to_uint(s->amb->col));
 	return (pack_to_uint(color));
 }
 
@@ -155,22 +162,23 @@ bool	render_scene(t_env *e)
 {
 	t_mat4	view;
 	t_pix	pix;
-	t_vec4	ray;
+	t_ray	ray;
 
 	if (!init_mlx(e))
 		return (false);
 	compute_cache(e->scene);
 	view = view_mat(e->scene->cam);
 	ft_memset(&pix, 0, sizeof(t_pix));
-//	pix.y = e->scene->cache.cy;
+	ft_memset(&ray, 0, sizeof(t_ray));
+	pix.y = e->scene->cache.cy;
 	while (pix.y < WIN_H)
 	{
-//		pix.x = e->scene->cache.cx;
-		pix.x = 0;
+		pix.x = e->scene->cache.cx;
+//		pix.x = 0;
 		while (pix.x < WIN_W)
 		{
-			ray = compute_ray(e->scene, pix, view);
-			pix.col = cast_ray(e->scene, ray);
+			compute_ray(&ray, e->scene, pix, view);
+			pix.col = trace_ray(e->scene, &ray);
 			set_pixel(e, pix);
 			pix.x++;
 		}

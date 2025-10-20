@@ -6,7 +6,7 @@
 /*   By: syukna <syukna@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:45 by rshin             #+#    #+#             */
-/*   Updated: 2025/10/17 12:51:04 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2025/10/20 14:32:44 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,19 @@ typedef struct s_pixel
 	int				y;
 	unsigned int	col;
 }	t_pix;
+
+typedef struct s_ray
+{
+	t_vec4	pos;
+	t_vec4	dir;
+	t_vec4	norm;
+	t_vec4	hit;
+	float	t;
+	float	t_min;
+	float	t_max;
+	t_vec4	color;
+	int		recur_depth;
+}	t_ray;
 
 typedef struct s_object
 {
@@ -122,9 +135,8 @@ int		get_dir(char *str, t_vec4 *dir);
 t_vec4	init_vec4(void);
 t_vec4	init_color(void);
 
-bool			render_scene(t_env *env);
-unsigned int	cast_ray(t_scene *s, t_vec4 ray);
-t_obj			*compute_nearest_obj(t_scene *s, t_vec4 *ray);
+bool	render_scene(t_env *env);
+t_obj	*compute_nearest_obj(t_scene *s, t_ray *ray);
 
 int		close_win(void *param);
 void	hook_controls(t_env *env);
