@@ -6,7 +6,7 @@
 /*   By: sandykds <sandykds@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 17:49:17 by syukna            #+#    #+#             */
-/*   Updated: 2025/10/17 14:26:42 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2025/10/20 11:46:52 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,10 @@ int	init_light(char **args, t_scene *scene)
 	light->pos = init_vec4();
 	if (!get_pos(args[1], &light->pos))
 		return (free(light),EXIT_FAILURE);
-	if (!get_bri(args[2], &light))
-    	return (free(light),EXIT_FAILURE);
 	if (!get_color_light(args[3], light))
 		return (free(light),EXIT_FAILURE);
+	if (!get_bri(args[2], &light))
+    	return (free(light),EXIT_FAILURE);
 	scene->l = light;
 	return (EXIT_SUCCESS);
 }

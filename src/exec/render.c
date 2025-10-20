@@ -162,11 +162,11 @@ bool	render_scene(t_env *e)
 	compute_cache(e->scene);
 	view = view_mat(e->scene->cam);
 	ft_memset(&pix, 0, sizeof(t_pix));
-	pix.y = e->scene->cache.cy;
+//	pix.y = e->scene->cache.cy;
 	while (pix.y < WIN_H)
 	{
-		pix.x = e->scene->cache.cx;
-//		pix.x = 0;
+//		pix.x = e->scene->cache.cx;
+		pix.x = 0;
 		while (pix.x < WIN_W)
 		{
 			ray = compute_ray(e->scene, pix, view);
