@@ -6,13 +6,13 @@
 /*   By: rshin <rshin@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 16:34:37 by rshin             #+#    #+#             */
-/*   Updated: 2025/10/20 16:43:42 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2025/10/20 16:55:09 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-double  intersect_sphere(t_ray *r, t_obj *sp)
+static float	intersect_sphere(t_ray *r, t_obj *sp)
 {
 	t_vec4	s;
 	double	b;
@@ -33,6 +33,22 @@ double  intersect_sphere(t_ray *r, t_obj *sp)
 	return (t);
 }
 
+static float	intersect_plane(t_ray *r, t_obj *pl)
+{	
+	t_vec4	diff;
+	float	div;
+	float	t;
+
+	diff = vec4_sub(pl->pos, r->pos);
+	div = vec4_dot_prod(pl->dir, r->dir);
+	if (fabs(div) < 1e-6)
+		return (INFINITY);
+	t = vec4_dot_prod(diff, pl->dir) / div;
+	if (t < 0.0)
+		return (INFINITY);
+	return (t);
+}
+
 t_obj   *compute_nearest_obj(t_scene *s, t_ray *ray)
 {
 	t_obj	*curr;
@@ -46,6 +62,8 @@ t_obj   *compute_nearest_obj(t_scene *s, t_ray *ray)
 	{
 		if (curr->type == SPHERE)
 			t = intersect_sphere(ray, curr);
+		else if (curr->type == PLANE)
+			t = intersect_plane(ray, curr);
 		if (t < ray->t)
 		{
 			keep = curr;
