@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sandykds <sandykds@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 18:32:15 by syukna            #+#    #+#             */
-/*   Updated: 2025/10/17 13:01:32 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2025/10/21 17:37:13 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,11 @@ void	free_objs(t_obj *lst)
 
 	while (lst)
 	{
-		tmp = lst->next_objs;
+		tmp = lst->next;
 		ft_nullfree((void **)&lst);
 		lst = tmp;
 	}
 }
-
 
 void	free_scene(t_scene *scene)
 {

@@ -26,24 +26,13 @@ SRC_DIR = src
 
 BLD_DIR = .build
 
-SRC = 	$(SRC_DIR)/main.c\
+SRC = $(SRC_DIR)/main.c \
+	  $(SRC_DIR)/create.c \
+	  $(SRC_DIR)/utils.c 
 
-SRC += 	$(SRC_DIR)/exec/render.c\
-		$(SRC_DIR)/exec/ray.c \
-		$(SRC_DIR)/exec/ray.c \
-		$(SRC_DIR)/exec/intersect.c \
-		$(SRC_DIR)/exec/controls.c 
-
-SRC += 	$(SRC_DIR)/parsing/scene.c\
-		$(SRC_DIR)/parsing/print.c \
-		$(SRC_DIR)/parsing/free.c\
-		$(SRC_DIR)/parsing/light.c\
-		$(SRC_DIR)/parsing/cam.c\
-		$(SRC_DIR)/parsing/shapes.c\
-		$(SRC_DIR)/parsing/pos.c\
-		$(SRC_DIR)/parsing/dir.c\
-		$(SRC_DIR)/parsing/color.c\
-		$(SRC_DIR)/parsing/utils.c
+SRC += $(SRC_DIR)/exec/render.c\
+	   $(SRC_DIR)/exec/intersect.c \
+	   $(SRC_DIR)/exec/controls.c 
 
 SRC += $(SRC_DIR)/vec4/vec4_point.c \
 	   $(SRC_DIR)/vec4/vec4_vector.c \

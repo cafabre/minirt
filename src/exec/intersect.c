@@ -6,7 +6,7 @@
 /*   By: rshin <rshin@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 16:34:37 by rshin             #+#    #+#             */
-/*   Updated: 2025/10/21 14:34:05 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2025/10/21 17:37:40 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ t_obj   *compute_nearest_obj(t_scene *s, t_ray *ray)
 			keep = curr;
 			ray->t = t;
 		}
-		curr = curr->next_objs;
+		curr = curr->next;
 	}
 	if (ray->t == INFINITY)
 		return (NULL);

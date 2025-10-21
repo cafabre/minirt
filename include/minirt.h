@@ -6,7 +6,7 @@
 /*   By: syukna <syukna@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:45 by rshin             #+#    #+#             */
-/*   Updated: 2025/10/21 16:16:57 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2025/10/21 17:35:52 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ typedef struct s_object
 	float			height;
 	float			rad;
 	t_vec4			col;
-	struct s_object	*next_objs;
 	struct s_object	*next;
 }	t_obj;
 
@@ -86,11 +85,9 @@ typedef struct s_camera
 	t_vec4		pos;
 	t_vec4		dir;
 	int			fov;
-	float		fov_scale;
-	float		aspect_ratio;
 }	t_cam;
 
-typedef struct s_cache_param
+typedef struct s_cache
 {
 	float	cx;
 	float	cy;
@@ -100,7 +97,7 @@ typedef struct s_cache_param
 	float	cy_scale;
 	t_vec4	bg_col;
 	t_mat4	view_mat;
-}	t_cachep;
+}	t_cache;
 
 typedef struct s_scene
 {
@@ -111,7 +108,7 @@ typedef struct s_scene
 	struct s_object			*pl;
 	struct s_object			*sp;
 	struct s_object			*cy;
-	struct s_cache_param	cache;
+	struct s_cache			cache;
 }	t_scene;
 
 typedef struct s_environment
@@ -126,6 +123,7 @@ typedef struct s_environment
 	int				bpp;
 	int				size_line;
 	int				endian;
+	int				fd;
 }	t_env;
 
 /*---FUNCTIONS---*/
@@ -140,6 +138,8 @@ t_vec4	init_color(void);
 
 bool	render_scene(t_env *env);
 t_obj	*compute_nearest_obj(t_scene *s, t_ray *ray);
+
+t_scene	*create_scene(void);
 
 int		close_win(void *param);
 void	hook_controls(t_env *env);
