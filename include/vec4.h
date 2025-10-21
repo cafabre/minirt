@@ -6,7 +6,7 @@
 /*   By: syukna <syukna@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 14:36:46 by syukna            #+#    #+#             */
-/*   Updated: 2025/10/14 20:36:04 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2025/10/17 11:34:50 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,28 @@
 
 # include <math.h>
 
-typedef struct s_vector_4d
+typedef union u_vector_4d
 {
-	float  x;
-	float  y;
-	float  z;
-	float  w;
-}   t_vec4;
+	struct
+	{
+		float	x;
+		float	y;
+		float	z;
+		float	w;
+	};
+	struct
+	{
+		float	r;
+		float	g;
+		float	b;
+		float	a;
+	};
+}	t_vec4;
 
-typedef struct  s_matrix_4x4
+typedef struct s_matrix_4x4
 {
-	double  m[4][4];
-}   t_mat4;
+	double	m[4][4];
+}	t_mat4;
 
 t_vec4	vec4_point(float x, float y, float z);
 t_vec4	vec4_vector(float x, float y, float z);

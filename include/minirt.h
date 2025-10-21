@@ -6,7 +6,7 @@
 /*   By: syukna <syukna@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:45 by rshin             #+#    #+#             */
-/*   Updated: 2025/10/14 12:07:41 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2025/10/21 16:16:57 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,141 @@
 # include <string.h>
 # include <math.h>
 
-# include "structures.h"
-# include "functions.h"
 # include "libft.h"
 # include "mlx.h"
 # include "mlx_int.h"
 # include "vec4.h"
 
-typedef struct s_env
+# define WIN_W 1600
+# define WIN_H 900
+# define ESC_KEY 65307
+
+/*---STRUCTURES---*/
+
+typedef enum e_objtype
 {
-	void	*mlx;
-	void	*win;
-	void	*img;
-	char	*addr;
-	int		bpp;
-	int		size_line;
-	int		endian;
+	SPHERE,
+	PLANE,
+	CYLINDER
+}	t_objtype;
+
+typedef struct s_pixel
+{
+	int				x;
+	int				y;
+	unsigned int	col;
+}	t_pix;
+
+typedef struct s_ray
+{
+	t_vec4	pos;
+	t_vec4	dir;
+	t_vec4	norm;
+	t_vec4	hit;
+	float	t;
+	float	t_min;
+	float	t_max;
+	t_vec4	color;
+	int		recur_depth;
+}	t_ray;
+
+typedef struct s_object
+{
+	enum e_objtype	type;
+	t_vec4			pos;
+	t_vec4			dir;
+	float			diam;
+	float			height;
+	float			rad;
+	t_vec4			col;
+	struct s_object	*next_objs;
+	struct s_object	*next;
+}	t_obj;
+
+typedef struct s_light
+{
+	t_vec4			pos;
+	t_vec4			col;
+	float			lum;
+	struct s_light	*next;
+}	t_light;
+
+typedef struct s_camera
+{
+	t_vec4		pos;
+	t_vec4		dir;
+	int			fov;
+	float		fov_scale;
+	float		aspect_ratio;
+}	t_cam;
+
+typedef struct s_cache_param
+{
+	float	cx;
+	float	cy;
+	float	fov_scale;
+	float	aspect_ratio;
+	float	cx_aspect;
+	float	cy_scale;
+	t_vec4	bg_col;
+	t_mat4	view_mat;
+}	t_cachep;
+
+typedef struct s_scene
+{
+	struct s_light			*amb;
+	struct s_light			*l;
+	struct s_camera			*cam;
+	struct s_object			*objs;
+	struct s_object			*pl;
+	struct s_object			*sp;
+	struct s_object			*cy;
+	struct s_cache_param	cache;
+}	t_scene;
+
+typedef struct s_environment
+{
+	struct s_scene	*scene;
+	void			*mlx;
+	void			*win;
+	void			*img;
+	char			*addr;
+	int				max_bytes;
+	int				bytes_pp;
+	int				bpp;
+	int				size_line;
+	int				endian;
 }	t_env;
+
+/*---FUNCTIONS---*/
+
+int		parse_scene(int fd, t_env *env);
+int		get_pos(char *str, t_vec4 *pos);
+int		get_color(char *str, t_obj *obj);
+int		get_color_light(char *str, t_light *light);
+int		get_dir(char *str, t_vec4 *dir);
+t_vec4	init_vec4(void);
+t_vec4	init_color(void);
+
+bool	render_scene(t_env *env);
+t_obj	*compute_nearest_obj(t_scene *s, t_ray *ray);
+
+int		close_win(void *param);
+void	hook_controls(t_env *env);
+
+int	init_cam(char **args, t_scene *scene);
+int	init_ambient(char **args, t_scene *scene);
+int	init_light(char **args, t_scene *scene);
+int	init_obj(char **args, t_scene *scene, t_objtype objt);
+
+int		ft_accept_chars(char *str, char *ref);
+int		ft_accept_char(char *ref, char letter);
+void	replace_char(char **str, char old, char new);
+
+void	print_scene(t_scene *scene);
+
+void	free_env(t_env *env);
+void	free_scene(t_scene *scene);
+void	free_splitted(char **args);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: sandykds <sandykds@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 17:01:50 by syukna            #+#    #+#             */
-/*   Updated: 2025/10/14 19:59:06 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2025/10/17 12:51:57 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,10 @@ int init_obj(char **args, t_scene *scene, t_objtype objt)
 	if (obj->type != SPHERE && !get_dir(args[i++], &obj->dir))
 		return (free(obj),EXIT_FAILURE);
 	if (obj->type != PLANE)
+	{
 		obj->diam = atof(args[i++]);
+		obj->rad = obj->diam / 2;
+	}
 	if (obj->type == CYLINDER)
 		obj->height = atof(args[i++]);
 	if (!get_color(args[i], obj))

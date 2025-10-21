@@ -6,7 +6,7 @@
 /*   By: sandykds <sandykds@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 11:26:57 by syukna            #+#    #+#             */
-/*   Updated: 2025/10/14 20:02:16 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2025/10/21 16:10:51 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 void	print_pos(t_vec4 *pos)
 {
-	printf("        Coor: X=%f Y=%f Z=%f\n", pos->x, pos->y, pos->z);
+	printf("        Pos: X=%f Y=%f Z=%f\n", pos->x, pos->y, pos->z);
 }
 void	print_dir(t_vec4 *dir)
 {
-	printf("        vector: %f,%f,%f\n", dir->x, dir->y, dir->z);
+	printf("        Dir: %f,%f,%f\n", dir->x, dir->y, dir->z);
 }
 
-void	print_color(t_color *color)
+void	print_color(t_vec4 *color)
 {
-	printf("        Color: X=%d Y=%d Z=%d\n", color->r, color->g, color->b);
+	printf("        Color: X=%f Y=%f Z=%f\n", color->r, color->g, color->b);
 }
 
 void	print_cam(t_cam *cam)
@@ -44,7 +44,7 @@ void	print_light(t_light *light, int amb)
 	else
 		printf("      LIGHT\n");
 	print_pos(&light->pos);
-	printf("        Brightness = %f\n", light->bri);
+	printf("        Brightness = %f\n", light->lum);
 	print_color(&light->col);
 	printf("      **************************************************************\n");
 }
@@ -88,7 +88,7 @@ void	print_obj(t_obj *obj)
 	//	if (&temp->pos)
 	//		print_pos(&temp->pos);
 	//	if (&temp->dir)
-			print_dir(&temp->dir);
+	//		print_dir(&temp->dir);
 		if (temp->diam)
 			printf("        Diameter: %f\n", temp->diam);
 		if (temp->height)

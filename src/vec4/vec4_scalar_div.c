@@ -6,7 +6,7 @@
 /*   By: rshin <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 14:46:55 by rshin             #+#    #+#             */
-/*   Updated: 2025/10/14 20:11:37 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2025/10/20 11:46:23 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ t_vec4	vec4_scalar_div(t_vec4 vec, float scalar)
 	res.x = vec.x / scalar;
 	res.y = vec.y / scalar;
 	res.z = vec.z / scalar;
+	res.w = vec.w;
 	return (res);
 }

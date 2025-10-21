@@ -6,28 +6,17 @@
 /*   By: sandykds <sandykds@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 15:21:20 by syukna            #+#    #+#             */
-/*   Updated: 2025/10/14 20:03:11 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2025/10/21 16:08:09 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_color init_color(void)
-{
-	t_color	color;
-
-	color.r = 0;
-	color.g = 0;
-	color.b = 0;
-	return (color);
-}
-
 int	get_color(char *str, t_obj *obj)
 {
-	char **args;
-	t_color	*color;
+	char	**args;
+	t_vec4	*color;
 
-	obj->col = init_color();
 	color = &obj->col;
 	if (!ft_accept_chars(str, "0123456789,"))
 	{
@@ -53,15 +42,17 @@ int	get_color(char *str, t_obj *obj)
 		ft_free_sptr(args);
 		return (0);
 	};
-	color->r = ft_atoi(args[0]);
-	color->g = ft_atoi(args[1]);
-	color->b = ft_atoi(args[2]);
-	if (color->r < 0 || color->r > 255 || color->g < 0 || color->g > 255 || color->b < 0 || color->b > 255)
+	color->r = (float)ft_atoi(args[0]);
+	color->g = (float)ft_atoi(args[1]);
+	color->b = (float)ft_atoi(args[2]);
+	color->a = 1.0;
+	if (color->r < 0.0 || color->r > 255.0 || color->g < 0.0 || color->g > 255.0 || color->b < 0 || color->b > 255.0)
 	{
 		perror("The RGB values must remain between 0 and 255.\n");
 		ft_free_sptr(args);
 		return (0);
 	}
+	*color = vec4_scalar_div(*color, 255.0f);
 	ft_free_sptr(args);
 	return (1);
 }
@@ -69,9 +60,8 @@ int	get_color(char *str, t_obj *obj)
 int	get_color_light(char *str, t_light *light)
 {
 	char **args;
-	t_color *color;
+	t_vec4 *color;
 
-	light->col = init_color();
 	color = &light->col;
 	if (!ft_accept_chars(str, "0123456789,"))
 	{
@@ -97,15 +87,17 @@ int	get_color_light(char *str, t_light *light)
 		ft_free_sptr(args);
 		return (0);
 	};
-	color->r = ft_atoi(args[0]);
-	color->g = ft_atoi(args[1]);
-	color->b = ft_atoi(args[2]);
-	if (color->r < 0 || color->r > 255 || color->g < 0 || color->g > 255 || color->b < 0 || color->b > 255)
+	color->r = (float)ft_atoi(args[0]);
+	color->g = (float)ft_atoi(args[1]);
+	color->b = (float)ft_atoi(args[2]);
+	color->a = 1.0;
+	if (color->r < 0.0 || color->r > 255.0 || color->g < 0.0 || color->g > 255.0 || color->b < 0.0 || color->b > 255.0)
 	{
 		perror("The RGB values must remain between 0 and 255.\n");
 		ft_free_sptr(args);
 		return (0);
 	}
+	*color = vec4_scalar_div(*color, 255.0f);
 	ft_free_sptr(args);
 	return (1);
 }

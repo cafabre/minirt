@@ -6,15 +6,15 @@
 /*   By: sandykds <sandykds@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 17:49:17 by syukna            #+#    #+#             */
-/*   Updated: 2025/10/14 19:51:59 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2025/10/21 16:09:36 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	get_bri(char *str, t_light **light)
+int	get_lum(char *str, t_light **light)
 {
-	(*light)->bri = atof(str);
+	(*light)->lum = atof(str);
 	if (!str || (ft_strlen(str) >= 10 && ft_strncmp(str, "2147483647", 10) > 0))
 	{
 		perror("The light must remain between 0.0 and 1.0\n");
@@ -25,7 +25,7 @@ int	get_bri(char *str, t_light **light)
 		perror("The light brightness must not include other characters than numbers, '-' and '.'\n");
 		return (0);
 	}
-	if ((*light)->bri > 1 || (*light)->bri < 0)
+	if ((*light)->lum > 1 || (*light)->lum < 0)
 	{
 		perror("The light must remain between 0.0 and 1.0\n");
 		return (0);
@@ -42,7 +42,7 @@ int	init_ambient(char **args, t_scene *scene)
 		return (EXIT_FAILURE);
 	ft_memset(amb, '\0', sizeof(t_light));
 	amb->pos = init_vec4();
-	if (!get_bri(args[1], &amb))
+	if (!get_lum(args[1], &amb))
 		return (free(amb),EXIT_FAILURE);
 	if (!get_color_light(args[2], amb))
 		return (free(amb),EXIT_FAILURE);
@@ -61,7 +61,7 @@ int	init_light(char **args, t_scene *scene)
 	light->pos = init_vec4();
 	if (!get_pos(args[1], &light->pos))
 		return (free(light),EXIT_FAILURE);
-	if (!get_bri(args[2], &light))
+	if (!get_lum(args[2], &light))
     	return (free(light),EXIT_FAILURE);
 	if (!get_color_light(args[3], light))
 		return (free(light),EXIT_FAILURE);
