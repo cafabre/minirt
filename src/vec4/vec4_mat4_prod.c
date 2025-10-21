@@ -6,7 +6,7 @@
 /*   By: rshin <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 20:28:55 by rshin             #+#    #+#             */
-/*   Updated: 2025/10/14 20:10:52 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2025/10/21 11:43:44 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,17 @@ t_vec4	vec4_mat4_prod(t_vec4 v, t_mat4 m)
 	t_vec4	res;
 	float	w;
 
-	res.x = m.m[0][0] * v.x + m.m[0][1] * v.y + m.m[0][2] * v.z + m.m[0][3];
-	res.y = m.m[1][0] * v.x + m.m[1][1] * v.y + m.m[1][2] * v.z + m.m[1][3];
-	res.z = m.m[2][0] * v.x + m.m[2][1] * v.y + m.m[2][2] * v.z + m.m[2][3];
-	w = m.m[3][0] * v.x + m.m[3][1] * v.y + m.m[3][2] * v.z + m.m[3][3];
+	res.x = m.m[0][0] * v.x + m.m[0][1] * v.y + m.m[0][2] * v.z + m.m[0][3] * v.w;
+	res.y = m.m[1][0] * v.x + m.m[1][1] * v.y + m.m[1][2] * v.z + m.m[1][3] * v.w;
+	res.z = m.m[2][0] * v.x + m.m[2][1] * v.y + m.m[2][2] * v.z + m.m[2][3] * v.w;
+	w = m.m[3][0] * v.x + m.m[3][1] * v.y + m.m[3][2] * v.z + m.m[3][3] * v.w;
 	if (w != 0 && w != 1)
 	{
 		res.x /= w;
 		res.y /= w;
 		res.z /= w;
 	}
+	res.w = w;
 	return (res);
 }
 

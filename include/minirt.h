@@ -6,7 +6,7 @@
 /*   By: syukna <syukna@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:45 by rshin             #+#    #+#             */
-/*   Updated: 2025/10/20 14:32:44 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2025/10/21 12:37:26 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ typedef struct s_cache_param
 	float	aspect_ratio;
 	float	cx_aspect;
 	float	cy_scale;
+	t_mat4	view_mat;
 }	t_cachep;
 
 typedef struct s_scene

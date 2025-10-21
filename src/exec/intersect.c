@@ -6,7 +6,7 @@
 /*   By: rshin <rshin@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 16:34:37 by rshin             #+#    #+#             */
-/*   Updated: 2025/10/20 16:55:09 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2025/10/21 14:34:05 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ static float	intersect_sphere(t_ray *r, t_obj *sp)
 		return (INFINITY);
 	delta = sqrt(delta);
 	t = -b - delta;
-	if (t < 0.0)
-		return (INFINITY);
-	return (t);
+	if (t > 0.0)
+		return (t);
+	return (INFINITY);
 }
 
 static float	intersect_plane(t_ray *r, t_obj *pl)
@@ -44,9 +44,9 @@ static float	intersect_plane(t_ray *r, t_obj *pl)
 	if (fabs(div) < 1e-6)
 		return (INFINITY);
 	t = vec4_dot_prod(diff, pl->dir) / div;
-	if (t < 0.0)
-		return (INFINITY);
-	return (t);
+	if (t > 0.0)
+		return (t);
+	return (INFINITY);
 }
 
 t_obj   *compute_nearest_obj(t_scene *s, t_ray *ray)
@@ -69,7 +69,7 @@ t_obj   *compute_nearest_obj(t_scene *s, t_ray *ray)
 			keep = curr;
 			ray->t = t;
 		}
-		curr = curr->next;
+		curr = curr->next_objs;
 	}
 	if (ray->t == INFINITY)
 		return (NULL);
