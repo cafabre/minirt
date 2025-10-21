@@ -6,7 +6,7 @@
 /*   By: sandykds <sandykds@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 11:26:57 by syukna            #+#    #+#             */
-/*   Updated: 2025/10/17 13:10:43 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2025/10/21 16:10:51 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	print_light(t_light *light, int amb)
 	else
 		printf("      LIGHT\n");
 	print_pos(&light->pos);
-	printf("        Brightness = %f\n", light->col.a);
+	printf("        Brightness = %f\n", light->lum);
 	print_color(&light->col);
 	printf("      **************************************************************\n");
 }

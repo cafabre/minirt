@@ -6,7 +6,7 @@
 /*   By: sandykds <sandykds@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 15:21:20 by syukna            #+#    #+#             */
-/*   Updated: 2025/10/20 11:46:36 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2025/10/21 16:08:09 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	get_color(char *str, t_obj *obj)
 	color->r = (float)ft_atoi(args[0]);
 	color->g = (float)ft_atoi(args[1]);
 	color->b = (float)ft_atoi(args[2]);
-	color->a = 255.0;
+	color->a = 1.0;
 	if (color->r < 0.0 || color->r > 255.0 || color->g < 0.0 || color->g > 255.0 || color->b < 0 || color->b > 255.0)
 	{
 		perror("The RGB values must remain between 0 and 255.\n");
@@ -90,7 +90,7 @@ int	get_color_light(char *str, t_light *light)
 	color->r = (float)ft_atoi(args[0]);
 	color->g = (float)ft_atoi(args[1]);
 	color->b = (float)ft_atoi(args[2]);
-	color->a = 255.0;
+	color->a = 1.0;
 	if (color->r < 0.0 || color->r > 255.0 || color->g < 0.0 || color->g > 255.0 || color->b < 0.0 || color->b > 255.0)
 	{
 		perror("The RGB values must remain between 0 and 255.\n");

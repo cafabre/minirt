@@ -6,7 +6,7 @@
 /*   By: syukna <syukna@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:45 by rshin             #+#    #+#             */
-/*   Updated: 2025/10/21 12:37:26 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2025/10/21 16:16:57 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct s_light
 {
 	t_vec4			pos;
 	t_vec4			col;
+	float			lum;
 	struct s_light	*next;
 }	t_light;
 
@@ -97,6 +98,7 @@ typedef struct s_cache_param
 	float	aspect_ratio;
 	float	cx_aspect;
 	float	cy_scale;
+	t_vec4	bg_col;
 	t_mat4	view_mat;
 }	t_cachep;
 

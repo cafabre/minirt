@@ -38,6 +38,7 @@ static void	set_pixel(t_env *e, t_pix p)
 		e->addr[offset] = p.col & 0xFF;
 		e->addr[offset + 1] = (p.col >> 8) & 0xFF;
 		e->addr[offset + 2] = (p.col >> 16) & 0xFF;
+		e->addr[offset + 3] = (p.col >> 24) & 0xFF;
 	}
 }
 
@@ -110,6 +111,7 @@ static void	compute_cache(t_scene *s)
 	s->cache.cx_aspect = s->cache.cx * s->cache.aspect_ratio;
 	s->cache.cy_scale = s->cache.cy * s->cache.fov_scale;
 	s->cache.view_mat = get_view_mat(s->cam);
+	s->cache.bg_col = vec4_scalar_prod(s->amb->col, s->amb->lum);
 }
 
 void	compute_ray(t_ray *ray, t_scene *s, t_pix p)
@@ -144,7 +146,7 @@ unsigned int	trace_ray(t_scene *s, t_ray *ray)
 
 	target = compute_nearest_obj(s, ray);
 	if (target == NULL)
-		return (pack_to_uint(s->amb->col));
+		return (pack_to_uint(s->cache.bg_col));
 	ray->recur_depth++;
 	if (target->type == SPHERE)
 		obj_norm = vec4_norm(vec4_sub(ray->hit, target->pos));
@@ -157,10 +159,10 @@ unsigned int	trace_ray(t_scene *s, t_ray *ray)
 	light.norm = vec4_norm(light.dir);
 	light.t = vec4_len(vec4_sub(s->l->pos, light.hit));
 	diffuse = fmax(vec4_dot_prod(obj_norm, light.norm), 0.0);
-	color = vec4_scalar_prod(target->col, diffuse * s->l->col.a);
+	color = vec4_scalar_prod(target->col, diffuse * s->l->lum);
 	target = compute_nearest_obj(s, &light);
 	if (target)
-		return (pack_to_uint(s->amb->col));
+		return (pack_to_uint(s->cache.bg_col));
 	return (pack_to_uint(color));
 }
 
@@ -174,11 +176,11 @@ bool	render_scene(t_env *e)
 	compute_cache(e->scene);
 	ft_memset(&pix, 0, sizeof(t_pix));
 	ft_memset(&ray, 0, sizeof(t_ray));
-	pix.y = e->scene->cache.cy;
+//	pix.y = e->scene->cache.cy;
 	while (pix.y < WIN_H)
 	{
-		pix.x = e->scene->cache.cx;
-//		pix.x = 0;
+//		pix.x = e->scene->cache.cx;
+		pix.x = 0;
 		while (pix.x < WIN_W)
 		{
 			compute_ray(&ray, e->scene, pix);
