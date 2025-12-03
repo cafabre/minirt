@@ -50,6 +50,12 @@ SRC += $(SRC_DIR)/vec4/vec4_point.c \
 	   $(SRC_DIR)/vec4/vec4_lerp.c \
 	   $(SRC_DIR)/vec4/mat4_prod.c
 
+SRC += $(SRC_DIR)/parsing/file.c \
+		$(SRC_DIR)/parsing/objects.c \
+		$(SRC_DIR)/parsing/parsing.c \
+		$(SRC_DIR)/parsing/file.c \
+		$(SRC_DIR)/parsing/utils.c
+
 INC = include
 
 LIBMLX = minilibx-linux

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syukna <syukna@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:45 by rshin             #+#    #+#             */
-/*   Updated: 2025/12/03 11:19:24 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2025/12/03 13:44:43 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,5 +150,8 @@ void	print_scene(t_scene *scene);
 void	free_env(t_env *env);
 void	free_scene(t_scene *scene);
 void	free_splitted(char **args);
+
+/********** PARSING **********/
+int		file_parsing(char *file_name);
 
 #endif
