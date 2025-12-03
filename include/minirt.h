@@ -6,7 +6,7 @@
 /*   By: syukna <syukna@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:45 by rshin             #+#    #+#             */
-/*   Updated: 2025/10/21 17:35:52 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2025/12/03 11:19:24 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,18 +128,10 @@ typedef struct s_environment
 
 /*---FUNCTIONS---*/
 
-int		parse_scene(int fd, t_env *env);
-int		get_pos(char *str, t_vec4 *pos);
-int		get_color(char *str, t_obj *obj);
-int		get_color_light(char *str, t_light *light);
-int		get_dir(char *str, t_vec4 *dir);
-t_vec4	init_vec4(void);
-t_vec4	init_color(void);
-
 bool	render_scene(t_env *env);
 t_obj	*compute_nearest_obj(t_scene *s, t_ray *ray);
 
-t_scene	*create_scene(void);
+t_scene	*create_scene(void); //fonction temporaire en attendant full parsing
 
 int		close_win(void *param);
 void	hook_controls(t_env *env);
