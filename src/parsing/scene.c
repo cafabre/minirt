@@ -5,65 +5,52 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/03 12:43:50 by cafabre           #+#    #+#             */
-/*   Updated: 2025/12/03 17:03:49 by cafabre          ###   ########.fr       */
+/*   Created: 2025/12/04 15:27:48 by cafabre           #+#    #+#             */
+/*   Updated: 2025/12/04 17:27:19 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-//a renommer
-//tab = ligne qui commence par l id
-//a ajouter : check si les elts en maj (A, L, C) n apparaissent q une fois dans le fichier
-static bool  check_id(char **tab)
+void    fill_light_data(char **tab, bool amb, int *error)
 {
-    int     *error;
+    t_light   *light;
+    float       l;
+    int         i;
 
-    if (ft_tablen(tab) == 3)
+    light = malloc(sizeof(t_light));
+    if (!light)
     {
-        if (tab[0] == "A")
-            //check ambient lighting
-        else if (tab[0] == "L")
-            //check light
-        else
-            return (false);
+        *error = 1;
+        return ;
     }
-    else if (ft_tab_len(tab) == 4)
+    i = 0;
+    if (!amb)
     {
-        if (tab[0] == "C")
-            //check camera
-        else if (tab[0] == "sp")
-            fill_sphere_data(tab, error);
-        else if (tab[0] == "pl")
-            fill_plane_data(tab, error);
-        else
-            return (false);
+        i = 1;
+        light->pos = parse_vectors(tab, NULL, NULL, error);
     }
-    else if (ft_tablen(tab) == 6 && tab[0] == "cy")
-        fill_cylinder_data(tab, error);
-    else
-        return (false);
-    return (true);
+    l = ft_atof(tab[1+i]);
+    if (l < 0.0f || 1.0f < l)
+        *error = 1;
+    light->lum = l;
+    light->col = parse_vectors(tab[2+i], 0, 255, error);
 }
 
-//a ajouter : cas des lignes separees par plusieurs sauts de ligne
-// + allocation de tab et data
-bool    correct_ids(int fd)
+void    fill_camera_data(char **tab, int *error)
 {
-    char    *line;
-    char    **tab;
-    char    ***data;
-    int     i;
+    t_cam   *cam;
+    int     fov;
 
-    i = 0;
-    while ((line = ft_gnl(fd)) != NULL)
+    cam = malloc(sizeof(t_cam));
+    if (!cam)
     {
-        tab = ft_split_whitespaces(line);
-        data[i] = tab;
-        if (!check_id)
-            return (false);
-        free (line);
-        i++;
+        *error = 1;
+        return ;
     }
-    return (true);
+    cam->pos = parse_vectors(tab, NULL, NULL, error);
+    cam->dir = parse_vectors(tab, -1, 1, error);
+    fov = ft_atof(tab[3]);
+    if (fov < 0 || 180 < fov)
+        *error = 1;
 }

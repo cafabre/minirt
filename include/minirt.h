@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:45 by rshin             #+#    #+#             */
-/*   Updated: 2025/12/03 13:44:43 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/04 17:30:06 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@
 # define ESC_KEY 65307
 
 /*---STRUCTURES---*/
+
+//struct obj, light et cam modifiees -> t_vec4 passes en pointeus
+//solution pour laisser sans ??
 
 typedef enum e_objtype
 {
@@ -63,27 +66,27 @@ typedef struct s_ray
 typedef struct s_object
 {
 	enum e_objtype	type;
-	t_vec4			pos;
-	t_vec4			dir;
+	t_vec4			*pos;
+	t_vec4			*dir;
 	float			diam;
 	float			height;
 	float			rad;
-	t_vec4			col;
+	t_vec4			*col;
 	struct s_object	*next;
 }	t_obj;
 
 typedef struct s_light
 {
-	t_vec4			pos;
-	t_vec4			col;
+	t_vec4			*pos;
+	t_vec4			*col;
 	float			lum;
 	struct s_light	*next;
 }	t_light;
 
 typedef struct s_camera
 {
-	t_vec4		pos;
-	t_vec4		dir;
+	t_vec4		*pos;
+	t_vec4		*dir;
 	int			fov;
 }	t_cam;
 
