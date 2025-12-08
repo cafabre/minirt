@@ -1,16 +1,56 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   libft_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 13:56:38 by cafabre           #+#    #+#             */
-/*   Updated: 2025/12/03 17:31:40 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/08 16:13:07 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+//ajouter a la libft ?
+//check si la chaine passee en param est un int / float ou non
+bool		ft_isnumber(char *s)
+{
+        int i;
+        bool	is_float;
+        bool	has_digit;
+
+        i = 0;
+        is_float = false;
+        has_digit = false;
+        while (ft_isspace(s[i]))
+            i++;
+        if (s[i] == '-' || s[i] == '+')
+            i++;
+        while (s[i] != '\0')
+        {
+            if (ft_isdigit(s[i]))
+                has_digit = true;
+            else if (s[i] == '.')
+            {
+                if (is_float)
+                    return (false);
+                is_float = true;
+            }
+            else if (ft_isspace(s[i]))
+            {
+                while (ft_isspace(s[i]))
+                    i++;
+                break ;
+            }
+            else
+                return (false);
+            i++;
+        }
+        if (s[i] != '\0' || !has_digit)
+            return (false);
+        return (true);
+}
 
 //ajouter a libft ?? (utilisee aussi dans objects.c)
 // /!| valide uniquement pour NULL terminated tabs
@@ -85,7 +125,7 @@ float	ft_atof(const char *nptr)
 	i = 0;
 	sign = 1;
 	res = 0.0f;
-	while ((nptr[i] >= '\t' && nptr[i] <= '\r') || nptr[i] == ' ')
+	while (ft_isspace(nptr[i]))
 		i++;
 	if (nptr[i] == '-')
 	{

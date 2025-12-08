@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 12:43:50 by cafabre           #+#    #+#             */
-/*   Updated: 2025/12/04 18:14:06 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/08 16:18:30 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ static void  check_id(char **tab, int *error)
         *error = 1;
 }
 
-//a ajouter : cas des lignes separees par plusieurs sauts de ligne
 // + allocation et free de tab et data
 bool    correct_ids(int fd)
 {
@@ -60,6 +59,8 @@ bool    correct_ids(int fd)
     while ((line = ft_gnl(fd)) != NULL)
     {
         tab = ft_split_whitespaces(line);
+        if (tab[0] == "\n")
+            continue ;
         data[i] = tab;
         check_id(tab, error);
         if (*error == 1)

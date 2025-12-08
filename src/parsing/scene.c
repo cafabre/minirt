@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 15:27:48 by cafabre           #+#    #+#             */
-/*   Updated: 2025/12/04 17:27:19 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/08 16:23:51 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ void    fill_light_data(char **tab, bool amb, int *error)
         i = 1;
         light->pos = parse_vectors(tab, NULL, NULL, error);
     }
+    if (!ft_isnumber(tab[1 + i]))
+    {
+        *error = 1;
+        return ;
+    }
     l = ft_atof(tab[1+i]);
     if (l < 0.0f || 1.0f < l)
         *error = 1;
@@ -44,6 +49,11 @@ void    fill_camera_data(char **tab, int *error)
 
     cam = malloc(sizeof(t_cam));
     if (!cam)
+    {
+        *error = 1;
+        return ;
+    }
+    if (!ft_is_number(tab[3]))
     {
         *error = 1;
         return ;

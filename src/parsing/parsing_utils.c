@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 16:06:41 by cafabre           #+#    #+#             */
-/*   Updated: 2025/12/04 16:54:08 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/08 16:16:09 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,19 @@ static bool  in_range(t_vec4 vec, float *r_min, float *r_max)
         return (true);
 }
 
-static t_vec4   *fill_vector(char **coords)
+static t_vec4   *fill_vector(t_vec4 *vec, char **coords)
 {
-    t_vec4  *vec;
     float   x;
     float   y;
     float   z;
-
-    vec = malloc(sizeof(t_vec4));
-    if (!vec)
-        return (NULL);
+    int     i;
+    
+    i = 0;
+    while (i < 2)
+    {
+        if (!ft_isnumber(coords[i]))
+            return (NULL);
+    }
     x = ft_atof(coords[0]);
     y = ft_atof(coords[1]);
     z = ft_atof(coords[2]);
@@ -45,6 +48,9 @@ t_vec4 *parse_vectors(char **tab, float *r_min, float *r_max, int *error)
 
     //gerer les cas de "mauvaise ecriture"
     //(espaces, lettres, plusieurs virgules....)
+    vec = malloc(sizeof(t_vec4));
+    if (!vec)
+        return (NULL);
     coords = ft_split(tab[1], ',');
     if (ft_tablen(coords) != 3)
     {
@@ -52,8 +58,8 @@ t_vec4 *parse_vectors(char **tab, float *r_min, float *r_max, int *error)
         *error = 1;
         return (NULL);
     }
-    vec = fill_vector(coords);
-    if (r_min && r_max && !in_range(*vec, r_min, r_max))
+    vec = fill_vector(vec, coords);
+    if (!vec || (r_min && r_max && !in_range(*vec, r_min, r_max)))
     {
         free_tab(coords);
         *error = 1;

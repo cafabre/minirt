@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 14:49:39 by cafabre           #+#    #+#             */
-/*   Updated: 2025/12/04 16:15:39 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/08 16:21:05 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ void    fill_sphere_data(char **tab, int *error)
     
     sp = malloc(sizeof(t_obj));
     if (!sp)
+    {
+        *error = 1;
+        return ;
+    }
+    if (!ft_isnumber(tab[2]))
     {
         *error = 1;
         return ;
@@ -51,6 +56,11 @@ void    fill_cylinder_data(char **tab, int *error)
     t_obj   *cy;
     cy = malloc(sizeof(t_obj));
     if (!cy)
+    {
+        *error = 1;
+        return ;
+    }
+    if (!ft_isnumber(tab[3]) || !ft_isnumber(tab[4]))
     {
         *error = 1;
         return ;

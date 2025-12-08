@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 12:43:53 by cafabre           #+#    #+#             */
-/*   Updated: 2025/12/03 13:37:51 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/08 13:04:14 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,11 @@ static bool    is_empty(int fd)
     return (false);
 }
 
-int    file_parsing(char *file_name)
+int    file_parsing(int fd)
 {
-    int fd;
-
-    fd = open(file_name, O_RDONLY);
-    
     if (fd < 0)
     {
         perror("ERROR: couldn't open file");
-        return (EXIT_FAILURE);
-    }
-    if (!has_rt_type(file_name))
-    {
-        perror("ERROR: file type need to be .rt");
         return (EXIT_FAILURE);
     }
     if (is_empty(fd))
@@ -55,7 +46,5 @@ int    file_parsing(char *file_name)
         perror("ERROR: file is empty");
         return (EXIT_FAILURE);
     }
-    
-    close(fd);
     return (EXIT_SUCCESS);
 }
