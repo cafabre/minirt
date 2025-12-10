@@ -6,13 +6,13 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 13:23:45 by cafabre           #+#    #+#             */
-/*   Updated: 2025/12/10 14:45:19 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/10 17:25:03 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static void fill_data(t_list *list)
+static void list_to_array(t_list *list, char ****data_ptr)
 {
     int     size;
     char    ***data;
@@ -23,7 +23,7 @@ static void fill_data(t_list *list)
     i = 0;
     data = malloc(sizeof(char **) * (size + 1));
     if (!data)
-        return (NULL);
+        return ;
     tmp = list;
     while (tmp)
     {
@@ -31,43 +31,43 @@ static void fill_data(t_list *list)
         tmp = tmp->next;
     }
     data[i] = NULL;
+    *data_ptr = data;
 }
 
-// + allocation et free de tab et data
-static bool    parse_ids(int fd)
+static bool    parse_ids(int fd, char ****data)
 {
     char    *line;
     char    **tab;
-    int     i;
     t_list  *list; //liste chainee -> chaque node = un tableau des infos d une ligne
     t_list  *node;
 
-    i = 0;
     list = NULL;
     while ((line = ft_gnl(fd)) != NULL)
     {
         tab = ft_split_whitespaces(line);
         free (line);
-        if (tab == NULL || tab[0] == "\n")
+        if (!tab || !tab[0] || ft_strcmp(tab[0], "\n") == 0)
         {
             free_tab(tab);
             continue ;
         }
         node = ft_lstnew(tab);
         if (!node)
-            return (NULL);
-        ft_lstadd_back(&list, node);
-        fill_data(list);        
-        if (!check_id(tab))
+            return (false);
+        ft_lstadd_back(&list, node);     
+        if (!dispatch_ids(tab))
             return (false); 
-        i++;
     }
+    list_to_array(list, data);
     return (true);
 }
 
 int     parsing(int fd)
 {
-    if (!parse_ids(fd))
+    char ***data;
+
+    data = NULL;
+    if (!parse_ids(fd, &data))
         return (EXIT_FAILURE);
     //a completer
     return (EXIT_SUCCESS);
@@ -76,9 +76,6 @@ int     parsing(int fd)
 /*
 1. parsing.c -> parsing : verif des arguments (main ?), verif nom du fichier, open le fichier,
 appelle file_parsing
-
-2. file.c -> file_parsing : verifie si le fichier a pu etre ouvert puis s'il est vide. si tout ok ->
-return EXIT_SUCCESS (EXIT_FAILURE sinon)
 
 3. retour dans parsing : si erreur dans le parsing du fichier -> clean tout puis close le fichier et retour,
 puis appelle correct_ids

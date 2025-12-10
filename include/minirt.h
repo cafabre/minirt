@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:45 by rshin             #+#    #+#             */
-/*   Updated: 2025/12/10 15:33:49 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/10 18:30:30 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,12 @@ typedef struct s_ray
 	t_vec4	color;
 	int		recur_depth;
 }	t_ray;
+
+typedef struct parse {
+	struct t_object;
+	struct t_light;
+	struct t_camera;
+} t_parse;
 
 typedef struct s_object
 {
@@ -155,15 +161,15 @@ void	free_scene(t_scene *scene);
 void	free_splitted(char **args);
 
 /********** PARSING **********/
-bool  check_id(char **tab);
-int     parsing(int fd);
-t_vec4 *parse_vectors(char **tab, float *r_min, float *r_max);
+bool		dispatch_ids(char **tab);
+int			parsing(int fd);
+t_vec4		*parse_vectors(char **tab, float *r_min, float *r_max);
 
 /********** LIBFT UTILS **********/
 bool		ft_isnumber(char *s);
-int     ft_tablen(char **tab);
-size_t  ft_count_whitespace(char *s);
-char	**ft_split_whitespace(char const *s);
-double	ft_atof(const char *nptr);
+int			ft_tablen(char **tab);
+size_t		ft_count_whitespace(char *s);
+char		**ft_split_whitespace(char const *s);
+double		ft_atof(const char *nptr);
 
 #endif

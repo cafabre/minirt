@@ -6,17 +6,17 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 16:06:41 by cafabre           #+#    #+#             */
-/*   Updated: 2025/12/10 14:50:48 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/10 18:13:10 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static bool  in_range(t_vec4 vec, float *r_min, float *r_max)
+static bool  is_in_range(float f, float r_min, float r_max)
 {
-    if (vec.x > *r_max || *r_min > vec.x || vec.y > *r_max ||
-        *r_min > vec.y || vec.z > *r_max || *r_min > vec.z)
-        return (true);
+    if (f < r_min || r_max < f)
+        return (false);
+    return (true);
 }
 
 static t_vec4   *fill_vector(t_vec4 *vec, char **coords)
@@ -27,7 +27,7 @@ static t_vec4   *fill_vector(t_vec4 *vec, char **coords)
     int     i;
     
     i = 0;
-    while (i < 2)
+    while (i <= 2)
     {
         if (!ft_isnumber(coords[i]))
             return (NULL);
@@ -38,6 +38,8 @@ static t_vec4   *fill_vector(t_vec4 *vec, char **coords)
     *vec = vec4_vector(x, y, z);
     return (vec);
 }
+
+//fonction obselete - voir dispatcher + check_val / check_coords
 
 //en entree : tab[1] pour L, sp, pl, cy + range min et max (optionnels)
 // /!\ utiliser egalement pour les vecteurs et les couleurs
