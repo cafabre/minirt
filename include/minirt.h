@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:45 by rshin             #+#    #+#             */
-/*   Updated: 2025/12/04 17:30:06 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/10 14:51:05 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,27 +66,27 @@ typedef struct s_ray
 typedef struct s_object
 {
 	enum e_objtype	type;
-	t_vec4			*pos;
-	t_vec4			*dir;
+	t_vec4			pos;
+	t_vec4			dir;
 	float			diam;
 	float			height;
 	float			rad;
-	t_vec4			*col;
+	t_vec4			col;
 	struct s_object	*next;
 }	t_obj;
 
 typedef struct s_light
 {
-	t_vec4			*pos;
-	t_vec4			*col;
+	t_vec4			pos;
+	t_vec4			col;
 	float			lum;
 	struct s_light	*next;
 }	t_light;
 
 typedef struct s_camera
 {
-	t_vec4		*pos;
-	t_vec4		*dir;
+	t_vec4		pos;
+	t_vec4		dir;
 	int			fov;
 }	t_cam;
 
@@ -155,6 +155,15 @@ void	free_scene(t_scene *scene);
 void	free_splitted(char **args);
 
 /********** PARSING **********/
-int		file_parsing(char *file_name);
+bool  check_id(char **tab);
+int     parsing(int fd);
+t_vec4 *parse_vectors(char **tab, float *r_min, float *r_max);
+
+/********** LIBFT UTILS **********/
+bool		ft_isnumber(char *s);
+int     ft_tablen(char **tab);
+size_t  ft_count_whitespace(char *s);
+char	**ft_split_whitespace(char const *s);
+float	ft_atof(const char *nptr);
 
 #endif

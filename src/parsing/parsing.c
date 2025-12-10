@@ -6,37 +6,70 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 13:23:45 by cafabre           #+#    #+#             */
-/*   Updated: 2025/12/08 16:24:04 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/10 14:45:19 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int     parsing(char *file_name, int argc)
+static void fill_data(t_list *list)
 {
-    int fd;
+    int     size;
+    char    ***data;
+    t_list  *tmp;
+    int     i;
 
-    if (argc != 2)
-    /// verif des args -> main ou parsing ?
-    if (!has_rt_type(file_name))
+    size = ft_lstsize(list);
+    i = 0;
+    data = malloc(sizeof(char **) * (size + 1));
+    if (!data)
+        return (NULL);
+    tmp = list;
+    while (tmp)
     {
-        perror("ERROR: file type need to be .rt");
-        return (EXIT_FAILURE);
+        data[i++] = (char **)tmp->content; // recuperer le tab stocke
+        tmp = tmp->next;
     }
-    fd = open(file_name, O_RDONLY);
-    if (file_parsing != 0)
+    data[i] = NULL;
+}
+
+// + allocation et free de tab et data
+static bool    parse_ids(int fd)
+{
+    char    *line;
+    char    **tab;
+    int     i;
+    t_list  *list; //liste chainee -> chaque node = un tableau des infos d une ligne
+    t_list  *node;
+
+    i = 0;
+    list = NULL;
+    while ((line = ft_gnl(fd)) != NULL)
     {
-        clean_all(); //a coder
-        close (fd);
-        return (EXIT_FAILURE);
+        tab = ft_split_whitespaces(line);
+        free (line);
+        if (tab == NULL || tab[0] == "\n")
+        {
+            free_tab(tab);
+            continue ;
+        }
+        node = ft_lstnew(tab);
+        if (!node)
+            return (NULL);
+        ft_lstadd_back(&list, node);
+        fill_data(list);        
+        if (!check_id(tab))
+            return (false); 
+        i++;
     }
-    if (correct_ids(fd) == false)
-    {
-        clean_all();
-        close (fd);
+    return (true);
+}
+
+int     parsing(int fd)
+{
+    if (!parse_ids(fd))
         return (EXIT_FAILURE);
-    }
-    close (fd);
+    //a completer
     return (EXIT_SUCCESS);
 }
 

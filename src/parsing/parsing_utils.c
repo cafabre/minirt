@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 16:06:41 by cafabre           #+#    #+#             */
-/*   Updated: 2025/12/08 16:16:09 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/10 14:50:48 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static t_vec4   *fill_vector(t_vec4 *vec, char **coords)
 
 //en entree : tab[1] pour L, sp, pl, cy + range min et max (optionnels)
 // /!\ utiliser egalement pour les vecteurs et les couleurs
-t_vec4 *parse_vectors(char **tab, float *r_min, float *r_max, int *error)
+t_vec4 *parse_vectors(char **tab, float *r_min, float *r_max)
 {
     t_vec4   *vec;
     char    **coords;
@@ -53,17 +53,11 @@ t_vec4 *parse_vectors(char **tab, float *r_min, float *r_max, int *error)
         return (NULL);
     coords = ft_split(tab[1], ',');
     if (ft_tablen(coords) != 3)
-    {
         free_tab(coords); // a coder
-        *error = 1;
         return (NULL);
-    }
     vec = fill_vector(vec, coords);
     if (!vec || (r_min && r_max && !in_range(*vec, r_min, r_max)))
-    {
         free_tab(coords);
-        *error = 1;
         return (NULL);
-    }
     return (vec);
 }

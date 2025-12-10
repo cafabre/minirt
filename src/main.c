@@ -3,15 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syukna <syukna@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:54 by rshin             #+#    #+#             */
-/*   Updated: 2025/10/21 17:36:57 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2025/12/10 13:44:42 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
+static bool    is_empty(int fd)
+{
+    if (ft_gnl(fd) == NULL)
+        return (true);
+    return (false);
+}
+
+//changer les valeurs de retours pour adapter les messages d erreur
 static bool	check_fd(int argc, char **argv, t_env *env)
 {
 	int	len;
@@ -26,6 +34,8 @@ static bool	check_fd(int argc, char **argv, t_env *env)
 	env->fd = open(argv[1], O_RDONLY);
 	if (env->fd == -1)
 		return (false);
+	if (is_empty(env->fd)) //check fichier vide
+		return (false);
 	return (true);
 }
 
@@ -38,6 +48,11 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	env.scene = create_scene();
 	if (!env.scene)
+	{
+		free_env(&env);
+		return (EXIT_FAILURE);
+	}
+	if (!parsing(env.fd))
 	{
 		free_env(&env);
 		return (EXIT_FAILURE);

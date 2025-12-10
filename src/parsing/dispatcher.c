@@ -6,67 +6,39 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 12:43:50 by cafabre           #+#    #+#             */
-/*   Updated: 2025/12/08 16:18:30 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/10 13:47:27 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
 //a renommer
-//tab = ligne qui commence par l id
 //a ajouter : check si les elts en maj (A, L, C) n apparaissent q'une fois dans le fichier
-//opti : ameliorer la remontee d erreur / eviter de trop passer error en param
-//idee : valeurs d error correspondent a un message d erreur chacune ?
-static void  check_id(char **tab, int *error)
+bool  check_id(char **tab)
 {
     if (ft_tablen(tab) == 3)
     {
         if (tab[0] == "A")
-            fill_light_data(tab, true, error);
+            create_amb();
         else if (tab[0] == "L")
-            fill_light_data(tab, false, error);
+            create_light();
         else
-            *error = 1;
+            return (false);
     }
     else if (ft_tablen(tab) == 4)
     {
         if (tab[0] == "C")
-            fill_camera_data(tab, error);
+            create_cam();
         else if (tab[0] == "sp")
-            fill_sphere_data(tab, error);
+            create_sp();
         else if (tab[0] == "pl")
-            fill_plane_data(tab, error);
+            create_pl();
         else
-            *error = 1;
+            return (false);
     }
     else if (ft_tablen(tab) == 6 && tab[0] == "cy")
-        fill_cylinder_data(tab, error);
+        create_cy();
     else
-        *error = 1;
-}
-
-// + allocation et free de tab et data
-bool    correct_ids(int fd)
-{
-    char    *line;
-    char    **tab;
-    char    ***data;
-    int     i;
-    int     *error;
-
-    i = 0;
-    *error = 0;
-    while ((line = ft_gnl(fd)) != NULL)
-    {
-        tab = ft_split_whitespaces(line);
-        if (tab[0] == "\n")
-            continue ;
-        data[i] = tab;
-        check_id(tab, error);
-        if (*error == 1)
-            return (false);
-        free (line);
-        i++;
-    }
+        return (false);
     return (true);
 }
