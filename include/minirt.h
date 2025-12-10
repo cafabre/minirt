@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:45 by rshin             #+#    #+#             */
-/*   Updated: 2025/12/10 14:51:05 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/10 15:33:49 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,6 @@ bool		ft_isnumber(char *s);
 int     ft_tablen(char **tab);
 size_t  ft_count_whitespace(char *s);
 char	**ft_split_whitespace(char const *s);
-float	ft_atof(const char *nptr);
+double	ft_atof(const char *nptr);
 
 #endif

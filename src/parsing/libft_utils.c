@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 13:56:38 by cafabre           #+#    #+#             */
-/*   Updated: 2025/12/08 16:13:07 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/10 15:33:41 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,13 +114,12 @@ char	**ft_split_whitespace(char const *s)
 	return (tab);
 }
 
-//version d'atof valide jusqu a 3 chiffres apres la virgule, ignore le reste
-//fonction a refactor !!!
-float	ft_atof(const char *nptr)
+double	ft_atof(const char *nptr)
 {
 	size_t	i;
 	int		sign;
-	float	res;
+	double	res;
+    float   div;
 
 	i = 0;
 	sign = 1;
@@ -135,26 +134,15 @@ float	ft_atof(const char *nptr)
 	else if (nptr[i] == '+')
 		i++;
 	while (nptr[i] && ft_isdigit(nptr[i]))
-	{
-		res = res * 10 + (nptr[i] - '0');
-		i++;
-	}
+		res = res * 10 + (nptr[i++] - '0');
     if (nptr[i] == '.')
     {
         i++;
-        if (ft_isdigit(nptr[i]))
+        div = 10.0f;
+        while (ft_isdigit(nptr[i]))
         {
-            res += (nptr[i] - '0') / 10.0f;
-            i++;
-        }
-        if (ft_isdigit(nptr[i]))
-        {
-            res += (nptr[i] - '0') / 100.0f;
-            i++;
-        }
-        if (ft_isdigit(nptr[i]))
-        {
-            res += (nptr[i] - '0') / 1000.0f;
+            res += (nptr[i] - '0') / div;
+            div *= 10.0f;
             i++;
         }
     }
