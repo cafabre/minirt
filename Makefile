@@ -36,6 +36,7 @@ SRC += $(SRC_DIR)/exec/render.c\
 
 SRC += $(SRC_DIR)/vec4/vec4_point.c \
 	   $(SRC_DIR)/vec4/vec4_vector.c \
+	   $(SRC_DIR)/vec4/vec4_color.c \
 	   $(SRC_DIR)/vec4/vec4_add.c \
 	   $(SRC_DIR)/vec4/vec4_sub.c \
 	   $(SRC_DIR)/vec4/vec4_cross_prod.c \

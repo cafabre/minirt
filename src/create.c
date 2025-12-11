@@ -6,7 +6,7 @@
 /*   By: rshin <rshin@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:45:02 by rshin             #+#    #+#             */
-/*   Updated: 2025/10/21 17:18:08 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2025/12/11 09:12:13 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,7 @@ static t_light	*create_light(void)
 	if (!l)
 		return (NULL);
 	l->pos = vec4_point(-40, 0, 30);
-	l->col = vec4_point(255, 255, 255);
-	l->col = vec4_scalar_div(l->col, 255);
+	l->col = vec4_color(255, 255, 255);
 	l->lum = 0.9f;
 	return (l);
 }
@@ -46,8 +45,7 @@ static t_light	*create_amb(void)
 	a = ft_calloc(1, sizeof(t_light));
 	if (!a)
 		return (NULL);
-	a->col = vec4_point(0, 0, 255);
-	a->col = vec4_scalar_div(a->col, 255);
+	a->col = vec4_color(0, 0, 255);
 	a->lum = 0.9f;
 	return (a);
 }
@@ -63,7 +61,7 @@ static t_obj	*create_sp(void)
 	sp->pos = vec4_point(0, 0, 5);
 	sp->diam = 10;
 	sp->rad = sp->diam / 2;
-	sp->col = vec4_point(255, 0, 0);
+	sp->col = vec4_color(255, 0, 0);
 	sp->next = NULL;
 	return (sp);
 }
