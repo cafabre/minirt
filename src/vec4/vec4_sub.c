@@ -6,7 +6,7 @@
 /*   By: rshin <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 11:46:40 by rshin             #+#    #+#             */
-/*   Updated: 2025/10/02 15:54:08 by rshin            ###   ########.fr       */
+/*   Updated: 2025/12/11 10:17:56 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,6 @@ t_vec4	vec4_sub(t_vec4 a, t_vec4 b)
 	res.x = a.x - b.x;
 	res.y = a.y - b.y;
 	res.z = a.z - b.z;
+	res.w = a.w;
 	return (res);
 }

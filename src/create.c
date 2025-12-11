@@ -6,7 +6,7 @@
 /*   By: rshin <rshin@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:45:02 by rshin             #+#    #+#             */
-/*   Updated: 2025/12/11 09:12:13 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2025/12/11 13:48:04 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static t_obj	*create_sp(void)
 	sp->next = NULL;
 	return (sp);
 }
-/*
+
 static t_obj	*create_pl(void)
 {
 	t_obj	*pl;
@@ -76,11 +76,11 @@ static t_obj	*create_pl(void)
 	pl->type = PLANE;
 	pl->pos = vec4_point(0, 0, -50);
 	pl->dir = vec4_point(0, 0, 1);
-	pl->col = vec4_point(0, 255, 0);
+	pl->col = vec4_color(0, 255, 0);
 	pl->next = NULL;
 	return (pl);
 }
-*/
+
 t_scene	*create_scene(void)
 {
 	t_scene	*s;
@@ -98,7 +98,7 @@ t_scene	*create_scene(void)
 	if (!s->amb)
 		return (NULL);
 	s->objs = create_sp();
-//	s->obj->next = create_pl();
-	s->objs->next = NULL;
+	s->objs->next = create_pl();
+	s->objs->next->next = NULL;
 	return (s);
 }
