@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:45 by rshin             #+#    #+#             */
-/*   Updated: 2025/12/10 18:30:30 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/11 15:14:26 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,15 +161,34 @@ void	free_scene(t_scene *scene);
 void	free_splitted(char **args);
 
 /********** PARSING **********/
-bool		dispatch_ids(char **tab);
-int			parsing(int fd);
-t_vec4		*parse_vectors(char **tab, float *r_min, float *r_max);
+/*** dispatcher.c ***/
+bool  dispatch_ids(char **tab);
+
+/*** objects.c ***/
+void    fill_cylinder_data(char **tab);
+void    fill_plane_data(char **tab);
+void    fill_sphere_data(char **tab);
+
+/*** parsing_utils.c ***/
+t_vec4  parse_vector(char **coords);
+
+/*** parsing.c ***/
+int     parsing(int fd);
+
+/*** scene.c ***/
+void    fill_camera_data(char **tab);
+void    fill_light_data(char **tab, bool amb);
+
+/*** values_check.c ***/
+char **check_coords_range(char *s, float r_min, float r_max);
+char **check_coords(char *s);
+float check_val(char *s, float r_min, float r_max);
 
 /********** LIBFT UTILS **********/
+double	ft_atof(const char *nptr);
+char	**ft_split_whitespace(char const *s);
+size_t  ft_count_whitespace(char *s);
+int     ft_tablen(char **tab);
 bool		ft_isnumber(char *s);
-int			ft_tablen(char **tab);
-size_t		ft_count_whitespace(char *s);
-char		**ft_split_whitespace(char const *s);
-double		ft_atof(const char *nptr);
 
 #endif

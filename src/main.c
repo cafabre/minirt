@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:54 by rshin             #+#    #+#             */
-/*   Updated: 2025/12/10 13:44:42 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/11 15:03:47 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static bool    is_empty(int fd)
 {
     if (ft_gnl(fd) == NULL)
         return (true);
+	//repositionner le FD
     return (false);
 }
 

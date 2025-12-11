@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rshin <rshin@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:45:02 by rshin             #+#    #+#             */
-/*   Updated: 2025/12/11 09:12:13 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2025/12/11 14:23:09 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,28 +25,27 @@ static t_cam	*create_cam(void)
 	return (c);
 }
 
-static t_light	*create_light(void)
+static t_light	*create_light(char **tab)
 {
 	t_light	*l;
 
 	l = ft_calloc(1, sizeof(t_light));
 	if (!l)
 		return (NULL);
-	l->pos = vec4_point(-40, 0, 30);
-	l->col = vec4_color(255, 255, 255);
-	l->lum = 0.9f;
+	l->pos = vec4_point(tab[1][0], tab[1][1], tab[1][2]);
+	l->lum = ft_atof(tab[2]);
 	return (l);
 }
 
-static t_light	*create_amb(void)
+static t_light	*create_amb(char **tab)
 {
 	t_light	*a;
 
 	a = ft_calloc(1, sizeof(t_light));
 	if (!a)
 		return (NULL);
-	a->col = vec4_color(0, 0, 255);
-	a->lum = 0.9f;
+	a->col = vec4_color(tab[2][0], tab[2][1], tab[2][2]);
+	a->lum = ft_atof(tab[1]);
 	return (a);
 }
 
