@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 13:23:45 by cafabre           #+#    #+#             */
-/*   Updated: 2025/12/11 15:03:08 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/12 15:03:52 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,13 @@ static bool    parse_ids(int fd, char ****data)
         if (!node)
         {
             free_tab(tab);
-            //free list
+            ft_lstclear(&list, free_tab);
             return (false);
         }
         ft_lstadd_back(&list, node);     
         if (!dispatch_ids(tab))
         {
-            free_tab(tab);
-            //free list
+            ft_lstclear(&list, free_tab);
             return (false); 
         }
     }

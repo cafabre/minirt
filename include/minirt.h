@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:45 by rshin             #+#    #+#             */
-/*   Updated: 2025/12/12 11:48:51 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/12 15:05:51 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,6 +180,9 @@ void    fill_light_data(char **tab, bool amb);
 char **check_coords_range(char *s, float r_min, float r_max);
 char **check_coords(char *s);
 float check_val(char *s, float r_min, float r_max);
+
+/*** clean.c ***/
+void    free_tab(void *ptr);
 
 /********** LIBFT UTILS **********/
 double	ft_atof(const char *nptr);
