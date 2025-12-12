@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:45 by rshin             #+#    #+#             */
-/*   Updated: 2025/12/11 16:03:31 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/12 11:48:51 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,7 +167,7 @@ void    fill_plane_data(char **tab);
 void    fill_sphere_data(char **tab);
 
 /*** parsing_utils.c ***/
-t_vec4  parse_vector(char **coords);
+t_vec4  parse_vector(char **coords, int type);
 
 /*** parsing.c ***/
 int     parsing(int fd);

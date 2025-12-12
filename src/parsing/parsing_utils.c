@@ -6,13 +6,14 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 16:06:41 by cafabre           #+#    #+#             */
-/*   Updated: 2025/12/11 15:17:57 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/12 11:48:33 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_vec4  parse_vector(char **coords)
+//int type : 1 = point, 2 = vector, 3 = color
+t_vec4  parse_vector(char **coords, int type)
 {
     t_vec4 vec;
     double x;
@@ -25,6 +26,11 @@ t_vec4  parse_vector(char **coords)
     x = ft_atof(coords[0]);
     y = ft_atof(coords[1]);
     z = ft_atof(coords[2]);
-    vec = vec4_point((float)x, (float)y, (float)z);
+    if (type == 1)
+        vec = vec4_point((float)x, (float)y, (float)z);
+    else if (type == 2)
+        vec = vec4_vector((float)x, (float)y, (float)z);
+    else
+        vec = vec4_color((float)x, (float)y, (float)z);
     return (vec);
 }
