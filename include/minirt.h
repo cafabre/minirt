@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:45 by rshin             #+#    #+#             */
-/*   Updated: 2025/12/11 15:14:26 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/11 16:03:31 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,6 @@
 # define ESC_KEY 65307
 
 /*---STRUCTURES---*/
-
-//struct obj, light et cam modifiees -> t_vec4 passes en pointeus
-//solution pour laisser sans ??
 
 typedef enum e_objtype
 {

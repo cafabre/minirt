@@ -119,15 +119,12 @@ void	compute_ray(t_ray *ray, t_scene *s, t_pix p)
 	t_vec4	d_local;
 	t_vec4	d_world;
 
+	d_local = vec4_vector(0.0f, 0.0f, 1.0f);
 	d_local.x = (p.x + 0.5f - s->cache.cx) / s->cache.cx;
 	d_local.x /= s->cache.aspect_ratio;
-	d_local.x = -d_local.x; // search fixing logic elsewhere
-//	d_local.x *= s->cache.fov_scale;
 	d_local.y = (s->cache.cy - p.y + 0.5f) / s->cache.cy;
 	d_local.y *= s->cache.fov_scale;
-	d_local.y = -d_local.y; // search fixing logic elsewhere
-	d_local.z = -1.0f;
-	d_local.w = 0.0f;
+	d_local = vec4_neg(d_local);
 	d_local = vec4_norm(d_local);
 	d_world = vec4_mat4_prod(d_local, s->cache.view_mat);
 	d_world.w = 0.0f;
@@ -154,6 +151,7 @@ unsigned int	trace_ray(t_scene *s, t_ray *ray)
 		obj_norm = target->dir;
 	else
 		obj_norm = vec4_norm(vec4_sub(ray->hit, target->dir));
+	light.pos = s->l->pos;
 	light.hit = vec4_add(ray->hit, vec4_scalar_prod(obj_norm, 0.001f));
 	light.dir = vec4_sub(s->l->pos, ray->hit);
 	light.norm = vec4_norm(light.dir);

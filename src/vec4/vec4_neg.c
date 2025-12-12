@@ -6,7 +6,7 @@
 /*   By: rshin <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 15:27:19 by rshin             #+#    #+#             */
-/*   Updated: 2025/10/02 15:50:38 by rshin            ###   ########.fr       */
+/*   Updated: 2025/12/11 10:11:51 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,6 @@ t_vec4	vec4_neg(t_vec4 vec)
 	res.x = -vec.x;
 	res.y = -vec.y;
 	res.z = -vec.z;
+	res.w = vec.w;
 	return (res);
 }

@@ -6,7 +6,7 @@
 /*   By: rshin <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 14:47:59 by rshin             #+#    #+#             */
-/*   Updated: 2025/10/14 20:11:25 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2025/12/11 10:16:11 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ t_vec4	vec4_norm(t_vec4 vec)
 		res.x = 0;
 		res.y = 0;
 		res.z = 0;
+		res.w = vec.w;
 	}
 	else
 		res = vec4_scalar_div(vec, len);

@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:45:02 by rshin             #+#    #+#             */
-/*   Updated: 2025/12/11 14:23:09 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/12 11:20:47 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static t_obj	*create_sp(void)
 	sp->next = NULL;
 	return (sp);
 }
-/*
+
 static t_obj	*create_pl(void)
 {
 	t_obj	*pl;
@@ -75,11 +75,11 @@ static t_obj	*create_pl(void)
 	pl->type = PLANE;
 	pl->pos = vec4_point(0, 0, -50);
 	pl->dir = vec4_point(0, 0, 1);
-	pl->col = vec4_point(0, 255, 0);
+	pl->col = vec4_color(0, 255, 0);
 	pl->next = NULL;
 	return (pl);
 }
-*/
+
 t_scene	*create_scene(void)
 {
 	t_scene	*s;
@@ -97,7 +97,7 @@ t_scene	*create_scene(void)
 	if (!s->amb)
 		return (NULL);
 	s->objs = create_sp();
-//	s->obj->next = create_pl();
-	s->objs->next = NULL;
+	s->objs->next = create_pl();
+	s->objs->next->next = NULL;
 	return (s);
 }
