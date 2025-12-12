@@ -1,40 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mat4_prod.c                                        :+:      :+:    :+:   */
+/*   vec4_color.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rshin <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/02 19:28:10 by rshin             #+#    #+#             */
-/*   Updated: 2025/12/11 09:13:29 by rshin            ###   ########lyon.fr   */
+/*   Created: 2025/10/02 14:47:59 by rshin             #+#    #+#             */
+/*   Updated: 2025/12/11 09:13:01 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vec4.h"
 
-t_mat4	mat4_prod(t_mat4 a, t_mat4 b)
-{
-	t_mat4	res;
-	int		i;
-	int		j;
-	int		k;
+// use case : create a new color
 
-	i = 0;
-	while (i < 4)
-	{
-		j = 0;
-		while (j < 4)
-		{
-			res.m[i][j] = 0;
-			k = 0;
-			while (k < 4)
-			{
-				res.m[i][j] += a.m[i][k] * b.m[k][j];
-				k++;
-			}
-			j++;
-		}
-		i++;
-	}
-	return (res);
+t_vec4	vec4_color(float x, float y, float z)
+{
+	t_vec4	color;
+
+	color.x = x;
+	color.y = y;
+	color.z = z;
+	color.w = 1.0;
+	color = vec4_scalar_div(color, 255);
+	return (color);
 }
