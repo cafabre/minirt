@@ -6,13 +6,13 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:45:02 by rshin             #+#    #+#             */
-/*   Updated: 2025/12/12 12:53:07 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/12 15:55:29 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static t_cam	*create_cam(t_vec4 point, t_vec4 vec, float f)
+t_cam	*create_cam(t_vec4 point, t_vec4 vec, float f)
 {
 	t_cam	*c;
 
@@ -25,7 +25,7 @@ static t_cam	*create_cam(t_vec4 point, t_vec4 vec, float f)
 	return (c);
 }
 
-static t_light	*create_light(t_vec4 point, float light)
+t_light	*create_light(t_vec4 point, float light)
 {
 	t_light	*l;
 
@@ -37,7 +37,7 @@ static t_light	*create_light(t_vec4 point, float light)
 	return (l);
 }
 
-static t_light	*create_amb(float light, t_vec4 rgb)
+t_light	*create_amb(float light, t_vec4 rgb)
 {
 	t_light	*a;
 
@@ -49,7 +49,7 @@ static t_light	*create_amb(float light, t_vec4 rgb)
 	return (a);
 }
 
-static t_obj	*create_sp(t_vec4 point, float d, t_vec4 color)
+t_obj	*create_sp(t_vec4 point, float d, t_vec4 color)
 {
 	t_obj	*sp;
 
@@ -65,7 +65,7 @@ static t_obj	*create_sp(t_vec4 point, float d, t_vec4 color)
 	return (sp);
 }
 
-static t_obj	*create_pl(t_vec4 point, t_vec4 vec, t_vec4 color)
+t_obj	*create_pl(t_vec4 point, t_vec4 vec, t_vec4 color)
 {
 	t_obj	*pl;
 

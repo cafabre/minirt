@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:45 by rshin             #+#    #+#             */
-/*   Updated: 2025/12/12 15:05:51 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/12 16:47:25 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,6 +161,12 @@ void	free_splitted(char **args);
 /*** dispatcher.c ***/
 bool  dispatch_ids(char **tab);
 
+/*** dispatch_scene.c ***/
+bool dispatch_scene(char **tab, t_scene *s);
+
+/*** dispatch_obj.c ***/
+bool dispatch_obj(char **tab, t_scene *s);
+
 /*** objects.c ***/
 void    fill_cylinder_data(char **tab);
 void    fill_plane_data(char **tab);
@@ -179,7 +185,7 @@ void    fill_light_data(char **tab, bool amb);
 /*** values_check.c ***/
 char **check_coords_range(char *s, float r_min, float r_max);
 char **check_coords(char *s);
-float check_val(char *s, float r_min, float r_max);
+bool check_val(char *s, float r_min, float r_max);
 
 /*** clean.c ***/
 void    free_tab(void *ptr);

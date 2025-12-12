@@ -6,12 +6,15 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 15:27:48 by cafabre           #+#    #+#             */
-/*   Updated: 2025/12/11 15:09:36 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/12 15:13:03 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
+//fonctions obseletes -> voir create.c
+
+/*
 void    fill_light_data(char **tab, bool amb)
 {
     t_light   *light;
@@ -51,4 +54,4 @@ void    fill_camera_data(char **tab)
     fov = ft_atof(tab[3]);
     if (fov < 0 || 180 < fov)
         return ;
-}
+}*/

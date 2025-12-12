@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 13:23:45 by cafabre           #+#    #+#             */
-/*   Updated: 2025/12/12 15:03:52 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/12 17:41:06 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void list_to_array(t_list *list, char ****data_ptr)
     *data_ptr = data;
 }
 
-static bool    parse_ids(int fd, char ****data)
+static bool    parse_ids(int fd, char ****data, t_scene *s)
 {
     char    *line;
     char    **tab;
@@ -59,7 +59,7 @@ static bool    parse_ids(int fd, char ****data)
             return (false);
         }
         ft_lstadd_back(&list, node);     
-        if (!dispatch_ids(tab))
+        if (!dispatch_ids(tab, s))
         {
             ft_lstclear(&list, free_tab);
             return (false); 
@@ -72,9 +72,11 @@ static bool    parse_ids(int fd, char ****data)
 int     parsing(int fd)
 {
     char ***data;
+    t_scene *s;
 
     data = NULL;
-    if (!parse_ids(fd, &data))
+    s = ft_calloc(1, sizeof(t_scene));
+    if (!parse_ids(fd, &data, s))
         return (EXIT_FAILURE);
     //a completer
     return (EXIT_SUCCESS);
