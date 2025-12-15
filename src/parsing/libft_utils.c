@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 13:56:38 by cafabre           #+#    #+#             */
-/*   Updated: 2025/12/10 18:04:26 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/15 14:14:00 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ size_t  ft_count_whitespace(char *s)
     return (count);
 }
 
-char	**ft_split_whitespace(char const *s)
+char	**ft_split_whitespaces(char const *s)
 {
 	char	**tab;
 	size_t	start;

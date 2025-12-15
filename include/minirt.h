@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:45 by rshin             #+#    #+#             */
-/*   Updated: 2025/12/15 13:45:48 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/15 14:29:41 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,7 +176,7 @@ void    fill_sphere_data(char **tab);
 t_vec4  parse_vector(char **coords, int type);
 
 /*** parsing.c ***/
-int     parsing(int fd);
+int     parsing(int fd, t_scene *s);
 
 /*** scene.c ***/
 void    fill_camera_data(char **tab);
@@ -189,11 +189,11 @@ bool check_val(char *s, float r_min, float r_max);
 
 /*** clean.c ***/
 void    free_tab(char **tab);
-void    free_tabs(char **t1, char **t2, char **t3)
+void    free_tabs(char **t1, char **t2, char **t3);
 
 /********** LIBFT UTILS **********/
 double	ft_atof(const char *nptr);
-char	**ft_split_whitespace(char const *s);
+char	**ft_split_whitespaces(char const *s);
 size_t  ft_count_whitespace(char *s);
 int     ft_tablen(char **tab);
 bool		ft_isnumber(char *s);

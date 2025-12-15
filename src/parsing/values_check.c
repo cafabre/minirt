@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 11:37:18 by cafabre           #+#    #+#             */
-/*   Updated: 2025/12/12 16:48:21 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/15 14:13:27 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,10 @@ char **check_coords(char *s)
     while (i <= 2)
     {
         if (!ft_isnumber(coords[i]))
+        {
+            free_tab(coords);
             return (NULL);
+        }
         i++;
     }
     return (coords);
