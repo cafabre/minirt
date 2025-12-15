@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 15:50:21 by cafabre           #+#    #+#             */
-/*   Updated: 2025/12/15 13:51:38 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/15 15:56:06 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,14 @@ static bool dispatch_amb(char **tab, t_scene *s, char ***coords_r)
         free_tab(*coords_r);
         return (false);
     }
+    //test si un amb existe deja -> fait dans dispatch_scene
+    // (idem pour light et cam)
     s->amb = create_amb(ft_atof(tab[1]), parse_vector(*coords_r, 3));
+    if (!s->amb)
+    {
+        free_obj(s->amb); // a coder
+        return (false);
+    }
     return (true);
 }
 
@@ -33,6 +40,11 @@ static bool dispatch_light(char **tab, t_scene *s, char ***coords)
         return (false);
     }
     s->l = create_light(parse_vector(*coords, 1), ft_atof(tab[2]));
+    if (!s->l)
+    {
+        free_obj(s->l);
+        return (false);
+    }
     return (true);
 }
 
@@ -47,6 +59,11 @@ static bool dispatch_cam(char **tab, t_scene *s, char ***coords, char ***coords_
         return (false);
     }
     s->cam = create_cam(parse_vector(*coords, 1), parse_vector(*coords_r, 2), ft_atof(tab[3]));
+    if (!s->cam)
+    {
+        free_obj(s->cam);
+        return (false);
+    }
     return (true);
 }
 

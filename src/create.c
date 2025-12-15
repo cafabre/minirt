@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:45:02 by rshin             #+#    #+#             */
-/*   Updated: 2025/12/12 15:55:29 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/15 15:06:36 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,7 @@ t_obj	*create_pl(t_vec4 point, t_vec4 vec, t_vec4 color)
 }
 
 //create_cy(...) -> to do
-// + revoir comment ajouter les objets crees a la struct scene
-/*
+
 t_scene	*create_scene(void)
 {
 	t_scene	*s;
@@ -90,18 +89,12 @@ t_scene	*create_scene(void)
 	s = ft_calloc(1, sizeof(t_scene));
 	if (!s)
 		return (NULL);
-	s->cam = create_cam();
 	if (!s->cam)
 		return (NULL);
-	s->l = create_light();
 	if (!s->l)
 		return (NULL);
-	s->amb = create_amb();
 	if (!s->amb)
 		return (NULL);
-	s->objs = create_sp();
-	s->objs->next = create_pl();
-	s->objs->next->next = NULL;
+	//revoir comment ajouter les objets crees a la struct scene
 	return (s);
 }
-*/

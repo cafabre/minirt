@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 13:23:45 by cafabre           #+#    #+#             */
-/*   Updated: 2025/12/15 14:57:49 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/15 15:03:24 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ int     parsing(int fd, t_scene *s)
 
 /*
 RESTE A FAIRE
-- gestion de la remontee d erreur a revoir EN COURS
-- refactor de certaines fonctions trop longues EN COURS
-- fonctions de free / clean (tab, all...) -> free_tab et free_tabs DONE, reste EN COURS
+- refactor de certaines fonctions trop longues
 - deplacer les utils dans la libft
 */
