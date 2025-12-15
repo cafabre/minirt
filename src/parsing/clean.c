@@ -6,15 +6,14 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 15:04:29 by cafabre           #+#    #+#             */
-/*   Updated: 2025/12/12 15:04:53 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/15 13:43:31 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void    free_tab(void *ptr)
+void    free_tab(char **tab)
 {
-    char **tab = (char **)ptr;
     int   i;
 
     if (!tab)
@@ -26,4 +25,12 @@ void    free_tab(void *ptr)
         i++;
     }
     free(tab);
+}
+
+
+void    free_tabs(char **t1, char **t2, char **t3)
+{
+    free_tab(t1);
+    free_tab(t2);
+    free_tab(t3);
 }

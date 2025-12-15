@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 13:23:45 by cafabre           #+#    #+#             */
-/*   Updated: 2025/12/12 17:41:06 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/15 13:47:14 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,8 @@ int     parsing(int fd)
 
 /*
 RESTE A FAIRE
-- verif du nb d apparitions de A, L et C
-- gestion de la remontee d erreur a revoir
-- refactor de certaines fonctions trop longues
+- gestion de la remontee d erreur a revoir EN COURS
+- refactor de certaines fonctions trop longues EN COURS
+- fonctions de free / clean (tab, all...) -> free_tab et free_tabs DONE, reste EN COURS
 - deplacer les utils dans la libft
-- fonctions de free / clean (tab, all...)
 */

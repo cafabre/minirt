@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:45 by rshin             #+#    #+#             */
-/*   Updated: 2025/12/12 16:47:25 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/15 13:45:48 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,7 +159,7 @@ void	free_splitted(char **args);
 
 /********** PARSING **********/
 /*** dispatcher.c ***/
-bool  dispatch_ids(char **tab);
+bool  dispatch_ids(char **tab, t_scene *s);
 
 /*** dispatch_scene.c ***/
 bool dispatch_scene(char **tab, t_scene *s);
@@ -188,7 +188,8 @@ char **check_coords(char *s);
 bool check_val(char *s, float r_min, float r_max);
 
 /*** clean.c ***/
-void    free_tab(void *ptr);
+void    free_tab(char **tab);
+void    free_tabs(char **t1, char **t2, char **t3)
 
 /********** LIBFT UTILS **********/
 double	ft_atof(const char *nptr);

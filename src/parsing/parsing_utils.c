@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 16:06:41 by cafabre           #+#    #+#             */
-/*   Updated: 2025/12/12 11:48:33 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/15 11:53:44 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ t_vec4  parse_vector(char **coords, int type)
 
     if (!coords || !coords[0] || !coords[1]
         || !coords[2])
+    {
+        free_tab(coords);
         return (vec4_point(0.0f, 0.0f, 0.0f));
+    }
     x = ft_atof(coords[0]);
     y = ft_atof(coords[1]);
     z = ft_atof(coords[2]);
@@ -32,5 +35,6 @@ t_vec4  parse_vector(char **coords, int type)
         vec = vec4_vector((float)x, (float)y, (float)z);
     else
         vec = vec4_color((float)x, (float)y, (float)z);
+    free_tab(coords);
     return (vec);
 }
