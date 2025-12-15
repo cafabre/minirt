@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 15:04:29 by cafabre           #+#    #+#             */
-/*   Updated: 2025/12/15 13:43:31 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/15 16:53:06 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void    free_tab(char **tab)
     }
     free(tab);
 }
-
 
 void    free_tabs(char **t1, char **t2, char **t3)
 {

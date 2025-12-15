@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 15:52:06 by cafabre           #+#    #+#             */
-/*   Updated: 2025/12/15 16:10:18 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/15 16:52:30 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static bool dispatch_sp(char **tab, t_scene *s, char ***coords, char ***coords_r
         return (false);
     if (!add_obj_to_scene(s, new_sp))
     {
-        free_obj(new_sp);
+        free(new_sp);
         return (false);
     }
     return (true);
@@ -76,7 +76,7 @@ static bool dispatch_pl(char **tab, t_scene *s, char ***coords, char ***coords_r
         return (false);
     if (!add_obj_to_scene(s, new_pl))
     {
-        free_obj(new_pl);
+        free(new_pl);
         return (false);
     }
     return (true);
@@ -101,7 +101,7 @@ static bool dispatch_cy(char **tab, t_scene *s, char ***coords, char ***coords_r
         reutrn (false);
     if (!add_obj_to_scene(s, new_cy))
     {
-        free_obj(new_cy);
+        free(new_cy);
         return (false);
     }
     return (true);

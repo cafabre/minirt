@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 13:23:45 by cafabre           #+#    #+#             */
-/*   Updated: 2025/12/15 15:03:24 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/15 16:54:21 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,12 @@ int     parsing(int fd, t_scene *s)
 {
     if (!parse_ids(fd, s))
         return (EXIT_FAILURE);
-    //a completer
     return (EXIT_SUCCESS);
 }
 
 /*
 RESTE A FAIRE
+- afficher le bon message d erreur en fonction de l'endroit ou on renvoie false
 - refactor de certaines fonctions trop longues
 - deplacer les utils dans la libft
 */
