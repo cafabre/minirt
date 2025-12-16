@@ -6,7 +6,7 @@
 /*   By: rshin <rshin@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:45:02 by rshin             #+#    #+#             */
-/*   Updated: 2025/12/15 14:10:51 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2025/12/16 14:34:39 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static t_light	*create_light(void)
 	l = ft_calloc(1, sizeof(t_light));
 	if (!l)
 		return (NULL);
-	l->pos = vec4_point(-15, 10, -5);
+	l->pos = vec4_point(-20, 20, -5);
 	l->col = vec4_color(255, 255, 255);
 	l->lum = 0.9f;
 	return (l);
@@ -46,7 +46,7 @@ static t_light	*create_amb(void)
 	if (!a)
 		return (NULL);
 	a->col = vec4_color(0, 0, 255);
-	a->lum = 0.9f;
+	a->lum = 1.0f;
 	return (a);
 }
 
@@ -62,6 +62,22 @@ static t_obj	*create_sp(void)
 	sp->diam = 10;
 	sp->rad = sp->diam / 2;
 	sp->col = vec4_color(255, 0, 0);
+	sp->next = NULL;
+	return (sp);
+}
+
+static t_obj	*create_sp2(void)
+{
+	t_obj	*sp;
+
+	sp = ft_calloc(1, sizeof(t_obj));
+	if (!sp)
+		return (NULL);
+	sp->type = SPHERE;
+	sp->pos = vec4_point(-10, 2, 20);
+	sp->diam = 10;
+	sp->rad = sp->diam / 2;
+	sp->col = vec4_color(0, 0, 255);
 	sp->next = NULL;
 	return (sp);
 }
@@ -97,9 +113,12 @@ t_scene	*create_scene(void)
 	s->amb = create_amb();
 	if (!s->amb)
 		return (NULL);
+//	s->objs = create_sp();
+//	s->objs->next = create_pl();
+//	s->objs->next->next = NULL;
 	s->objs = create_sp();
-	s->objs->next = create_pl();
-	s->objs->next->next = NULL;
-//	s->objs->next = NULL;
+	s->objs->next = create_sp2();
+	s->objs->next->next = create_pl();
+	s->objs->next->next->next = NULL;
 	return (s);
 }

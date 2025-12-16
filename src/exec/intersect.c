@@ -49,7 +49,7 @@ static float	intersect_plane(t_ray *r, t_obj *pl)
 	return (INFINITY);
 }
 
-t_obj   *compute_nearest_obj(t_scene *s, t_ray *ray)
+t_obj   *compute_nearest_obj(t_scene *s, t_ray *ray, t_obj *ignore)
 {
 	t_obj	*curr;
 	t_obj	*keep;
@@ -60,14 +60,19 @@ t_obj   *compute_nearest_obj(t_scene *s, t_ray *ray)
 	curr = s->objs;
 	while (curr)
 	{
+		if (curr == ignore)
+		{
+			curr = curr->next;
+			continue;
+		}
 		if (curr->type == SPHERE)
 			t = intersect_sphere(ray, curr);
 		else if (curr->type == PLANE)
 			t = intersect_plane(ray, curr);
-		if (t < ray->t)
+		if (t > 0.00001f && t < ray->t)
 		{
-			keep = curr;
 			ray->t = t;
+			keep = curr;
 		}
 		curr = curr->next;
 	}

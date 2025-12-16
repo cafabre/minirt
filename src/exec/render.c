@@ -64,61 +64,6 @@ static void	compute_ray(t_ray *ray, t_scene *s, t_pix p)
 	ray->dir = d_world;
 }
 
-t_vec4 get_object_normal(const t_obj *target, const t_vec4 hit)
-{
-	t_vec4	normal;
-
-	if (target->type == SPHERE)
-		normal = vec4_norm(vec4_sub(hit, target->pos));
-	else if (target->type == PLANE)
-		normal = target->dir;
-	else
-		normal = vec4_norm(vec4_sub(hit, target->dir));
-	return (normal);
-}
-
-static t_vec4 compute_lighting(t_scene *s, t_obj *obj, t_vec4 normal, t_ray *shadow)
-{
-	t_vec4	ambient;
-	float	diffuse;
-	t_vec4	diff_col;
-	t_vec4	color;
-	
-	ambient = vec4_scalar_prod(vec4_mul(obj->col, s->amb->col), s->amb->lum);
-	diffuse = fmax(vec4_dot_prod(normal, shadow->dir), 0.0);
-	diff_col = vec4_scalar_prod(vec4_mul(obj->col, s->l->col), diffuse * s->l->lum);
-	color = vec4_add(ambient, diff_col);
-	return (color);
-}
-
-static unsigned int	trace_ray(t_scene *s, t_ray *ray)
-{
-	t_obj	*blocker;
-	t_obj	*obj;
-	t_vec4	hit;
-	float	light_dist;
-	t_ray	shadow;
-	t_vec4	normal;
-	t_vec4	color;
-
-	obj = compute_nearest_obj(s, ray);
-	if (!obj)
-		return (pack_to_uint(s->cache.bg_col));
-	hit = vec4_add(ray->pos, vec4_scalar_prod(ray->dir, ray->t));
-	normal = get_object_normal(obj, hit);
-	shadow.pos = vec4_add(hit, vec4_scalar_prod(normal, 0.001f));
-	shadow.dir = vec4_norm(vec4_sub(s->l->pos, shadow.pos));
-	shadow.t = vec4_len(vec4_sub(s->l->pos, shadow.pos));
-	light_dist = shadow.t;
-	blocker = compute_nearest_obj(s, &shadow);
-	if (blocker && shadow.t < light_dist)
-	{
-		color = vec4_scalar_prod(vec4_mul(obj->col, s->amb->col), s->amb->lum);
-		return (pack_to_uint(color));
-	}
-	color = compute_lighting(s, obj, normal, &shadow);
-	return (pack_to_uint(color));
-}
 
 bool	render_scene(t_env *e)
 {
@@ -129,7 +74,6 @@ bool	render_scene(t_env *e)
 		return (false);
 	compute_cache(e->scene);
 	ft_memset(&pix, 0, sizeof(t_pix));
-	ft_memset(&ray, 0, sizeof(t_ray));
 //	pix.y = e->scene->cache.cy;
 	while (pix.y < WIN_H)
 	{
@@ -137,6 +81,7 @@ bool	render_scene(t_env *e)
 		pix.x = 0;
 		while (pix.x < WIN_W)
 		{
+			ft_memset(&ray, 0, sizeof(t_ray));
 			compute_ray(&ray, e->scene, pix);
 			pix.col = trace_ray(e->scene, &ray);
 			set_pixel(e, pix);

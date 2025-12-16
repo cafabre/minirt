@@ -1,4 +1,16 @@
 # **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: rshin <rshin@student.42lyon.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/12/16 09:40:26 by rshin             #+#    #+#              #
+#    Updated: 2025/12/16 09:40:27 by rshin            ###   ########lyon.fr    #
+#                                                                              #
+# **************************************************************************** #
+
+# **************************************************************************** #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: syukna <syukna@student.42.fr>              +#+  +:+       +#+         #
@@ -33,6 +45,7 @@ SRC = $(SRC_DIR)/main.c \
 SRC += $(SRC_DIR)/exec/render.c\
 	   $(SRC_DIR)/exec/intersect.c \
 	   $(SRC_DIR)/exec/exec_utils.c \
+	   $(SRC_DIR)/exec/tracer.c \
 	   $(SRC_DIR)/exec/controls.c 
 
 SRC += $(SRC_DIR)/vec4/vec4_point.c \
