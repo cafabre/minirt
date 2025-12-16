@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dispatch_obj.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 15:52:06 by cafabre           #+#    #+#             */
-/*   Updated: 2025/12/16 16:09:54 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/16 23:34:58 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static bool add_obj_to_scene(t_scene *s, t_obj *o)
 {
     t_obj   *tmp;
 
+    //test - a supprimer
+    ft_printf("add obj to scene\n");
     o->next = NULL;
     if (!s->objs)
         s->objs = o;
@@ -39,6 +41,8 @@ static bool dispatch_sp(char **tab, t_scene *s, t_coords *c_list, t_data *data)
 {
     t_obj   *new_sp;
     
+    //test - a supprimer
+    ft_printf("diispatch sp\n");
     c_list->coords = check_coords(tab[1], data);
     c_list->coords_r = check_coords_range(tab[3], 0, 255, data);
     if (!c_list->coords || !ft_isnumber(tab[2]) || ft_atof(tab[2]) < 0 || !c_list->coords_r)
@@ -67,6 +71,9 @@ static bool dispatch_pl(char **tab, t_scene *s, t_coords *c_list, t_data *data)
 {
     t_obj   *new_pl;
     
+
+    //test - a supprimer
+    ft_printf("diispatch pl\n");
     c_list->coords = check_coords(tab[1], data);
     c_list->coords_r = check_coords_range(tab[2], -1, 1, data);
     c_list->coords_r2 = check_coords_range(tab[3], 0, 255, data);
@@ -95,6 +102,9 @@ static bool dispatch_pl(char **tab, t_scene *s, t_coords *c_list, t_data *data)
 static bool dispatch_cy(char **tab, t_scene *s, t_coords *c_list, t_data *data)
 {
     t_obj   *new_cy;
+
+    //test - a supprimer
+    ft_printf("diispatch cy\n");
     
     c_list->coords = check_coords(tab[1], data);
     c_list->coords_r = check_coords_range(tab[2], -1, 1, data);
@@ -106,7 +116,6 @@ static bool dispatch_cy(char **tab, t_scene *s, t_coords *c_list, t_data *data)
         data->error = ERR_INVALID_CYLINDER_DATA;
         return (false);
     }
-    //create_cy -> a coder
     new_cy = create_cy(parse_vector(c_list->coords, 1, data), parse_vector(c_list->coords_r, 2, data),
         ft_atof(tab[3]), ft_atof(tab[4]), parse_vector(c_list->coords_r2, 3, data));
     if (!new_cy)
@@ -132,6 +141,10 @@ bool dispatch_obj(char **tab, t_scene *s, t_data *data)
     coords_list.coords_r = NULL;
     coords_list.coords_r2 = NULL;
     res = true;
+    
+    //test - a supprimer
+    ft_printf("in dispatch obj\n");
+
     if (ft_strcmp(tab[0], "sp") == 0)
         res = dispatch_sp(tab, s, &coords_list, data);
     else if (ft_strcmp(tab[0], "pl") == 0)
@@ -140,9 +153,16 @@ bool dispatch_obj(char **tab, t_scene *s, t_data *data)
         res = dispatch_cy(tab, s, &coords_list, data);
     else
     {
+        //test - a supprimer
+        ft_printf("invalid object id\n");
+        
         data->error = ERR_INVALID_OBJECT_ID;
         res = false;
     }
+
+    //test - a supprimer
+    ft_printf("dispatch obj finished\n");
+    
     free_tabs(coords_list.coords, coords_list.coords_r, coords_list.coords_r2);
     return (res);
 }

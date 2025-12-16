@@ -59,7 +59,8 @@ SRC += $(SRC_DIR)/parsing/dispatcher.c \
 		$(SRC_DIR)/parsing/parsing.c \
 		$(SRC_DIR)/parsing/parsing_utils.c \
 		$(SRC_DIR)/parsing/libft_utils.c \
-		$(SRC_DIR)/parsing/values_check.c
+		$(SRC_DIR)/parsing/values_check.c \
+		$(SRC_DIR)/parsing/test.c
 
 INC = include
 

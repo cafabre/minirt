@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 13:23:45 by cafabre           #+#    #+#             */
-/*   Updated: 2025/12/16 13:13:08 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/16 23:27:32 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ static bool    parse_ids(int fd, t_scene *s, t_data *data)
         if (!dispatch_ids(tab, s, data))
         {
             free_tab(tab);
+            //test - a supprimer
+            ft_printf("dispatch ids failed\n");
             return (false); 
         }
     }
@@ -40,6 +42,10 @@ int     parsing(int fd, t_scene *s, t_data *data)
 {
     if (!parse_ids(fd, s, data))
         return (EXIT_FAILURE);
+    //2 lignes de test : a supprimer
+    ft_printf("display scene : \n");
+    display_scene(s);
+    
     return (EXIT_SUCCESS);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:45:02 by rshin             #+#    #+#             */
-/*   Updated: 2025/12/16 16:16:24 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/16 23:20:19 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,13 +102,5 @@ t_scene	*create_scene(void)
 	t_scene	*s;
 
 	s = ft_calloc(1, sizeof(t_scene));
-	if (!s)
-		return (NULL);
-	if (!s->cam)
-		return (NULL);
-	if (!s->l)
-		return (NULL);
-	if (!s->amb)
-		return (NULL);
 	return (s);
 }

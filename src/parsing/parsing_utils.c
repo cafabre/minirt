@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 16:06:41 by cafabre           #+#    #+#             */
-/*   Updated: 2025/12/16 13:12:09 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/16 22:57:36 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ t_vec4  parse_vector(char **coords, int type, t_data *data)
         || !coords[2])
     {
         data->error = ERR_INVALID_VECTOR_COORDS;
-        return (vec4_point(0.0f, 0.0f, 0.0f));
+        return (vec4_point(0.0f, 0.0f, 0.0f)); //a changer pour une valeur de retour impossible
+        // + a tester dans la fonction appelante
     }
     x = ft_atof(coords[0]);
     y = ft_atof(coords[1]);

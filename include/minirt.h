@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:45 by rshin             #+#    #+#             */
-/*   Updated: 2025/12/16 16:21:18 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/16 23:13:19 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -262,5 +262,8 @@ char	**ft_split_whitespaces(char *s);
 size_t  ft_count_whitespace(char *s);
 int     ft_tablen(char **tab);
 bool		ft_isnumber(char *s);
+
+//fonction de tests, a supprimer
+void	display_scene(t_scene *s);
 
 #endif

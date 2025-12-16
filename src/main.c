@@ -3,21 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:54 by rshin             #+#    #+#             */
-/*   Updated: 2025/12/16 16:07:51 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/16 23:25:49 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static bool    is_empty(int fd)
+//modifiee pour repositionner le fd au debut du fichier apres le test
+static bool	is_empty(int fd)
 {
-    if (ft_gnl(fd) == NULL)
-        return (true);
-	//repositionner le FD !!!
-    return (false);
+	int		fd_copy;
+	char	*line;
+
+	fd_copy = dup(fd);
+	if (fd_copy == -1)
+		return (false);
+
+	line = ft_gnl(fd);
+
+	dup2(fd_copy, fd);
+	close(fd_copy);
+
+	if (line == NULL)
+		return (true);
+
+	free(line);
+	return (false);
 }
 
 static bool	check_fd(int argc, char **argv, t_env *env, t_data *data)
@@ -77,14 +91,19 @@ int	main(int argc, char **argv)
 	{
 		free_env(&env);
 		display_error_message(&data);
+		//ligne de test - a supprimer
+		ft_printf("parsing failed\n");
 		return (EXIT_FAILURE);
 	}
-	if (!render_scene(&env))
+	//ligne de test - a supprimer
+	ft_printf("parsing finit\n");
+	
+	/*if (!render_scene(&env))
 	{
 		free_env(&env);
 		return (EXIT_FAILURE);
 	}
 	hook_controls(&env);
-	mlx_loop(env.mlx);
+	mlx_loop(env.mlx);*/
 	return (EXIT_SUCCESS);
 }

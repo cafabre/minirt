@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   misconfig.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 18:18:04 by cafabre           #+#    #+#             */
-/*   Updated: 2025/12/16 15:58:48 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/16 22:56:32 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 //fichier a renommer ?
 // a normer -> trouver une solution pour diviser les fonctions plus proprement
 
-static void display_input_error(t_error e)
+static bool display_input_error(t_error e)
 {
     if (e == ERR_INVALID_ARGS_COUNT)
         ft_printf("Invalid number of arguments, one expected (file name)");   
@@ -26,10 +26,11 @@ static void display_input_error(t_error e)
     else if (e == ERR_OPEN)
     {
         perror("Open failed");
-        return ;
+        return (false);
     }
     else if (e == ERR_EMPTY_FILE)
         ft_printf("Scene file is empty");
+    return (true);
 }
 
 static void display_file_error(t_error e)
@@ -89,9 +90,12 @@ void    display_error_message(t_data *data)
         return ;
     else
         ft_printf("Error: ");
-    display_input_error(data->error);
+    if (!display_input_error(data->error))
+        return ;
     display_file_error(data->error);
     display_alloc_error(data->error);
+
+
     if (data->error == ERR_INVALID_SPHERE_DATA)
         ft_printf("Invalid data for sphere");
     else if (data->error == ERR_INVALID_PLANE_DATA)
