@@ -6,7 +6,7 @@
 /*   By: rshin <rshin@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 16:34:37 by rshin             #+#    #+#             */
-/*   Updated: 2025/12/11 13:45:16 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2025/12/15 14:11:24 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,5 @@ t_obj   *compute_nearest_obj(t_scene *s, t_ray *ray)
 		}
 		curr = curr->next;
 	}
-	if (ray->t == INFINITY)
-		return (NULL);
-	ray->hit = vec4_add(ray->pos, vec4_scalar_prod(ray->dir, ray->t));
 	return (keep);
 }

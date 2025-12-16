@@ -32,6 +32,7 @@ SRC = $(SRC_DIR)/main.c \
 
 SRC += $(SRC_DIR)/exec/render.c\
 	   $(SRC_DIR)/exec/intersect.c \
+	   $(SRC_DIR)/exec/exec_utils.c \
 	   $(SRC_DIR)/exec/controls.c 
 
 SRC += $(SRC_DIR)/vec4/vec4_point.c \
@@ -39,6 +40,7 @@ SRC += $(SRC_DIR)/vec4/vec4_point.c \
 	   $(SRC_DIR)/vec4/vec4_color.c \
 	   $(SRC_DIR)/vec4/vec4_add.c \
 	   $(SRC_DIR)/vec4/vec4_sub.c \
+	   $(SRC_DIR)/vec4/vec4_mul.c \
 	   $(SRC_DIR)/vec4/vec4_cross_prod.c \
 	   $(SRC_DIR)/vec4/vec4_dot_prod.c \
 	   $(SRC_DIR)/vec4/vec4_scalar_prod.c \
@@ -48,8 +50,7 @@ SRC += $(SRC_DIR)/vec4/vec4_point.c \
 	   $(SRC_DIR)/vec4/vec4_dist.c \
 	   $(SRC_DIR)/vec4/vec4_neg.c \
 	   $(SRC_DIR)/vec4/vec4_norm.c \
-	   $(SRC_DIR)/vec4/vec4_lerp.c \
-	   $(SRC_DIR)/vec4/mat4_prod.c
+	   $(SRC_DIR)/vec4/vec4_lerp.c
 
 INC = include
 

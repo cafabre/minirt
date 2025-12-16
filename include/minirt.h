@@ -6,7 +6,7 @@
 /*   By: syukna <syukna@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:45 by rshin             #+#    #+#             */
-/*   Updated: 2025/12/03 11:19:24 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2025/12/15 14:34:03 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,7 @@ typedef struct s_ray
 {
 	t_vec4	pos;
 	t_vec4	dir;
-	t_vec4	norm;
-	t_vec4	hit;
 	float	t;
-	float	t_min;
-	float	t_max;
-	t_vec4	color;
-	int		recur_depth;
 }	t_ray;
 
 typedef struct s_object
@@ -127,6 +121,10 @@ typedef struct s_environment
 }	t_env;
 
 /*---FUNCTIONS---*/
+
+unsigned int	pack_to_uint(t_vec4 color);
+void	set_pixel(t_env *e, t_pix p);
+t_mat4	get_inv_view_mat(const t_cam *c);
 
 bool	render_scene(t_env *env);
 t_obj	*compute_nearest_obj(t_scene *s, t_ray *ray);

@@ -6,7 +6,7 @@
 /*   By: rshin <rshin@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:45:02 by rshin             #+#    #+#             */
-/*   Updated: 2025/12/11 13:48:04 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2025/12/15 14:10:51 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static t_cam	*create_cam(void)
 	c = ft_calloc(1, sizeof(t_cam));
 	if (!c)
 		return (NULL);
-	c->pos = vec4_point(0, -20, 5);
-	c->dir = vec4_vector(0, 1, 0);
+	c->pos = vec4_point(0, 5, -50);
+	c->dir = vec4_vector(0, 0, 1);
 	c->fov = 40;
 	return (c);
 }
@@ -32,7 +32,7 @@ static t_light	*create_light(void)
 	l = ft_calloc(1, sizeof(t_light));
 	if (!l)
 		return (NULL);
-	l->pos = vec4_point(-40, 0, 30);
+	l->pos = vec4_point(-15, 10, -5);
 	l->col = vec4_color(255, 255, 255);
 	l->lum = 0.9f;
 	return (l);
@@ -58,7 +58,7 @@ static t_obj	*create_sp(void)
 	if (!sp)
 		return (NULL);
 	sp->type = SPHERE;
-	sp->pos = vec4_point(0, 0, 5);
+	sp->pos = vec4_point(0, 0, 0);
 	sp->diam = 10;
 	sp->rad = sp->diam / 2;
 	sp->col = vec4_color(255, 0, 0);
@@ -74,8 +74,8 @@ static t_obj	*create_pl(void)
 	if (!pl)
 		return (NULL);
 	pl->type = PLANE;
-	pl->pos = vec4_point(0, 0, -50);
-	pl->dir = vec4_point(0, 0, 1);
+	pl->pos = vec4_point(0, -5, 0);
+	pl->dir = vec4_point(0, 1, 0);
 	pl->col = vec4_color(0, 255, 0);
 	pl->next = NULL;
 	return (pl);
@@ -100,5 +100,6 @@ t_scene	*create_scene(void)
 	s->objs = create_sp();
 	s->objs->next = create_pl();
 	s->objs->next->next = NULL;
+//	s->objs->next = NULL;
 	return (s);
 }
