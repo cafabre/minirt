@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:45 by rshin             #+#    #+#             */
-/*   Updated: 2025/12/15 14:29:41 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/16 12:56:54 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,46 @@ typedef enum e_objtype
 	PLANE,
 	CYLINDER
 }	t_objtype;
+
+typedef enum e_error
+{
+    ERR_NONE,
+    ERR_MALLOC,
+    ERR_OPEN,
+    ERR_EMPTY_FILE,
+    ERR_INVALID_ARGS_COUNT,
+    ERR_INVALID_COORDS,
+    ERR_INVALID_VALUE_RANGE,
+    ERR_INVALID_OBJECT_ID,
+    ERR_INVALID_SCENE_ID,
+    ERR_DUPLICATE_AMBIENT,
+    ERR_DUPLICATE_LIGHT,
+    ERR_DUPLICATE_CAMERA,
+    ERR_MALLOC_AMBIENT,
+    ERR_MALLOC_LIGHT,
+    ERR_MALLOC_CAMERA,
+    ERR_MALLOC_SPHERE,
+    ERR_MALLOC_PLANE,
+    ERR_MALLOC_CYLINDER,
+    ERR_ADD_AMBIENT,
+    ERR_ADD_LIGHT,
+    ERR_ADD_CAMERA,
+    ERR_ADD_SPHERE,
+    ERR_ADD_PLANE,
+    ERR_ADD_CYLINDER,
+    ERR_INVALID_SPHERE_DATA,
+    ERR_INVALID_PLANE_DATA,
+    ERR_INVALID_CYLINDER_DATA,
+    ERR_INVALID_AMBIENT_DATA,
+    ERR_INVALID_LIGHT_DATA,
+    ERR_INVALID_CAMERA_DATA,
+    ERR_INVALID_VECTOR_COORDS,
+}	t_error;
+
+typedef struct s_data
+{
+	t_error error;
+}	t_data;
 
 typedef struct s_pixel
 {
@@ -132,12 +172,17 @@ typedef struct s_environment
 	int				fd;
 }	t_env;
 
+typedef struct s_coords
+{
+	char		**coords;
+	char		**coords_r;
+	char		**coords_r2;
+} 	t_coords;
+
 /*---FUNCTIONS---*/
 
 bool	render_scene(t_env *env);
 t_obj	*compute_nearest_obj(t_scene *s, t_ray *ray);
-
-t_scene	*create_scene(void); //fonction temporaire en attendant full parsing
 
 int		close_win(void *param);
 void	hook_controls(t_env *env);
@@ -159,13 +204,13 @@ void	free_splitted(char **args);
 
 /********** PARSING **********/
 /*** dispatcher.c ***/
-bool  dispatch_ids(char **tab, t_scene *s);
+bool  dispatch_ids(char **tab, t_scene *s, t_data *data);
 
 /*** dispatch_scene.c ***/
-bool dispatch_scene(char **tab, t_scene *s);
+bool dispatch_scene(char **tab, t_scene *s, t_data *data);
 
 /*** dispatch_obj.c ***/
-bool dispatch_obj(char **tab, t_scene *s);
+bool dispatch_obj(char **tab, t_scene *s, t_data *data);
 
 /*** objects.c ***/
 void    fill_cylinder_data(char **tab);
@@ -190,6 +235,17 @@ bool check_val(char *s, float r_min, float r_max);
 /*** clean.c ***/
 void    free_tab(char **tab);
 void    free_tabs(char **t1, char **t2, char **t3);
+
+/*** misconfig.c ***/
+void    display_error_message(t_error error);
+
+/*** create.c ***/ //-> pas dans le parsing
+t_cam	*create_cam(t_vec4 point, t_vec4 vec, float f);
+t_light	*create_light(t_vec4 point, float light);
+t_light	*create_amb(float light, t_vec4 rgb);
+t_obj	*create_sp(t_vec4 point, float d, t_vec4 color);
+t_obj	*create_pl(t_vec4 point, t_vec4 vec, t_vec4 color);
+t_scene	*create_scene(void);
 
 /********** LIBFT UTILS **********/
 double	ft_atof(const char *nptr);

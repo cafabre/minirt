@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:54 by rshin             #+#    #+#             */
-/*   Updated: 2025/12/15 14:29:24 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/16 11:31:42 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ int	main(int argc, char **argv)
 	ft_memset(&env, 0, sizeof(t_env));
 	if (!check_fd(argc, argv, &env))
 		return (EXIT_FAILURE);
-	//a modifier : create scene deleted
-	// -> scene created during parsing
 	env.scene = create_scene();
 	if (!env.scene)
 	{

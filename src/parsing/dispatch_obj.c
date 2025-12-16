@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 15:52:06 by cafabre           #+#    #+#             */
-/*   Updated: 2025/12/15 16:52:30 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/16 12:55:33 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,97 +35,114 @@ static bool add_obj_to_scene(t_scene *s, t_obj *o)
     return (true);
 }
 
-static bool dispatch_sp(char **tab, t_scene *s, char ***coords, char ***coords_r)
+static bool dispatch_sp(char **tab, t_scene *s, t_coords *c_list, t_data *data)
 {
     t_obj   *new_sp;
     
-    *coords = check_coords(tab[1]);
-    *coords_r = check_coords_range(tab[3], 0, 255);
-    if (!*coords || !ft_isnumber(tab[2]) || ft_atof(tab[2]) < 0 || !*coords_r)
+    c_list->coords = check_coords(tab[1]);
+    c_list->coords_r = check_coords_range(tab[3], 0, 255);
+    if (c_list->coords || !ft_isnumber(tab[2]) || ft_atof(tab[2]) < 0 || !c_list->coords_r)
     {
-        free_tab(*coords);
-        free_tab(*coords_r);
+        free_tabs(c_list->coords, c_list->coords_r, c_list->coords_r2);
+        //data->error = ERR_ invalid data for sphere
         return (false);
     }
-    new_sp = create_sp(parse_vector(*coords, 1), ft_atof(tab[2]), parse_vector(*coords_r, 3));
+    new_sp = create_sp(parse_vector(c_list->coords, 1), ft_atof(tab[2]),
+        parse_vector(c_list->coords_r, 3));
     if(!new_sp)
+    {
+        //data->error = ERR_ calloc error : couldnt allocate sphere
         return (false);
+    }
     if (!add_obj_to_scene(s, new_sp))
     {
         free(new_sp);
+        //data->error = ERR_ couldnt add the sphere to the scene
         return (false);
     }
     return (true);
 }
 
-static bool dispatch_pl(char **tab, t_scene *s, char ***coords, char ***coords_r, char ***coords_r2)
+static bool dispatch_pl(char **tab, t_scene *s, t_coords *c_list, t_data *data)
 {
+    
     t_obj   *new_pl;
     
-    *coords = check_coords(tab[1]);
-    *coords_r = check_coords_range(tab[2], -1, 1);
-    *coords_r2 = check_coords_range(tab[3], 0, 255);
-    if (!*coords || !*coords_r || !*coords_r2)
+    c_list->coords = check_coords(tab[1]);
+    c_list->coords_r = check_coords_range(tab[2], -1, 1);
+    c_list->coords_r2 = check_coords_range(tab[3], 0, 255);
+    if (!c_list->coords || !c_list->coords_r || !c_list->coords_r2)
     {
-        free_tabs(*coords, *coords_r, *coords_r2);
+        free_tabs(c_list->coords, c_list->coords_r, c_list->coords_r2);
+        //data->error = ERR_ invalid data for plane
         return (false);
     }
-    new_pl = create_pl(parse_vector(*coords, 1), parse_vector(*coords_r, 2),
-        parse_vector(*coords_r2, 3));
+    new_pl = create_pl(parse_vector(c_list->coords, 1), parse_vector(c_list->coords_r, 2),
+        parse_vector(c_list->coords_r2, 3));
     if (!new_pl)
+    {
+        //data->error = ERR_ calloc error : couldnt allocate plane
         return (false);
+    }
     if (!add_obj_to_scene(s, new_pl))
     {
         free(new_pl);
+        //data->error = ERR_ couldnt add the plane to the scene
         return (false);
     }
     return (true);
 }
 
-static bool dispatch_cy(char **tab, t_scene *s, char ***coords, char ***coords_r, char ***coords_r2)
+static bool dispatch_cy(char **tab, t_scene *s, t_coords *c_list, t_data *data)
 {
     t_obj   *new_cy;
     
-    *coords = check_coords(tab[1]);
-    *coords_r = check_coords_range(tab[2], -1, 1);
-    *coords_r2 = check_coords_range(tab[5], 0, 255);
-    if (!*coords || !*coords_r || !ft_isnumber(tab[3]) || ft_atof(tab[3]) < 0
-        || !ft_isnumber(tab[4]) || ft_atof(tab[4]) < 0 || !*coords_r2)
+    c_list->coords = check_coords(tab[1]);
+    c_list->coords_r = check_coords_range(tab[2], -1, 1);
+    c_list->coords_r2 = check_coords_range(tab[5], 0, 255);
+    if (!c_list->coords || !c_list->coords_r || !ft_isnumber(tab[3]) || ft_atof(tab[3]) < 0
+        || !ft_isnumber(tab[4]) || ft_atof(tab[4]) < 0 || !c_list->coords_r2)
     {
-        free_tabs(*coords, *coords_r, *coords_r2);
+        free_tabs(c_list->coords, c_list->coords_r, c_list->coords_r2);
+        //data->error = ERR_ invalid data for cylinder
         return (false);
     }
-    new_cy = create_cy(parse_vector(*coords, 1), parse_vector(*coords_r, 2), ft_atof(tab[3]),
-                ft_atof(tab[4]), parse_vector(*coords_r2, 3));
+    new_cy = create_cy(parse_vector(c_list->coords, 1), parse_vector(c_list->coords_r, 2),
+        ft_atof(tab[3]), ft_atof(tab[4]), parse_vector(c_list->coords_r2, 3));
     if (!new_cy)
-        reutrn (false);
+    {
+        //data->error = ERR_ calloc error : couldnt allocate cylinder
+        return (false);
+    } 
     if (!add_obj_to_scene(s, new_cy))
     {
         free(new_cy);
+        //data->error = ERR_ couldnt add the cylinder to the scene
         return (false);
     }
     return (true);
 }
 
-bool dispatch_obj(char **tab, t_scene *s)
+bool dispatch_obj(char **tab, t_scene *s, t_data *data)
 {
-    char    **coords;
-    char    **coords_r;
-    char    **coords_r2;
+    t_coords    coords_list;
     bool    res;
     
-    coords = NULL;
-    coords_r = NULL;
-    coords_r2 = NULL;
+    coords_list.coords = NULL;
+    coords_list.coords_r = NULL;
+    coords_list.coords_r2 = NULL;
     res = true;
     if (ft_strcmp(tab[0], "sp") == 0)
-        res = dispatch_sp(tab, s, &coords, &coords_r);
+        res = dispatch_sp(tab, s, &coords_list, data);
     else if (ft_strcmp(tab[0], "pl") == 0)
-        res = dispatch_pl(tab, s, &coords, &coords_r, &coords_r2);
+        res = dispatch_pl(tab, s, &coords_list, data);
     else if (ft_strcmp(tab[0], "cy") == 0)
-        res = dispatch_cy(tab, s, &coords, &coords_r, &coords_r2);
+        res = dispatch_cy(tab, s, &coords_list, data);
     else
+    {
+        //data->error = ERR_ not a valid object id
         res = false;
-    free_tabs(coords, coords_r, coords_r2);
+    }
+    free_tabs(coords_list.coords, coords_list.coords_r, coords_list.coords_r2);
     return (res);
 }

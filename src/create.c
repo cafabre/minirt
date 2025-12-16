@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:45:02 by rshin             #+#    #+#             */
-/*   Updated: 2025/12/15 15:06:36 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/16 11:33:11 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,5 @@ t_scene	*create_scene(void)
 		return (NULL);
 	if (!s->amb)
 		return (NULL);
-	//revoir comment ajouter les objets crees a la struct scene
 	return (s);
 }

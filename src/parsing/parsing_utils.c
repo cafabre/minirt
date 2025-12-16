@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 16:06:41 by cafabre           #+#    #+#             */
-/*   Updated: 2025/12/15 14:12:20 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/16 12:18:42 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ t_vec4  parse_vector(char **coords, int type)
 
     if (!coords || !coords[0] || !coords[1]
         || !coords[2])
+    {
+        //data->error = ERR_ not enough coordinates for a vector
         return (vec4_point(0.0f, 0.0f, 0.0f));
+    }
     x = ft_atof(coords[0]);
     y = ft_atof(coords[1]);
     z = ft_atof(coords[2]);
