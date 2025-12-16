@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:45 by rshin             #+#    #+#             */
-/*   Updated: 2025/12/16 16:17:27 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/16 16:21:18 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -258,7 +258,7 @@ t_scene	*create_scene(void);
 
 /********** LIBFT UTILS **********/
 double	ft_atof(const char *nptr);
-char	**ft_split_whitespaces(char const *s);
+char	**ft_split_whitespaces(char *s);
 size_t  ft_count_whitespace(char *s);
 int     ft_tablen(char **tab);
 bool		ft_isnumber(char *s);
