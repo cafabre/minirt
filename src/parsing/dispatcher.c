@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 12:43:50 by cafabre           #+#    #+#             */
-/*   Updated: 2025/12/16 12:57:10 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/16 13:19:43 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ bool  dispatch_ids(char **tab, t_scene *s, t_data *data)
     }
     else
     {
-        //data->error = ERR_ invalid number of arguments on one line
+        data->error = ERR_INVALID_ARGS_LINE;
         return (false);
     }
     return (true);

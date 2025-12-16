@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:54 by rshin             #+#    #+#             */
-/*   Updated: 2025/12/16 11:31:42 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/16 16:07:51 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,46 +16,67 @@ static bool    is_empty(int fd)
 {
     if (ft_gnl(fd) == NULL)
         return (true);
-	//repositionner le FD
+	//repositionner le FD !!!
     return (false);
 }
 
-//changer les valeurs de retours pour adapter les messages d erreur
-static bool	check_fd(int argc, char **argv, t_env *env)
+static bool	check_fd(int argc, char **argv, t_env *env, t_data *data)
 {
 	int	len;
 
 	if (argc != 2)
+	{
+		data->error = ERR_INVALID_ARGS_COUNT;
 		return (false);
+	}
 	len = ft_strlen(argv[1]);
 	if (len < 3)
+	{
+		data->error = ERR_INVALID_FILE_NAME;
 		return (false);
+	}
 	if (ft_strncmp(argv[1] + len - 3, ".rt", 3))
+	{
+		data->error = ERR_INVALID_FILE_TYPE;
 		return (false);
+	}
 	env->fd = open(argv[1], O_RDONLY);
 	if (env->fd == -1)
+	{
+		data->error = ERR_OPEN;
 		return (false);
-	if (is_empty(env->fd)) //check fichier vide
+	}
+	if (is_empty(env->fd))
+	{
+		data->error = ERR_EMPTY_FILE;
 		return (false);
+	}
 	return (true);
 }
 
 int	main(int argc, char **argv)
 {
 	t_env	env;
+	t_data	data;
 
+	data.error = ERR_NONE;
+	data.detail = DETAIL_NONE;
 	ft_memset(&env, 0, sizeof(t_env));
-	if (!check_fd(argc, argv, &env))
+	if (!check_fd(argc, argv, &env, &data))
+	{
+		display_error_message(&data);
 		return (EXIT_FAILURE);
+	}
 	env.scene = create_scene();
 	if (!env.scene)
 	{
 		free_env(&env);
 		return (EXIT_FAILURE);
 	}
-	if (!parsing(env.fd, env.scene))
+	if (!parsing(env.fd, env.scene, &data))
 	{
 		free_env(&env);
+		display_error_message(&data);
 		return (EXIT_FAILURE);
 	}
 	if (!render_scene(&env))

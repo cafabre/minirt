@@ -6,13 +6,13 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 13:23:45 by cafabre           #+#    #+#             */
-/*   Updated: 2025/12/16 12:24:45 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/16 13:13:08 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static bool    parse_ids(int fd, t_scene *s)
+static bool    parse_ids(int fd, t_scene *s, t_data *data)
 {
     char    *line;
     char    **tab;
@@ -26,7 +26,7 @@ static bool    parse_ids(int fd, t_scene *s)
             free_tab(tab);
             continue ;
         }
-        if (!dispatch_ids(tab, s))
+        if (!dispatch_ids(tab, s, data))
         {
             free_tab(tab);
             return (false); 
@@ -38,7 +38,7 @@ static bool    parse_ids(int fd, t_scene *s)
 
 int     parsing(int fd, t_scene *s, t_data *data)
 {
-    if (!parse_ids(fd, s))
+    if (!parse_ids(fd, s, data))
         return (EXIT_FAILURE);
     return (EXIT_SUCCESS);
 }
