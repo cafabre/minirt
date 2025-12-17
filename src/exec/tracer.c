@@ -6,7 +6,7 @@
 /*   By: rshin <rshin@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 09:08:46 by rshin             #+#    #+#             */
-/*   Updated: 2025/12/16 09:08:53 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2025/12/17 14:05:26 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static t_vec4 compute_lighting(t_scene *s, t_obj *obj, t_ray hit)
 		shadow_factor = 0.0f;
 	diffuse = fmax(vec4_dot_prod(hit.dir, light.dir), 0.0f) * shadow_factor;
 	float hemi = 0.5f + 0.5f * hit.dir.y;
-	ambient = vec4_scalar_prod(s->amb->col, s->amb->lum * hemi);
+	ambient = vec4_scalar_prod(vec4_mul(s->amb->col, obj->col), s->amb->lum * hemi);
 	diff_col = vec4_scalar_prod(vec4_mul(obj->col, s->l->col), diffuse * s->l->lum);
 	t_vec4 amb_part = vec4_scalar_prod(ambient, 1.0f - diffuse);
 	return (vec4_add(amb_part, diff_col));
