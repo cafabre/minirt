@@ -3,36 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
+/*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:54 by rshin             #+#    #+#             */
-/*   Updated: 2025/12/16 23:25:49 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/17 12:51:50 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-//modifiee pour repositionner le fd au debut du fichier apres le test
-static bool	is_empty(int fd)
-{
-	int		fd_copy;
-	char	*line;
-
-	fd_copy = dup(fd);
-	if (fd_copy == -1)
-		return (false);
-
-	line = ft_gnl(fd);
-
-	dup2(fd_copy, fd);
-	close(fd_copy);
-
-	if (line == NULL)
-		return (true);
-
-	free(line);
-	return (false);
-}
 
 static bool	check_fd(int argc, char **argv, t_env *env, t_data *data)
 {
@@ -58,11 +36,6 @@ static bool	check_fd(int argc, char **argv, t_env *env, t_data *data)
 	if (env->fd == -1)
 	{
 		data->error = ERR_OPEN;
-		return (false);
-	}
-	if (is_empty(env->fd))
-	{
-		data->error = ERR_EMPTY_FILE;
 		return (false);
 	}
 	return (true);

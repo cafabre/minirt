@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dispatch_obj.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
+/*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 15:52:06 by cafabre           #+#    #+#             */
-/*   Updated: 2025/12/16 23:34:58 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/17 12:34:30 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,7 @@ bool dispatch_obj(char **tab, t_scene *s, t_data *data)
     else
     {
         //test - a supprimer
-        ft_printf("invalid object id\n");
+        ft_printf("invalid object id : tab[0] = %s\n", tab[0]);
         
         data->error = ERR_INVALID_OBJECT_ID;
         res = false;
