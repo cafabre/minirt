@@ -6,7 +6,7 @@
 /*   By: rshin <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 15:45:55 by rshin             #+#    #+#             */
-/*   Updated: 2025/10/14 20:08:57 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2025/12/11 13:18:01 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,6 @@ t_vec4	vec4_lerp(t_vec4 a, t_vec4 b, float factor)
 	res.x = a.x + (b.x - a.x) * factor;
 	res.y = a.y + (b.y - a.y) * factor;
 	res.z = a.z + (b.z - a.z) * factor;
+	res.w = a.w;
 	return (res);
 }

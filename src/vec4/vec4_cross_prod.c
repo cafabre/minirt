@@ -6,7 +6,7 @@
 /*   By: rshin <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 14:45:10 by rshin             #+#    #+#             */
-/*   Updated: 2025/10/08 20:28:03 by rshin            ###   ########.fr       */
+/*   Updated: 2025/12/11 13:17:23 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,6 @@ t_vec4	vec4_cross_prod(t_vec4 a, t_vec4 b)
 	res.x = a.y * b.z - a.z * b.y;
 	res.y = a.z * b.x - a.x * b.z;
 	res.z = a.x * b.y - a.y * b.x;
+	res.w = a.w;
 	return (res);
 }
