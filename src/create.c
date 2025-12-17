@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:45:02 by rshin             #+#    #+#             */
-/*   Updated: 2025/12/17 15:36:50 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/17 15:41:40 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,39 +65,7 @@ t_obj	*create_sp(t_vec4 point, float d, t_vec4 color)
 	return (sp);
 }
 
-static t_obj	*create_sp2(void)
-{
-	t_obj	*sp;
-
-	sp = ft_calloc(1, sizeof(t_obj));
-	if (!sp)
-		return (NULL);
-	sp->type = SPHERE;
-	sp->pos = vec4_point(-10, 2, 20);
-	sp->diam = 10;
-	sp->rad = sp->diam / 2;
-	sp->col = vec4_color(0, 0, 255);
-	sp->next = NULL;
-	return (sp);
-}
-
-static t_obj	*create_sp3(void)
-{
-	t_obj	*sp;
-
-	sp = ft_calloc(1, sizeof(t_obj));
-	if (!sp)
-		return (NULL);
-	sp->type = SPHERE;
-	sp->pos = vec4_point(10, 5, -10);
-	sp->diam = 10;
-	sp->rad = sp->diam / 2;
-	sp->col = vec4_color(128, 0, 128);
-	sp->next = NULL;
-	return (sp);
-}
-
-static t_obj	*create_pl(t_vec4 point, t_vec4 vec, t_vec4 color)
+t_obj	*create_pl(t_vec4 point, t_vec4 vec, t_vec4 color)
 {
 	t_obj	*pl;
 
@@ -129,6 +97,7 @@ t_obj	*create_cy(t_vec4 point, t_vec4 vec, float d, float h, t_vec4 color)
 	return (cy);
 }
 
+/*********** DEBUT fonctions de tests **********/
 static t_obj	*create_pl2(void)
 {
 	t_obj	*pl;
@@ -159,10 +128,47 @@ static t_obj	*create_pl3(void)
 	return (pl);
 }
 
+static t_obj	*create_sp2(void)
+{
+	t_obj	*sp;
+
+	sp = ft_calloc(1, sizeof(t_obj));
+	if (!sp)
+		return (NULL);
+	sp->type = SPHERE;
+	sp->pos = vec4_point(-10, 2, 20);
+	sp->diam = 10;
+	sp->rad = sp->diam / 2;
+	sp->col = vec4_color(0, 0, 255);
+	sp->next = NULL;
+	return (sp);
+}
+
+static t_obj	*create_sp3(void)
+{
+	t_obj	*sp;
+
+	sp = ft_calloc(1, sizeof(t_obj));
+	if (!sp)
+		return (NULL);
+	sp->type = SPHERE;
+	sp->pos = vec4_point(10, 5, -10);
+	sp->diam = 10;
+	sp->rad = sp->diam / 2;
+	sp->col = vec4_color(128, 0, 128);
+	sp->next = NULL;
+	return (sp);
+}
+/*********** FIN fonctions de tests **********/
+
 t_scene	*create_scene(void)
 {
 	t_scene	*s;
-	t_obj	*curr;
+
+	(void)create_pl2;
+	(void)create_pl3;
+	(void)create_sp2;
+	(void)create_sp3;
 
 	s = ft_calloc(1, sizeof(t_scene));
 	if (!s)
