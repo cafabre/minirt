@@ -1,5 +1,3 @@
-Elem	Coords					Orientat° Vector	Diam	Hgt		FOV		CR		RGB
-
 A																			0.5		0,0,0
 
 C		-50,0,20				0,0,1								180

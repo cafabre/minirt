@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
+/*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:45:02 by rshin             #+#    #+#             */
-/*   Updated: 2025/12/16 23:20:19 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/17 15:36:50 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,39 @@ t_obj	*create_sp(t_vec4 point, float d, t_vec4 color)
 	return (sp);
 }
 
-t_obj	*create_pl(t_vec4 point, t_vec4 vec, t_vec4 color)
+static t_obj	*create_sp2(void)
+{
+	t_obj	*sp;
+
+	sp = ft_calloc(1, sizeof(t_obj));
+	if (!sp)
+		return (NULL);
+	sp->type = SPHERE;
+	sp->pos = vec4_point(-10, 2, 20);
+	sp->diam = 10;
+	sp->rad = sp->diam / 2;
+	sp->col = vec4_color(0, 0, 255);
+	sp->next = NULL;
+	return (sp);
+}
+
+static t_obj	*create_sp3(void)
+{
+	t_obj	*sp;
+
+	sp = ft_calloc(1, sizeof(t_obj));
+	if (!sp)
+		return (NULL);
+	sp->type = SPHERE;
+	sp->pos = vec4_point(10, 5, -10);
+	sp->diam = 10;
+	sp->rad = sp->diam / 2;
+	sp->col = vec4_color(128, 0, 128);
+	sp->next = NULL;
+	return (sp);
+}
+
+static t_obj	*create_pl(t_vec4 point, t_vec4 vec, t_vec4 color)
 {
 	t_obj	*pl;
 
@@ -97,10 +129,43 @@ t_obj	*create_cy(t_vec4 point, t_vec4 vec, float d, float h, t_vec4 color)
 	return (cy);
 }
 
+static t_obj	*create_pl2(void)
+{
+	t_obj	*pl;
+
+	pl = ft_calloc(1, sizeof(t_obj));
+	if (!pl)
+		return (NULL);
+	pl->type = PLANE;
+	pl->pos = vec4_point(0, 0, 50);
+	pl->dir = vec4_point(0, 0, -1);
+	pl->col = vec4_color(128, 128, 0);
+	pl->next = NULL;
+	return (pl);
+}
+
+static t_obj	*create_pl3(void)
+{
+	t_obj	*pl;
+
+	pl = ft_calloc(1, sizeof(t_obj));
+	if (!pl)
+		return (NULL);
+	pl->type = PLANE;
+	pl->pos = vec4_point(30, 0, 0);
+	pl->dir = vec4_point(-1, 0, 0);
+	pl->col = vec4_color(32, 64, 128);
+	pl->next = NULL;
+	return (pl);
+}
+
 t_scene	*create_scene(void)
 {
 	t_scene	*s;
+	t_obj	*curr;
 
 	s = ft_calloc(1, sizeof(t_scene));
+	if (!s)
+		return (NULL);
 	return (s);
 }

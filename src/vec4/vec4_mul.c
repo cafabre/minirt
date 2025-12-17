@@ -1,40 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mat4_prod.c                                        :+:      :+:    :+:   */
+/*   vec4_mul.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rshin <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: rshin <rshin@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/02 19:28:10 by rshin             #+#    #+#             */
-/*   Updated: 2025/12/11 09:13:29 by rshin            ###   ########lyon.fr   */
+/*   Created: 2025/12/15 15:41:12 by rshin             #+#    #+#             */
+/*   Updated: 2025/12/15 15:43:35 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vec4.h"
 
-t_mat4	mat4_prod(t_mat4 a, t_mat4 b)
-{
-	t_mat4	res;
-	int		i;
-	int		j;
-	int		k;
+// use case : component wise multiplication (for colors)
 
-	i = 0;
-	while (i < 4)
-	{
-		j = 0;
-		while (j < 4)
-		{
-			res.m[i][j] = 0;
-			k = 0;
-			while (k < 4)
-			{
-				res.m[i][j] += a.m[i][k] * b.m[k][j];
-				k++;
-			}
-			j++;
-		}
-		i++;
-	}
+t_vec4	vec4_mul(t_vec4 a, t_vec4 b)
+{
+	t_vec4	res;
+
+	res.r = a.r * b.r;
+	res.g = a.g * b.g;
+	res.b = a.b * b.b;
+	res.a = a.a * b.a;
 	return (res);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
+/*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:45 by rshin             #+#    #+#             */
-/*   Updated: 2025/12/16 23:13:19 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/17 15:30:44 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef enum e_objtype
 {
 	SPHERE,
 	PLANE,
-	CYLINDER
+	CYLINDER,
 }	t_objtype;
 
 typedef enum e_error //erreurs de parsing uniquement
@@ -99,13 +99,8 @@ typedef struct s_ray
 {
 	t_vec4	pos;
 	t_vec4	dir;
-	t_vec4	norm;
-	t_vec4	hit;
 	float	t;
-	float	t_min;
-	float	t_max;
-	t_vec4	color;
-	int		recur_depth;
+	size_t	rebound;
 }	t_ray;
 /*
 typedef struct parse {
@@ -189,8 +184,13 @@ typedef struct s_coords
 
 /*---FUNCTIONS---*/
 
+unsigned int	pack_to_uint(t_vec4 color);
+void	set_pixel(t_env *e, t_pix p);
+t_mat4	get_inv_view_mat(const t_cam *c);
+
 bool	render_scene(t_env *env);
-t_obj	*compute_nearest_obj(t_scene *s, t_ray *ray);
+t_obj	*compute_nearest_obj(t_scene *s, t_ray *ray, t_obj *ignore);
+unsigned int	trace_ray(t_scene *s, t_ray *ray);
 
 int		close_win(void *param);
 void	hook_controls(t_env *env);

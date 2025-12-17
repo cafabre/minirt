@@ -6,27 +6,25 @@
 /*   By: rshin <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 20:28:55 by rshin             #+#    #+#             */
-/*   Updated: 2025/12/11 09:13:52 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2025/12/15 13:27:21 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vec4.h"
 
-t_vec4	vec4_mat4_prod(t_vec4 v, t_mat4 m)
+t_vec4	vec4_mat4_prod(t_vec4 v, const t_mat4 *m)
 {
 	t_vec4	res;
-	float	w;
 
-	res.x = m.m[0][0] * v.x + m.m[0][1] * v.y + m.m[0][2] * v.z + m.m[0][3] * v.w;
-	res.y = m.m[1][0] * v.x + m.m[1][1] * v.y + m.m[1][2] * v.z + m.m[1][3] * v.w;
-	res.z = m.m[2][0] * v.x + m.m[2][1] * v.y + m.m[2][2] * v.z + m.m[2][3] * v.w;
-	w = m.m[3][0] * v.x + m.m[3][1] * v.y + m.m[3][2] * v.z + m.m[3][3] * v.w;
-	if (w != 0 && w != 1)
+	res.x = vec4_dot_prod(m->m[0], v);
+	res.y = vec4_dot_prod(m->m[1], v);
+	res.z = vec4_dot_prod(m->m[2], v);
+	res.w = vec4_dot_prod(m->m[3], v);
+	if (res.w != 0 && res.w != 1)
 	{
-		res.x /= w;
-		res.y /= w;
-		res.z /= w;
+		res.x /= res.w;
+		res.y /= res.w;
+		res.z /= res.w;
 	}
-	res.w = w;
 	return (res);
 }
