@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:54 by rshin             #+#    #+#             */
-/*   Updated: 2025/12/17 12:51:50 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/17 14:12:25 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,17 +60,12 @@ int	main(int argc, char **argv)
 		free_env(&env);
 		return (EXIT_FAILURE);
 	}
-	if (!parsing(env.fd, env.scene, &data))
+	if (parsing(env.fd, env.scene, &data) == EXIT_FAILURE)
 	{
 		free_env(&env);
 		display_error_message(&data);
-		//ligne de test - a supprimer
-		ft_printf("parsing failed\n");
 		return (EXIT_FAILURE);
 	}
-	//ligne de test - a supprimer
-	ft_printf("parsing finit\n");
-	
 	/*if (!render_scene(&env))
 	{
 		free_env(&env);

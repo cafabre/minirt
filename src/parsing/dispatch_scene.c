@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 15:50:21 by cafabre           #+#    #+#             */
-/*   Updated: 2025/12/17 14:04:12 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/17 14:11:08 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,6 @@ static bool dispatch_cam(char **tab, t_scene *s, char ***coords, char ***coords_
     *coords_r = check_coords_range(tab[2], -1, 1, data);
     if (!*coords || !*coords_r || !check_val(tab[3], 0, 180, data))
     {
-        //test - a supprimer
-        ft_printf("invalid coords");
-        
         free_tab(*coords);
         free_tab(*coords_r);
         data->error = ERR_INVALID_CAMERA_DATA;

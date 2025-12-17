@@ -14,9 +14,8 @@ static void	display_lights(t_light *l)
 
 	while (l)
 	{
-		printf("  Light [%d]\n", i);
+		printf("Light\n");
 		display_vec4("pos", l->pos);
-		display_vec4("col", l->col);
 		printf("    lum : %.2f\n", l->lum);
 		l = l->next;
 		i++;
@@ -95,7 +94,7 @@ void	display_scene(t_scene *s)
 		printf("  (none)\n");
 
 	/* Lights */
-	printf("\nLights\n");
+	printf("\n");
 	display_lights(s->l);
 
 	/* Camera */

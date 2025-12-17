@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   misconfig.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
+/*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 18:18:04 by cafabre           #+#    #+#             */
-/*   Updated: 2025/12/16 22:56:32 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/17 14:11:24 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,9 @@ void    display_error_message(t_data *data)
         ft_printf("Error: ");
     if (!display_input_error(data->error))
         return ;
+        
     display_file_error(data->error);
     display_alloc_error(data->error);
-
 
     if (data->error == ERR_INVALID_SPHERE_DATA)
         ft_printf("Invalid data for sphere");
