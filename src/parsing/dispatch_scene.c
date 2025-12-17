@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 15:50:21 by cafabre           #+#    #+#             */
-/*   Updated: 2025/12/17 12:39:34 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/17 14:04:12 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,6 @@ static bool dispatch_light(char **tab, t_scene *s, char ***coords, t_data *data)
 static bool dispatch_cam(char **tab, t_scene *s, char ***coords, char ***coords_r, t_data *data)
 {
     t_cam   *new_cam;
-
-    //test - a supprimer
-    ft_printf("in dispatch cam\n");
     
     *coords = check_coords(tab[1], data);
     *coords_r = check_coords_range(tab[2], -1, 1, data);
@@ -79,9 +76,6 @@ static bool dispatch_cam(char **tab, t_scene *s, char ***coords, char ***coords_
         parse_vector(*coords_r, 2, data), ft_atof(tab[3]));
     if (!new_cam)
     {
-        //test - a supprimer
-        ft_printf("couldnt create cam\n");
-
         data->error = ERR_MALLOC_CAMERA;
         return (false);
     }
@@ -98,9 +92,6 @@ bool dispatch_scene(char **tab, t_scene *s, t_data *data)
     coords = NULL;
     coords_r = NULL;
     res = true;
-
-    //test - a supprimer
-    ft_printf("start dispatch scene : tab[0] = %s\n", tab[0]);
     
     if (ft_strcmp(tab[0], "A") == 0)
     {
@@ -122,14 +113,8 @@ bool dispatch_scene(char **tab, t_scene *s, t_data *data)
     }
     else if (ft_strcmp(tab[0], "C") == 0)
     {
-        //test - a supprimer
-        ft_printf("going to dispatch cam\n");
-
         if (s->cam)
         {
-            //test - a supprimer
-            ft_printf("cam already exists\n");
-
             data->error = ERR_DUPLICATE_CAMERA;
             return (false);
         }

@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 13:23:45 by cafabre           #+#    #+#             */
-/*   Updated: 2025/12/17 12:51:27 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/17 14:04:43 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static bool    parse_ids(int fd, t_scene *s, t_data *data)
         if (!dispatch_ids(tab, s, data))
         {
             free_tab(tab);
+            
             //test - a supprimer
             ft_printf("dispatch ids failed\n");
             return (false); 
@@ -64,6 +65,5 @@ RESTE A FAIRE
 - deplacer les utils dans la libft
 
 ISSUES
-- "invalid object id" -> id = 'L' but ended up in dispatch object
 - data->error initialized but no error message displayed
 */
