@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 13:23:45 by cafabre           #+#    #+#             */
-/*   Updated: 2025/12/19 16:25:54 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/19 16:52:56 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ RESTE A FAIRE
 - move libft_utils.c functions into the libft
 
 ISSUES
-- ambient lighting doesnt change the scene
+- ambient lighting isnt right (ex : amb max + no light -> shadows houldnt appear)
 - add the code to make create_cy(...) work -> render of cylinders not tested yet
 - pixelated results in some cases (recurring issue in minirt, solutions easily found on internet)
     --> see room.rt
@@ -83,12 +83,12 @@ FIXED
     --> fix : ft_strtrim(line, " \t\n") before split
 - "invalid number of arguments on one line" when wrong id at the beginning of the line
     --> fix : changed the main dispatcher logic
+- need to check that there is at least one C, one L and one A
+    --> fix : added a check in parse_ids at the end of the loop
 
 IMPROVEMENTS
 - ft_strcmp to get the id -> called twice (dispatch_id and dispatch_scene / dispatch_obj)
     --> find a way to keep only one check
-- need to check that there is at least one C, one L and one A
-    --> fix : added a check in parse_ids at the end of the loop
 
 BONUS
 - add color to light -> NOT FINISHED (errors to handle)
