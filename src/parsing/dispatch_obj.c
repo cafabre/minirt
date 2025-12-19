@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 15:52:06 by cafabre           #+#    #+#             */
-/*   Updated: 2025/12/17 14:11:04 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/19 13:30:45 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ static bool dispatch_sp(char **tab, t_scene *s, t_coords *c_list, t_data *data)
     c_list->coords_r = check_coords_range(tab[3], 0, 255, data);
     if (!c_list->coords || !ft_isnumber(tab[2]) || ft_atof(tab[2]) < 0 || !c_list->coords_r)
     {
-        free_tabs(c_list->coords, c_list->coords_r, c_list->coords_r2);
         data->error = ERR_INVALID_SPHERE_DATA;
         return (false);
     }
@@ -72,7 +71,6 @@ static bool dispatch_pl(char **tab, t_scene *s, t_coords *c_list, t_data *data)
     c_list->coords_r2 = check_coords_range(tab[3], 0, 255, data);
     if (!c_list->coords || !c_list->coords_r || !c_list->coords_r2)
     {
-        free_tabs(c_list->coords, c_list->coords_r, c_list->coords_r2);
         data->error = ERR_INVALID_PLANE_DATA;
         return (false);
     }
@@ -102,7 +100,6 @@ static bool dispatch_cy(char **tab, t_scene *s, t_coords *c_list, t_data *data)
     if (!c_list->coords || !c_list->coords_r || !ft_isnumber(tab[3]) || ft_atof(tab[3]) < 0
         || !ft_isnumber(tab[4]) || ft_atof(tab[4]) < 0 || !c_list->coords_r2)
     {
-        free_tabs(c_list->coords, c_list->coords_r, c_list->coords_r2);
         data->error = ERR_INVALID_CYLINDER_DATA;
         return (false);
     }
@@ -140,7 +137,7 @@ bool dispatch_obj(char **tab, t_scene *s, t_data *data)
         res = dispatch_cy(tab, s, &coords_list, data);
     else
     {
-        data->error = ERR_INVALID_OBJECT_ID;
+        data->error = ERR_INVALID_ID;
         res = false;
     }
     free_tabs(coords_list.coords, coords_list.coords_r, coords_list.coords_r2);

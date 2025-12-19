@@ -17,6 +17,7 @@ static void	display_lights(t_light *l)
 		printf("Light\n");
 		display_vec4("pos", l->pos);
 		printf("    lum : %.2f\n", l->lum);
+		display_vec4("col", l->col);
 		l = l->next;
 		i++;
 	}

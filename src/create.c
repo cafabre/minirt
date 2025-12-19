@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:45:02 by rshin             #+#    #+#             */
-/*   Updated: 2025/12/17 15:41:40 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/18 18:13:36 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_cam	*create_cam(t_vec4 point, t_vec4 vec, float f)
 	return (c);
 }
 
-t_light	*create_light(t_vec4 point, float light)
+t_light	*create_light(t_vec4 point, float light, t_vec4 rgb)
 {
 	t_light	*l;
 
@@ -34,6 +34,7 @@ t_light	*create_light(t_vec4 point, float light)
 		return (NULL);
 	l->pos = point;
 	l->lum = light;
+	l->col = rgb;
 	return (l);
 }
 
@@ -89,8 +90,9 @@ t_obj	*create_cy(t_vec4 point, t_vec4 vec, float d, float h, t_vec4 color)
 		return (NULL);
 	cy->type = CYLINDER;
 	cy->pos = point;
-	cy->dir = vec;
+	cy->dir = vec4_norm(vec);
 	cy->diam = d;
+	cy->rad = cy->diam / 2.0f;
 	cy->height = h;
 	cy->col = color;
 	cy->next = NULL;

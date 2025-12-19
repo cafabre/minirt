@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:45 by rshin             #+#    #+#             */
-/*   Updated: 2025/12/17 15:30:44 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/19 13:29:45 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,34 +43,33 @@ typedef enum e_objtype
 typedef enum e_error //erreurs de parsing uniquement
 {
     ERR_NONE,
-	ERR_INVALID_ARGS_COUNT, //
-	ERR_INVALID_FILE_TYPE, //
-	ERR_INVALID_FILE_NAME, //
-    ERR_OPEN, //
-    ERR_EMPTY_FILE, //
-    ERR_INVALID_ARGS_LINE, //
+	ERR_INVALID_ARGS_COUNT,
+	ERR_INVALID_FILE_TYPE,
+	ERR_INVALID_FILE_NAME,
+    ERR_OPEN,
+    ERR_EMPTY_FILE,
+    ERR_INVALID_ARGS_LINE,
     ERR_INVALID_VALUE_RANGE,
-    ERR_INVALID_OBJECT_ID, //
-    ERR_INVALID_SCENE_ID, //
-    ERR_DUPLICATE_AMBIENT, //
-    ERR_DUPLICATE_LIGHT, //
-    ERR_DUPLICATE_CAMERA, //
-    ERR_MALLOC_AMBIENT, //
-    ERR_MALLOC_LIGHT, //
-    ERR_MALLOC_CAMERA, //
-    ERR_MALLOC_SPHERE, //
-    ERR_MALLOC_PLANE, //
-    ERR_MALLOC_CYLINDER, //
-    ERR_ADD_SPHERE, //
-    ERR_ADD_PLANE, //
-    ERR_ADD_CYLINDER, //
-    ERR_INVALID_SPHERE_DATA,//
-    ERR_INVALID_PLANE_DATA, //
-    ERR_INVALID_CYLINDER_DATA, //
-    ERR_INVALID_AMBIENT_DATA, //
-    ERR_INVALID_LIGHT_DATA, //
-    ERR_INVALID_CAMERA_DATA, //
-    ERR_INVALID_VECTOR_COORDS, //
+    ERR_INVALID_ID,
+    ERR_DUPLICATE_AMBIENT,
+    ERR_DUPLICATE_LIGHT,
+    ERR_DUPLICATE_CAMERA,
+    ERR_MALLOC_AMBIENT,
+    ERR_MALLOC_LIGHT,
+    ERR_MALLOC_CAMERA,
+    ERR_MALLOC_SPHERE,
+    ERR_MALLOC_PLANE,
+    ERR_MALLOC_CYLINDER,
+    ERR_ADD_SPHERE,
+    ERR_ADD_PLANE,
+    ERR_ADD_CYLINDER,
+    ERR_INVALID_SPHERE_DATA,
+    ERR_INVALID_PLANE_DATA,
+    ERR_INVALID_CYLINDER_DATA,
+    ERR_INVALID_AMBIENT_DATA,
+    ERR_INVALID_LIGHT_DATA,
+    ERR_INVALID_CAMERA_DATA,
+    ERR_INVALID_VECTOR_COORDS,
 }	t_error;
 
 //pour preciser les messages d erreur si necessaire
@@ -102,12 +101,6 @@ typedef struct s_ray
 	float	t;
 	size_t	rebound;
 }	t_ray;
-/*
-typedef struct parse {
-	struct t_object;
-	struct t_light;
-	struct t_camera;
-} t_parse; */
 
 typedef struct s_object
 {
@@ -220,20 +213,11 @@ bool dispatch_scene(char **tab, t_scene *s, t_data *data);
 /*** dispatch_obj.c ***/
 bool dispatch_obj(char **tab, t_scene *s, t_data *data);
 
-/*** objects.c ***/
-void    fill_cylinder_data(char **tab);
-void    fill_plane_data(char **tab);
-void    fill_sphere_data(char **tab);
-
 /*** parsing_utils.c ***/
 t_vec4  parse_vector(char **coords, int type, t_data *data);
 
 /*** parsing.c ***/
 int     parsing(int fd, t_scene *s, t_data *data);
-
-/*** scene.c ***/
-void    fill_camera_data(char **tab);
-void    fill_light_data(char **tab, bool amb);
 
 /*** values_check.c ***/
 char **check_coords_range(char *s, float r_min, float r_max, t_data *data);
@@ -247,9 +231,15 @@ void    free_tabs(char **t1, char **t2, char **t3);
 /*** misconfig.c ***/
 void    display_error_message(t_data *data);
 
+/*** misconfig_utils.c ***/
+bool display_input_error(t_error e);
+void display_file_error(t_error e);
+void display_alloc_error(t_error e);
+void display_data_error(t_error e);
+
 /*** create.c ***/ //-> pas dans le parsing
 t_cam	*create_cam(t_vec4 point, t_vec4 vec, float f);
-t_light	*create_light(t_vec4 point, float light);
+t_light	*create_light(t_vec4 point, float light, t_vec4 color);
 t_light	*create_amb(float light, t_vec4 rgb);
 t_obj	*create_sp(t_vec4 point, float d, t_vec4 color);
 t_obj	*create_pl(t_vec4 point, t_vec4 vec, t_vec4 color);
