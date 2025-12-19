@@ -6,7 +6,7 @@
 #    By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/16 09:40:26 by rshin             #+#    #+#              #
-#    Updated: 2025/12/17 18:30:27 by cafabre          ###   ########.fr        #
+#    Updated: 2025/12/19 17:59:00 by cafabre          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,6 +71,7 @@ SRC += $(SRC_DIR)/parsing/parsing.c \
 		$(SRC_DIR)/parsing/dispatch_obj.c \
 		$(SRC_DIR)/parsing/dispatch_scene.c \
 		$(SRC_DIR)/parsing/values_check.c \
+		$(SRC_DIR)/parsing/coords_check.c \
 		$(SRC_DIR)/parsing/misconfig.c \
 		$(SRC_DIR)/parsing/misconfig_utils.c \
 		$(SRC_DIR)/parsing/clean.c \
