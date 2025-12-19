@@ -1,0 +1,110 @@
+/******************** 0 ********************/
+TESTS BASIQUES
+
+red_sphere.rt (A TESTER)
+-> description : camera centre, lumiere blanche haut-droite, sphere rouge, sol gris
+-> resultat attendu : sphere rouge degrade (clair haut-droite, noir bas-gauche), ombre noire ovale sur le sol
+
+rgb_spheres.rt (A TESTER)
+-> description : camera centre loin, lumiere blanche haut-droite, 3 spheres RGB, sol gris
+-> resultat attendu : 3 spheres couleurs franches, ombres noires sous chaque sphere, sphere rouge plus grosse au centre
+
+/******************** 1 ********************/
+TEST 1 PARAMETRE ISOLE
+
+a1_no_light_pink.rt (A TESTER)
+-> description : camera centre, ambiance rose max, lumiere off, sphere blanche, sol+mur blancs
+-> resultat attendu : tout rose uniforme, aucune ombre, aucun degrade
+
+a0_light_blue_white.rt (A TESTER)
+-> description : camera centre, ambiance nulle, lumiere bleue haut-droite, objets blancs
+-> resultat attendu : zones eclairees bleues, zones non eclairees noires, ombre noire au sol
+
+a0_l_yellow.rt (A TESTER)
+-> description : camera centre, ambiance nulle, lumiere jaune forte en haut a droite, sphere blanche au centre, sol blanc en dessous, mur blanc derriere
+-> resultat attendu : sphere jaune cote lumiere, zones non eclairees noires, ombre noire large sous la sphere, mur jauni uniquement cote eclaire
+
+a0_l_white.rt (A TESTER)
+-> description : camera centre, ambiance nulle, lumiere blanche forte en haut a droite, sphere blanche au centre, sol et mur blancs
+-> resultat attendu : sphere blanche eclairee cote lumiere, zones non eclairees noires, ombre noire large sous la sphere, mur partiellement eclaire
+
+cam_fov30.rt (A TESTER)
+-> description : camera centre loin, fov 30 (zoom), lumiere haut-droite
+-> resultat attendu : sphere plus grosse a l’ecran, moins de sol visible
+
+cam_fov90.rt (A TESTER)
+-> description : camera centre loin, fov 90 (grand angle), lumiere haut-droite
+-> resultat attendu : sphere plus petite, plus de sol visible, perspective plus marquee
+
+cam_turn.rt (A TESTER)
+-> description : camera tournee legerement vers la droite, lumiere haut-droite
+-> resultat attendu : sphere decalee dans l’image (pas parfaitement centree)
+
+lpos_left.rt (A TESTER)
+-> description : lumiere blanche haut-gauche
+-> resultat attendu : highlight gauche, ombre projetée vers la droite
+
+lpos_right.rt (A TESTER)
+-> description : lumiere blanche haut-droite
+-> resultat attendu : highlight droite, ombre projetée vers la gauche
+
+sp_d1.rt (A TESTER)
+-> description : petite sphere (d=1)
+-> resultat attendu : ombre petite, sphere petite
+
+sp_d4.rt (A TESTER)
+-> description : grosse sphere (d=4)
+-> resultat attendu : ombre large, sphere grande
+
+pl_norm_flip.rt (A TESTER)
+-> description : sol avec normale inversee
+-> resultat attendu : sol absent/noir si 1-face, sinon rendu identique (selon ton choix)
+
+/******************** 2 ********************/
+TESTS 2 PARAMETRES (COMBOS)
+
+a_blue_l_white.rt (A TESTER)
+-> description : ambiance bleue moyenne, lumiere blanche haut-droite, objets blancs
+-> resultat attendu : zones eclairees gris clair, zones d’ombre bleu fonce, ombres non noires
+
+a_blue_l_blue.rt (A TESTER)
+-> description : ambiance bleue + lumiere bleue, objets blancs
+-> resultat attendu : scene tres bleue, ombres bleu tres fonce
+
+rgb_wall_a_blue.rt (A TESTER)
+-> description : ambiance bleue, lumiere blanche haut-droite, sol+mur blancs, 3 spheres colorees
+-> resultat attendu : spheres couleurs franches, plans bleu clair, ombres bleu fonce sous spheres
+
+sp_intersect_3.rt (A TESTER)
+-> description : camera decalee en hauteur sur la droite, ambiance chuade moyenne, lumiere blanche en haut a droite, sol gris clair, mur bleu-gris au fond, trois spheres colorees en contact
+-> resultat attendu : spheres distinctes en couleur, zones de contact visibles sans trou, ombres projetees entre spheres, sol et mur legerement teintes par l ambiance
+
+/******************** 3 ********************/
+TESTS PIECE / OCCLUSION / PLANES
+
+room_gray_a_white.rt (A TESTER)
+-> description : piece fermee grise, camera levee, lumiere blanche centre-haut, ambiance blanche forte
+-> resultat attendu : piece claire uniforme, spheres colorees, ombres gris fonce sous spheres (au sol/fond)
+
+room_gray_a_green.rt (A TESTER)
+-> description : meme piece, ambiance verte forte
+-> resultat attendu : murs/sol/plafond vert clair, ombres vert fonce sous spheres
+
+planes_tilt_a_high.rt (A TESTER)
+-> description : plans colores inclines (decoupage), ambiance forte, lumiere haut-droite, 1 sphere
+-> resultat attendu : decoupage net, couleurs franches, sphere eclairee, ombres coherentes, pas de fuites
+
+planes_tilt_a0.rt (A TESTER)
+-> description : meme scene, ambiance nulle
+-> resultat attendu : grandes zones noires (shadow totale), seules faces eclairees visibles
+
+/******************** 4 ********************/
+TEST BRUIT / STABILITE
+
+noise_check.rt (A TESTER)
+-> description : scene propre (sphere blanche, sol+mur gris), lumiere forte haut-droite, ambiance faible
+-> resultat attendu : rendu lisse (aucun point/bruit), gradients propres, ombre stable
+
+single_sp_room.rt (A TESTER)
+-> description : camera centre face a la scene, ambiance chaude moyenne, lumiere blanche en haut a droite, piece partiellement fermee (sol, mur fond, murs lateraux, plafond), sphere orange au centre
+-> resultat attendu : sphere eclairee cote haut-droite, ombre projetee sur le sol sous la sphere, murs et plafond teintes par l’ambiance, pas de fuite de lumiere entre plans
