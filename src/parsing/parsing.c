@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 13:23:45 by cafabre           #+#    #+#             */
-/*   Updated: 2025/12/19 13:44:05 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/19 16:25:54 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static bool    parse_ids(int fd, t_scene *s, t_data *data)
     while ((line = ft_gnl(fd)) != NULL)
     {
         empty_fd = false;
-        //fix : strtrim to accept whitespaces at the end of a line
+        //fix : added strtrim to accept whitespaces at the end of a line
         line = ft_strtrim(line, " \t\n");
         tab = ft_split_whitespaces(line);
         free (line);
@@ -41,6 +41,11 @@ static bool    parse_ids(int fd, t_scene *s, t_data *data)
     if (empty_fd)
     {
         data->error = ERR_EMPTY_FILE;
+        return (false);
+    }
+    if (!s->cam || !s->amb || !s->l)
+    {
+        data->error = ERR_MISSING_ELEMENT;
         return (false);
     }
     return (true);
@@ -78,6 +83,12 @@ FIXED
     --> fix : ft_strtrim(line, " \t\n") before split
 - "invalid number of arguments on one line" when wrong id at the beginning of the line
     --> fix : changed the main dispatcher logic
+
+IMPROVEMENTS
+- ft_strcmp to get the id -> called twice (dispatch_id and dispatch_scene / dispatch_obj)
+    --> find a way to keep only one check
+- need to check that there is at least one C, one L and one A
+    --> fix : added a check in parse_ids at the end of the loop
 
 BONUS
 - add color to light -> NOT FINISHED (errors to handle)

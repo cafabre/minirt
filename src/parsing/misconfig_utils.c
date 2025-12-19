@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 18:28:08 by cafabre           #+#    #+#             */
-/*   Updated: 2025/12/19 13:29:26 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/19 16:23:55 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void display_file_error(t_error e)
         ft_printf("There is already an existing camera");
     else if (e == ERR_INVALID_VECTOR_COORDS)
         ft_printf("Not enough coordinates for a vector");
+    else if (e == ERR_MISSING_ELEMENT)
+        ft_printf("Missing at least one element (expected : camera, ambient and spot light)");
 }
 
 void display_alloc_error(t_error e)

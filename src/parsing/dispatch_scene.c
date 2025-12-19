@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 15:50:21 by cafabre           #+#    #+#             */
-/*   Updated: 2025/12/19 13:30:49 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/19 16:17:28 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ static bool dispatch_amb(char **tab, t_scene *s, char ***coords_r, t_data *data)
     *coords_r = check_coords_range(tab[2], 0, 255, data);
     if (!check_val(tab[1], 0.0f, 1.0f, data) || !*coords_r)
     {
-        //free_tab(*coords_r);
         data->error = ERR_INVALID_AMBIENT_DATA;
         return (false);
     }
@@ -43,8 +42,6 @@ static bool dispatch_light(char **tab, t_scene *s, char ***coords, char ***coord
     *coords_r = check_coords_range(tab[3], 0, 255, data); //added color
     if (!*coords || !check_val(tab[2], 0.0f, 1.0f, data) || !*coords_r) //added color
     {
-        //free_tab(*coords);
-        //free_tab(*coords_r);
         data->error = ERR_INVALID_LIGHT_DATA;
         return (false);
     }
@@ -67,8 +64,6 @@ static bool dispatch_cam(char **tab, t_scene *s, char ***coords, char ***coords_
     *coords_r = check_coords_range(tab[2], -1, 1, data);
     if (!*coords || !*coords_r || !check_val(tab[3], 0, 180, data))
     {
-        //free_tab(*coords);
-        //free_tab(*coords_r);
         data->error = ERR_INVALID_CAMERA_DATA;
         return (false);
     }
@@ -119,11 +114,6 @@ bool dispatch_scene(char **tab, t_scene *s, t_data *data)
             return (false);
         }
         res = dispatch_cam(tab, s, &coords, &coords_r, data);
-    }
-    else
-    {
-        data->error = ERR_INVALID_ID;
-        res = false;
     }
     free_tab(coords);
     free_tab(coords_r);

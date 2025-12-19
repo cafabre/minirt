@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:45 by rshin             #+#    #+#             */
-/*   Updated: 2025/12/19 13:29:45 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/19 16:22:00 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ typedef enum e_error //erreurs de parsing uniquement
     ERR_INVALID_LIGHT_DATA,
     ERR_INVALID_CAMERA_DATA,
     ERR_INVALID_VECTOR_COORDS,
+	ERR_MISSING_ELEMENT,
 }	t_error;
 
 //pour preciser les messages d erreur si necessaire
