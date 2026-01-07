@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 09:08:46 by rshin             #+#    #+#             */
-/*   Updated: 2025/12/30 20:40:50 by cafabre          ###   ########.fr       */
+/*   Updated: 2026/01/07 17:33:54 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,14 @@ static t_vec4 compute_lighting(t_scene *s, t_obj *obj, t_ray hit)
 
 unsigned int	trace_ray(t_scene *s, t_ray *ray)
 {
-	t_obj	*target;
-	t_ray	hit;
+	t_hit	hit;
 	t_vec4	color;
 
-	target = compute_nearest_obj(s, ray, NULL);
-	if (!target)
+	hit.obj = compute_nearest_obj(s, ray, NULL);
+	if (!hit.obj)
 		return (pack_to_uint(s->cache.bg_col));
 	hit.pos = vec4_add(ray->pos, vec4_scalar_prod(ray->dir, ray->t));
-	hit.dir = get_object_normal(target, hit.pos);
-	color = compute_lighting(s, target, hit);
+	hit.norm = get_object_normal(hit.obj, hit.pos);
+	color = shade(s, hit);
 	return (pack_to_uint(color));
 }

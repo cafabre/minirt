@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:45 by rshin             #+#    #+#             */
-/*   Updated: 2025/12/19 16:22:00 by cafabre          ###   ########.fr       */
+/*   Updated: 2026/01/07 15:52:23 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,13 @@ typedef struct s_ray
 	float	t;
 	size_t	rebound;
 }	t_ray;
+
+typedef struct s_hit
+{
+	t_vec4	pos;
+	t_vec4	norm;
+	t_obj	*obj;
+}   t_hit;
 
 typedef struct s_object
 {
