@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 09:08:46 by rshin             #+#    #+#             */
-/*   Updated: 2025/12/19 17:31:44 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/30 20:40:50 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,3 @@ unsigned int	trace_ray(t_scene *s, t_ray *ray)
 	color = compute_lighting(s, target, hit);
 	return (pack_to_uint(color));
 }
-

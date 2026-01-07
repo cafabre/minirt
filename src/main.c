@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:54 by rshin             #+#    #+#             */
-/*   Updated: 2025/12/19 18:30:44 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/12/30 19:29:38 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,13 +87,14 @@ RESTE A FAIRE
     -> ft_atof DONE
     -> ft_isnumber DONE
 - move libft_utils.c functions into the libft
+- exec cylinder
 
 ISSUES
-- ambient lighting isnt right (ex : amb max + no light -> shadows houldnt appear) -> exec
+- ambient lighting isnt right (ex : amb max + no light -> shadows shouldnt appear) -> exec
 - colored light spot works with spheres, not planes -> exec
 - add the code to make create_cy(...) work -> render of cylinders not tested yet -> exec
 - pixelated results in some cases (recurring issue in minirt, solutions easily found on internet) -> exec
-    --> see room.rt
+    --> see single_sp_room.rt
 
 FIXED
 - "invalid number of arguments on one line" when whitespaces at the end of the line -> parsing

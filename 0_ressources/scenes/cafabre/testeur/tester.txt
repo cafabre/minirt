@@ -1,14 +1,14 @@
 /******************** 0 ********************/
 TESTS BASIQUES
 
-red_sphere.rt (A TESTER)
+red_sphere.rt (OK)
 -> description : camera centre, lumiere blanche haut-droite, sphere rouge, sol gris
 -> resultat attendu : sphere rouge degrade (clair haut-droite, noir bas-gauche), ombre noire ovale sur le sol
 
-rgb_spheres.rt (A TESTER)
+rgb_spheres.rt (OK)
 -> description : camera centre loin, lumiere blanche haut-droite, 3 spheres RGB, sol gris
 -> resultat attendu : 3 spheres couleurs franches, ombres noires sous chaque sphere, sphere rouge plus grosse au centre
-
+bas
 /******************** 1 ********************/
 TEST 1 PARAMETRE ISOLE
 
@@ -28,23 +28,23 @@ a0_l_white.rt (A TESTER)
 -> description : camera centre, ambiance nulle, lumiere blanche forte en haut a droite, sphere blanche au centre, sol et mur blancs
 -> resultat attendu : sphere blanche eclairee cote lumiere, zones non eclairees noires, ombre noire large sous la sphere, mur partiellement eclaire
 
-cam_fov30.rt (A TESTER)
+cam_fov30.rt (OK)
 -> description : camera centre loin, fov 30 (zoom), lumiere haut-droite
 -> resultat attendu : sphere plus grosse a l’ecran, moins de sol visible
 
-cam_fov90.rt (A TESTER)
+cam_fov90.rt (OK)
 -> description : camera centre loin, fov 90 (grand angle), lumiere haut-droite
 -> resultat attendu : sphere plus petite, plus de sol visible, perspective plus marquee
 
-cam_turn.rt (A TESTER)
+cam_turn.rt (OK)
 -> description : camera tournee legerement vers la droite, lumiere haut-droite
 -> resultat attendu : sphere decalee dans l’image (pas parfaitement centree)
 
-lpos_left.rt (A TESTER)
+lpos_left.rt (OK)
 -> description : lumiere blanche haut-gauche
 -> resultat attendu : highlight gauche, ombre projetée vers la droite
 
-lpos_right.rt (A TESTER)
+lpos_right.rt (OK)
 -> description : lumiere blanche haut-droite
 -> resultat attendu : highlight droite, ombre projetée vers la gauche
 
@@ -59,6 +59,10 @@ sp_d4.rt (A TESTER)
 pl_norm_flip.rt (A TESTER)
 -> description : sol avec normale inversee
 -> resultat attendu : sol absent/noir si 1-face, sinon rendu identique (selon ton choix)
+
+ambient_only_room.rt (A TESTER)
+-> description : piece fermee, ambiance chaude seule, lumiere desactivee
+-> resultat attendu : rendu parfaitement uniforme, aucune ombre, aucune directionnalite, sphere et murs teintes pareil
 
 /******************** 2 ********************/
 TESTS 2 PARAMETRES (COMBOS)
@@ -101,10 +105,18 @@ planes_tilt_a0.rt (A TESTER)
 /******************** 4 ********************/
 TEST BRUIT / STABILITE
 
-noise_check.rt (A TESTER)
--> description : scene propre (sphere blanche, sol+mur gris), lumiere forte haut-droite, ambiance faible
--> resultat attendu : rendu lisse (aucun point/bruit), gradients propres, ombre stable
-
-single_sp_room.rt (A TESTER)
+single_sp_room.rt (ECHEC)
 -> description : camera centre face a la scene, ambiance chaude moyenne, lumiere blanche en haut a droite, piece partiellement fermee (sol, mur fond, murs lateraux, plafond), sphere orange au centre
 -> resultat attendu : sphere eclairee cote haut-droite, ombre projetee sur le sol sous la sphere, murs et plafond teintes par l’ambiance, pas de fuite de lumiere entre plans
+
+noise_check_extreme.rt (A TESTER)
+-> description : camera centree, ambiance tres faible, lumiere blanche rasante (presque horizontale), sphere blanche centree, sol gris, mur gris derriere
+-> resultat attendu : gradient tres progressif sur la sphere, aucune bande, aucun point parasite, pas de bruit dans les zones quasi noires, ombre allongee propre sur le sol, aucun acne de surface
+
+corner_light_leak.rt (A TESTER)
+-> description : piece semi-fermee, lumiere haut-droite, sphere centree, ambiance moyenne
+-> resultat attendu : coins sombres, aucune lumiere dans les angles, ombre bien visible sous la sphere, murs lateraux moins eclaires que le mur du fond
+
+backface_light.rt (A TESTER)
+-> description : lumiere derriere le mur, camera face au mur
+-> resultat attendu : mur sombre, sphere tres peu eclairee voire noire, aucune illumination venant de derriere
