@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rshin <rshin@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 16:34:37 by rshin             #+#    #+#             */
-/*   Updated: 2025/12/15 14:11:24 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2026/01/07 18:11:28 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,54 @@ static float	intersect_plane(t_ray *r, t_obj *pl)
 	return (INFINITY);
 }
 
+static float	intersect_tube(t_ray *r, t_obj *cy)
+{
+	float	t_in;
+	float	t_out;
+	
+	//calcul distance du rayon a l axe du cylindre
+
+	//comment savoir si un point est entre les caps ?
+
+	//filtre de hauteur
+
+	return (min_positive(t_in, t_out));
+}
+
+//side = 1 pour cap "haut", side = -1 pour cap "bas"
+static float	intersect_disc(t_ray *r, t_obj *cy, int side)
+{
+	//comment trouver le centre du cap a partir de pos, dir et height ?
+}
+
+static float	intersect_caps(t_ray *r, t_obj *cy)
+{
+	float	t1;
+	float	t2;
+	
+	t1 = intersect_cap(r, cy, 1);
+	t2 = intersect_cap(r, cy, -1);
+	return (min_positive(t1, t2));
+}
+
+static float	intersect_cy(t_ray *r, t_obj *cy)
+{
+	//le cylindre a : un centre (t_vec4 pos), un axe (t_vec4 dir)
+	//une hauteur (float height) et un rayon (float rad)
+	float	tube_t;
+	float	cap_t;
+	
+	//test tube
+	tube_t = intersect_tube(r, cy);
+	
+	//test cercles extremites
+	cap_t = intersect_caps(r, cy);
+	
+	//choix de la bonne collision : renvoie le t le + petit
+	//existe t il un t tel que P(t) soit sur l objet ?
+	return (min_positive(tube_t, cap_t));
+}
+
 t_obj   *compute_nearest_obj(t_scene *s, t_ray *ray, t_obj *ignore)
 {
 	t_obj	*curr;
@@ -69,6 +117,8 @@ t_obj   *compute_nearest_obj(t_scene *s, t_ray *ray, t_obj *ignore)
 			t = intersect_sphere(ray, curr);
 		else if (curr->type == PLANE)
 			t = intersect_plane(ray, curr);
+		else if (curr->type == CYLINDER)
+			t = intersect_cy(ray, curr);
 		if (t > 0.00001f && t < ray->t)
 		{
 			ray->t = t;

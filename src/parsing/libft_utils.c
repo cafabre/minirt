@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 13:56:38 by cafabre           #+#    #+#             */
-/*   Updated: 2025/12/19 17:56:20 by cafabre          ###   ########.fr       */
+/*   Updated: 2026/01/07 18:02:24 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,21 @@ int     ft_tablen(char **tab)
     while (tab[i])
         i++;
     return (i);
+}
+
+//utile dans exec cylindre
+//entre 2 collisions possibles, laquelle est valide ET la + proche
+float	min_positive(float f1, float f2)
+{
+	if (f1 > 0.0)
+	{
+		if (f2 > 0.0)
+			return (min(f1, f2));
+		return (f1);
+	}
+	if (f2 > 0.0)
+		return (f2);
+	return (INFINITY);
 }
 
 size_t  ft_count_whitespace(char *s)

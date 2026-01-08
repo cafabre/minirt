@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:45 by rshin             #+#    #+#             */
-/*   Updated: 2025/12/19 16:22:00 by cafabre          ###   ########.fr       */
+/*   Updated: 2026/01/07 16:57:47 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -253,6 +253,7 @@ char	**ft_split_whitespaces(char *s);
 size_t  ft_count_whitespace(char *s);
 int     ft_tablen(char **tab);
 bool		ft_isnumber(char *s);
+float	min_positive(float f1, float f2);
 
 //fonction de tests, a supprimer
 void	display_scene(t_scene *s);
