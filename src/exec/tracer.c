@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 09:08:46 by rshin             #+#    #+#             */
-/*   Updated: 2026/01/07 17:33:54 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2026/01/08 11:06:41 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static t_vec4 get_object_normal(const t_obj *obj, t_vec4 hit_pos)
 		normal = vec4_norm(vec4_sub(hit_pos, obj->dir));
 	return (normal);
 }
-
+/*
 static t_vec4 compute_lighting(t_scene *s, t_obj *obj, t_ray hit)
 {
 	t_ray	light;
@@ -45,7 +45,7 @@ static t_vec4 compute_lighting(t_scene *s, t_obj *obj, t_ray hit)
 	diff_col = vec4_scalar_prod(vec4_mul(obj->col, s->l->col), diffuse * s->l->lum);
 	t_vec4 amb_part = vec4_scalar_prod(ambient, 1.0f - diffuse);
 	return (vec4_add(amb_part, diff_col));
-}
+}*/
 
 unsigned int	trace_ray(t_scene *s, t_ray *ray)
 {
@@ -57,6 +57,6 @@ unsigned int	trace_ray(t_scene *s, t_ray *ray)
 		return (pack_to_uint(s->cache.bg_col));
 	hit.pos = vec4_add(ray->pos, vec4_scalar_prod(ray->dir, ray->t));
 	hit.norm = get_object_normal(hit.obj, hit.pos);
-	color = shade(s, hit);
+	color = shade(s, &hit);
 	return (pack_to_uint(color));
 }
