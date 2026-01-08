@@ -6,11 +6,12 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 13:56:38 by cafabre           #+#    #+#             */
-/*   Updated: 2026/01/07 18:02:24 by cafabre          ###   ########.fr       */
+/*   Updated: 2026/01/08 22:26:39 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include <math.h>
 
 static bool	parse_number_body(char *s, int *i, bool *has_digit)
 {
@@ -78,7 +79,7 @@ float	min_positive(float f1, float f2)
 	if (f1 > 0.0)
 	{
 		if (f2 > 0.0)
-			return (min(f1, f2));
+			return (fmin(f1, f2));
 		return (f1);
 	}
 	if (f2 > 0.0)
