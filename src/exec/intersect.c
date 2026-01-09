@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 16:34:37 by rshin             #+#    #+#             */
-/*   Updated: 2026/01/08 22:46:11 by cafabre          ###   ########.fr       */
+/*   Updated: 2026/01/09 17:05:41 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ static float	height_filter(t_ray *r, t_obj *cy)
 	if (t == INFINITY)
 		return (t);
 	h = vec4_dot_prod(vec4_sub(vec4_add(r->pos,vec4_scalar_prod(r->dir, t)), cy->pos), cy->dir);
-	if (0.0f <= h && h <= cy->height)
+	if (-cy->height / 2.0f <= h && h <= cy->height / 2.0f)
 		return (t);
 	return (INFINITY);
 }
@@ -101,9 +101,9 @@ static float	intersect_disc(t_ray *r, t_obj *cy, int side)
 	float	t;
 
 	if (side == 1)
-		cap_center = vec4_add(cy->pos, vec4_scalar_prod(cy->dir, cy->height));
+		cap_center = vec4_add(cy->pos, vec4_scalar_prod(cy->dir, cy->height / 2.0f));
 	else
-		cap_center = cy->pos;
+		cap_center = vec4_sub(cy->pos, vec4_scalar_prod(cy->dir, cy->height / 2.0f));
 	denom = vec4_dot_prod(r->dir, cy->dir);
 	if (fabs(denom) < 1e-6)
 		return (INFINITY);
