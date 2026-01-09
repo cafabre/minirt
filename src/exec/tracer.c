@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 09:08:46 by rshin             #+#    #+#             */
-/*   Updated: 2026/01/08 11:06:41 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2026/01/09 20:55:59 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,32 @@
 
 static t_vec4 get_object_normal(const t_obj *obj, t_vec4 hit_pos)
 {
-	t_vec4	normal;
+    t_vec4  normal;
+    t_vec4  cp;
+    t_vec4  proj;
+    float   t;
 
-	if (obj->type == SPHERE)
-		normal = vec4_norm(vec4_sub(hit_pos, obj->pos));
-	else if (obj->type == PLANE)
-		normal = obj->dir;
-	else
-		normal = vec4_norm(vec4_sub(hit_pos, obj->dir));
-	return (normal);
+    if (obj->type == SPHERE)
+        normal = vec4_norm(vec4_sub(hit_pos, obj->pos));
+    else if (obj->type == PLANE)
+        normal = obj->dir;
+    else if (obj->type == CYLINDER)
+    {
+        cp = vec4_sub(hit_pos, obj->pos);
+        t = vec4_dot_prod(cp, obj->dir);
+        if (t >= (obj->height / 2.0f) - 1e-4)
+            normal = obj->dir;
+        else if (t <= -(obj->height / 2.0f) + 1e-4)
+            normal = vec4_scalar_prod(obj->dir, -1.0f);
+        else
+        {
+            proj = vec4_add(obj->pos, vec4_scalar_prod(obj->dir, t));
+            normal = vec4_norm(vec4_sub(hit_pos, proj));
+        }
+    }
+    else
+        normal = vec4_color(0, 0, 0);
+    return (normal);
 }
 /*
 static t_vec4 compute_lighting(t_scene *s, t_obj *obj, t_ray hit)
