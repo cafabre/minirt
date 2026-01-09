@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:45 by rshin             #+#    #+#             */
-/*   Updated: 2026/01/07 16:57:47 by cafabre          ###   ########.fr       */
+/*   Updated: 2026/01/09 18:51:40 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,13 @@ typedef struct s_object
 	struct s_object	*next;
 }	t_obj;
 
+typedef struct s_hit
+{
+	t_vec4	pos;
+	t_vec4	norm;
+	t_obj	*obj;
+}   t_hit;
+
 typedef struct s_light
 {
 	t_vec4			pos;
@@ -181,6 +188,8 @@ typedef struct s_coords
 unsigned int	pack_to_uint(t_vec4 color);
 void	set_pixel(t_env *e, t_pix p);
 t_mat4	get_inv_view_mat(const t_cam *c);
+
+t_vec4	shade(t_scene *s, t_hit *hit);
 
 bool	render_scene(t_env *env);
 t_obj	*compute_nearest_obj(t_scene *s, t_ray *ray, t_obj *ignore);

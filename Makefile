@@ -6,7 +6,7 @@
 #    By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/16 09:40:26 by rshin             #+#    #+#              #
-#    Updated: 2025/12/19 17:59:00 by cafabre          ###   ########.fr        #
+#    Updated: 2026/01/08 11:08:24 by rshin            ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ SRC += $(SRC_DIR)/exec/render.c\
 	   $(SRC_DIR)/exec/intersect.c \
 	   $(SRC_DIR)/exec/exec_utils.c \
 	   $(SRC_DIR)/exec/tracer.c \
+	   $(SRC_DIR)/exec/shader.c \
 	   $(SRC_DIR)/exec/controls.c 
 
 SRC += $(SRC_DIR)/vec4/vec4_point.c \
