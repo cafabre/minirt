@@ -1,10 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rshin <rshin@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: rshin <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/15 12:15:42 by rshin             #+#    #+#             */
-/*   Updated: 2025/10/15 15:53:21 by rshin            ###   ########lyon.fr   */
+/*   Created: 2026/01/12 14:38:02 by rshin             #+#    #+#             */
+/*   Updated: 2026/01/12 15:15:19 by rshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +30,12 @@ static bool	init_mlx(t_env *e)
 		return (false);
 	}
 	e->addr = mlx_get_data_addr(e->img, &e->bpp, &e->size_line, &e->endian);
-	e->bytes_pp = e->bpp / 8; 
+	e->bytes_pp = e->bpp / 8;
 	e->max_bytes = WIN_H * e->size_line;
 	return (true);
 }
 
-void	compute_cache(t_scene *s)
+static void	compute_cache(t_scene *s)
 {
 	s->cache.cx = (float)WIN_W * 0.5f;
 	s->cache.cy = (float)WIN_H * 0.5f;
@@ -64,7 +66,6 @@ static void	compute_ray(t_ray *ray, t_scene *s, t_pix p)
 	ray->dir = d_world;
 }
 
-
 bool	render_scene(t_env *e)
 {
 	t_pix	pix;
@@ -74,10 +75,8 @@ bool	render_scene(t_env *e)
 		return (false);
 	compute_cache(e->scene);
 	ft_memset(&pix, 0, sizeof(t_pix));
-//	pix.y = e->scene->cache.cy;
 	while (pix.y < WIN_H)
 	{
-//		pix.x = e->scene->cache.cx;
 		pix.x = 0;
 		while (pix.x < WIN_W)
 		{

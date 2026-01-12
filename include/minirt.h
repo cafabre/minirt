@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:45 by rshin             #+#    #+#             */
-/*   Updated: 2026/01/09 18:51:40 by cafabre          ###   ########.fr       */
+/*   Updated: 2026/01/12 15:27:38 by rshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,34 +42,34 @@ typedef enum e_objtype
 
 typedef enum e_error //erreurs de parsing uniquement
 {
-    ERR_NONE,
+	ERR_NONE,
 	ERR_INVALID_ARGS_COUNT,
 	ERR_INVALID_FILE_TYPE,
 	ERR_INVALID_FILE_NAME,
-    ERR_OPEN,
-    ERR_EMPTY_FILE,
-    ERR_INVALID_ARGS_LINE,
-    ERR_INVALID_VALUE_RANGE,
-    ERR_INVALID_ID,
-    ERR_DUPLICATE_AMBIENT,
-    ERR_DUPLICATE_LIGHT,
-    ERR_DUPLICATE_CAMERA,
-    ERR_MALLOC_AMBIENT,
-    ERR_MALLOC_LIGHT,
-    ERR_MALLOC_CAMERA,
-    ERR_MALLOC_SPHERE,
-    ERR_MALLOC_PLANE,
-    ERR_MALLOC_CYLINDER,
-    ERR_ADD_SPHERE,
-    ERR_ADD_PLANE,
-    ERR_ADD_CYLINDER,
-    ERR_INVALID_SPHERE_DATA,
-    ERR_INVALID_PLANE_DATA,
-    ERR_INVALID_CYLINDER_DATA,
-    ERR_INVALID_AMBIENT_DATA,
-    ERR_INVALID_LIGHT_DATA,
-    ERR_INVALID_CAMERA_DATA,
-    ERR_INVALID_VECTOR_COORDS,
+	ERR_OPEN,
+	ERR_EMPTY_FILE,
+	ERR_INVALID_ARGS_LINE,
+	ERR_INVALID_VALUE_RANGE,
+	ERR_INVALID_ID,
+	ERR_DUPLICATE_AMBIENT,
+	ERR_DUPLICATE_LIGHT,
+	ERR_DUPLICATE_CAMERA,
+	ERR_MALLOC_AMBIENT,
+	ERR_MALLOC_LIGHT,
+	ERR_MALLOC_CAMERA,
+	ERR_MALLOC_SPHERE,
+	ERR_MALLOC_PLANE,
+	ERR_MALLOC_CYLINDER,
+	ERR_ADD_SPHERE,
+	ERR_ADD_PLANE,
+	ERR_ADD_CYLINDER,
+	ERR_INVALID_SPHERE_DATA,
+	ERR_INVALID_PLANE_DATA,
+	ERR_INVALID_CYLINDER_DATA,
+	ERR_INVALID_AMBIENT_DATA,
+	ERR_INVALID_LIGHT_DATA,
+	ERR_INVALID_CAMERA_DATA,
+	ERR_INVALID_VECTOR_COORDS,
 	ERR_MISSING_ELEMENT,
 }	t_error;
 
@@ -80,12 +80,12 @@ typedef enum e_err_detail
 	DETAIL_OUT_OF_RANGE,
 	DETAIL_NOT_A_NUMBER,
 	DETAIL_BAD_FORMAT,
-} t_err_detail;
+}	t_err_detail;
 
 typedef struct s_data
 {
-	t_error error;
-	t_err_detail detail;
+	t_error			error;
+	t_err_detail	detail;
 }	t_data;
 
 typedef struct s_pixel
@@ -120,7 +120,7 @@ typedef struct s_hit
 	t_vec4	pos;
 	t_vec4	norm;
 	t_obj	*obj;
-}   t_hit;
+}	t_hit;
 
 typedef struct s_light
 {
@@ -181,90 +181,87 @@ typedef struct s_coords
 	char		**coords;
 	char		**coords_r;
 	char		**coords_r2;
-} 	t_coords;
+}	t_coords;
 
 /*---FUNCTIONS---*/
 
+/*** exec_utils.c ***/
 unsigned int	pack_to_uint(t_vec4 color);
-void	set_pixel(t_env *e, t_pix p);
-t_mat4	get_inv_view_mat(const t_cam *c);
+void			set_pixel(t_env *e, t_pix p);
+t_mat4			get_inv_view_mat(const t_cam *c);
 
-t_vec4	shade(t_scene *s, t_hit *hit);
+/*** shader.c ***/
+t_vec4			shade(t_scene *s, t_hit *hit);
 
-bool	render_scene(t_env *env);
-t_obj	*compute_nearest_obj(t_scene *s, t_ray *ray, t_obj *ignore);
+/*** render.c ***/
+bool			render_scene(t_env *env);
+
+/*** intersect.c ***/
+t_obj			*compute_nearest_obj(t_scene *s, t_ray *ray, t_obj *ignore);
+
+/*** tracer.c ***/
 unsigned int	trace_ray(t_scene *s, t_ray *ray);
 
-int		close_win(void *param);
-void	hook_controls(t_env *env);
+/*** controls.c ***/
+int				close_win(void *param);
+void			hook_controls(t_env *env);
 
-int	init_cam(char **args, t_scene *scene);
-int	init_ambient(char **args, t_scene *scene);
-int	init_light(char **args, t_scene *scene);
-int	init_obj(char **args, t_scene *scene, t_objtype objt);
-
-int		ft_accept_chars(char *str, char *ref);
-int		ft_accept_char(char *ref, char letter);
-void	replace_char(char **str, char old, char new);
-
-void	print_scene(t_scene *scene);
-
-void	free_env(t_env *env);
-void	free_scene(t_scene *scene);
-void	free_splitted(char **args);
+void			free_env(t_env *env);
+void			free_scene(t_scene *scene);
+//void			free_splitted(char **args); // ou est il ?
 
 /********** PARSING **********/
 /*** dispatcher.c ***/
-bool  dispatch_ids(char **tab, t_scene *s, t_data *data);
+bool			dispatch_ids(char **tab, t_scene *s, t_data *data);
 
 /*** dispatch_scene.c ***/
-bool dispatch_scene(char **tab, t_scene *s, t_data *data);
+bool			dispatch_scene(char **tab, t_scene *s, t_data *data);
 
 /*** dispatch_obj.c ***/
-bool dispatch_obj(char **tab, t_scene *s, t_data *data);
+bool			dispatch_obj(char **tab, t_scene *s, t_data *data);
 
 /*** parsing_utils.c ***/
-t_vec4  parse_vector(char **coords, int type, t_data *data);
+t_vec4			parse_vector(char **coords, int type, t_data *data);
 
 /*** parsing.c ***/
-int     parsing(int fd, t_scene *s, t_data *data);
+int				parsing(int fd, t_scene *s, t_data *data);
 
 /*** values_check.c ***/
-char **check_coords_range(char *s, float r_min, float r_max, t_data *data);
-char **check_coords(char *s, t_data *data);
-bool check_val(char *s, float r_min, float r_max, t_data *data);
+char			**check_coords_range(char *s, float r_min, float r_max, t_data *data);
+char			**check_coords(char *s, t_data *data);
+bool			check_val(char *s, float r_min, float r_max, t_data *data);
 
 /*** clean.c ***/
-void    free_tab(char **tab);
-void    free_tabs(char **t1, char **t2, char **t3);
+void			free_tab(char **tab);
+void			free_tabs(char **t1, char **t2, char **t3);
 
 /*** misconfig.c ***/
-void    display_error_message(t_data *data);
+void			display_error_message(t_data *data);
 
 /*** misconfig_utils.c ***/
-bool display_input_error(t_error e);
-void display_file_error(t_error e);
-void display_alloc_error(t_error e);
-void display_data_error(t_error e);
+bool			display_input_error(t_error e);
+void			display_file_error(t_error e);
+void			display_alloc_error(t_error e);
+void			display_data_error(t_error e);
 
 /*** create.c ***/ //-> pas dans le parsing
-t_cam	*create_cam(t_vec4 point, t_vec4 vec, float f);
-t_light	*create_light(t_vec4 point, float light, t_vec4 color);
-t_light	*create_amb(float light, t_vec4 rgb);
-t_obj	*create_sp(t_vec4 point, float d, t_vec4 color);
-t_obj	*create_pl(t_vec4 point, t_vec4 vec, t_vec4 color);
-t_obj	*create_cy(t_vec4 point, t_vec4 vec, float d, float h, t_vec4 color);
-t_scene	*create_scene(void);
+t_cam			*create_cam(t_vec4 point, t_vec4 vec, float f);
+t_light			*create_light(t_vec4 point, float light, t_vec4 color);
+t_light			*create_amb(float light, t_vec4 rgb);
+t_obj			*create_sp(t_vec4 point, float d, t_vec4 color);
+t_obj			*create_pl(t_vec4 point, t_vec4 vec, t_vec4 color);
+t_obj			*create_cy(t_vec4 point, t_vec4 vec, float d, float h, t_vec4 color);
+t_scene			*create_scene(void);
 
 /********** LIBFT UTILS **********/
-double	ft_atof(const char *nptr);
-char	**ft_split_whitespaces(char *s);
-size_t  ft_count_whitespace(char *s);
-int     ft_tablen(char **tab);
-bool		ft_isnumber(char *s);
-float	min_positive(float f1, float f2);
+double			ft_atof(const char *nptr);
+char			**ft_split_whitespaces(char *s);
+size_t			ft_count_whitespace(char *s);
+int				ft_tablen(char **tab);
+bool			ft_isnumber(char *s);
+float			min_positive(float f1, float f2);
 
 //fonction de tests, a supprimer
-void	display_scene(t_scene *s);
+void			display_scene(t_scene *s);
 
 #endif

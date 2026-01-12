@@ -6,63 +6,39 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 09:08:46 by rshin             #+#    #+#             */
-/*   Updated: 2026/01/12 14:14:52 by cafabre          ###   ########.fr       */
+/*   Updated: 2026/01/12 14:42:33 by rshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static t_vec4 get_object_normal(const t_obj *obj, t_vec4 hit_pos)
+static t_vec4	get_object_normal(const t_obj *obj, t_vec4 hit_pos)
 {
-    t_vec4  normal;
-    t_vec4  cp;
-    t_vec4  proj;
-    float   t;
+	t_vec4	normal;
+	t_vec4	proj;
+	float	t;
 
-    if (obj->type == SPHERE)
-        normal = vec4_norm(vec4_sub(hit_pos, obj->pos));
-    else if (obj->type == PLANE)
-        normal = obj->dir;
-    else if (obj->type == CYLINDER)
-    {
-        cp = vec4_sub(hit_pos, obj->pos);
-        t = vec4_dot_prod(cp, obj->dir);
-        if (t >= (obj->height / 2.0f) - 1e-4)
-            normal = obj->dir;
-        else if (t <= -(obj->height / 2.0f) + 1e-4)
-            normal = vec4_scalar_prod(obj->dir, -1.0f);
-        else
-        {
-            proj = vec4_add(obj->pos, vec4_scalar_prod(obj->dir, t));
-            normal = vec4_norm(vec4_sub(hit_pos, proj));
-        }
-    }
-    else
-        normal = vec4_color(0, 0, 0);
-    return (normal);
+	if (obj->type == SPHERE)
+		normal = vec4_norm(vec4_sub(hit_pos, obj->pos));
+	else if (obj->type == PLANE)
+		normal = obj->dir;
+	else if (obj->type == CYLINDER)
+	{
+		t = vec4_dot_prod(vec4_sub(hit_pos, obj->pos), obj->dir);
+		if (t >= (obj->height / 2.0f) - 1e-4)
+			normal = obj->dir;
+		else if (t <= -(obj->height / 2.0f) + 1e-4)
+			normal = vec4_scalar_prod(obj->dir, -1.0f);
+		else
+		{
+			proj = vec4_add(obj->pos, vec4_scalar_prod(obj->dir, t));
+			normal = vec4_norm(vec4_sub(hit_pos, proj));
+		}
+	}
+	else
+		normal = vec4_color(0, 0, 0);
+	return (normal);
 }
-/*
-static t_vec4 compute_lighting(t_scene *s, t_obj *obj, t_ray hit)
-{
-	t_ray	light;
-	t_vec4	ambient;
-	float	diffuse;
-	t_vec4	diff_col;
-	float	light_dist;
-
-	light.pos = vec4_add(hit.pos, vec4_scalar_prod(hit.dir, 0.001f));
-	light.dir = vec4_norm(vec4_sub(s->l->pos, light.pos));
-	light_dist = vec4_len(vec4_sub(s->l->pos, light.pos));
-	float shadow_factor = 1.0f;
-	if (compute_nearest_obj(s, &light, obj) && light.t < light_dist)
-		shadow_factor = 0.0f;
-	diffuse = fmax(vec4_dot_prod(hit.dir, light.dir), 0.0f) * shadow_factor;
-	float hemi = 0.5f + 0.5f * hit.dir.y;
-	ambient = vec4_scalar_prod(vec4_mul(s->amb->col, obj->col), s->amb->lum * hemi);
-	diff_col = vec4_scalar_prod(vec4_mul(obj->col, s->l->col), diffuse * s->l->lum);
-	t_vec4 amb_part = vec4_scalar_prod(ambient, 1.0f - diffuse);
-	return (vec4_add(amb_part, diff_col));
-}*/
 
 unsigned int	trace_ray(t_scene *s, t_ray *ray)
 {
