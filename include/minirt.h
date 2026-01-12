@@ -88,6 +88,14 @@ typedef struct s_data
 	t_err_detail	detail;
 }	t_data;
 
+typedef struct s_quadratic
+{
+	float	a;
+	float	b;
+	float	c;
+	float	delta;
+}	t_quad;
+
 typedef struct s_pixel
 {
 	int				x;
@@ -189,6 +197,10 @@ typedef struct s_coords
 unsigned int	pack_to_uint(t_vec4 color);
 void			set_pixel(t_env *e, t_pix p);
 t_mat4			get_inv_view_mat(const t_cam *c);
+
+/*** intersect_utils.c ***/
+float	height_filter(t_ray *r, t_obj *cy);
+float	intersect_caps(t_ray *r, t_obj *cy);
 
 /*** shader.c ***/
 t_vec4			shade(t_scene *s, t_hit *hit);

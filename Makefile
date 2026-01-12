@@ -45,6 +45,7 @@ SRC = $(SRC_DIR)/main.c \
 SRC += $(SRC_DIR)/exec/render.c\
 	   $(SRC_DIR)/exec/intersect.c \
 	   $(SRC_DIR)/exec/exec_utils.c \
+	   $(SRC_DIR)/exec/intersect_utils.c \
 	   $(SRC_DIR)/exec/tracer.c \
 	   $(SRC_DIR)/exec/shader.c \
 	   $(SRC_DIR)/exec/controls.c 
