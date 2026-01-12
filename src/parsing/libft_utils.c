@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 13:56:38 by cafabre           #+#    #+#             */
-/*   Updated: 2026/01/08 22:26:39 by cafabre          ###   ########.fr       */
+/*   Updated: 2026/01/12 15:43:26 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ static bool	parse_number_body(char *s, int *i, bool *has_digit)
 	return (true);
 }
 
-//check si la chaine passee en param est un int / float ou non
 bool	ft_isnumber(char *s)
 {
 	int		i;
@@ -60,20 +59,16 @@ bool	ft_isnumber(char *s)
 	return (true);
 }
 
-// /!| valide uniquement pour NULL terminated tabs
-// (le cas ici car tab cree avec split)
-int     ft_tablen(char **tab)
+int	ft_tablen(char **tab)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (tab[i])
-        i++;
-    return (i);
+	i = 0;
+	while (tab[i])
+		i++;
+	return (i);
 }
 
-//utile dans exec cylindre
-//entre 2 collisions possibles, laquelle est valide ET la + proche
 float	min_positive(float f1, float f2)
 {
 	if (f1 > 0.0)
@@ -87,23 +82,23 @@ float	min_positive(float f1, float f2)
 	return (INFINITY);
 }
 
-size_t  ft_count_whitespace(char *s)
+size_t	ft_count_whitespace(char *s)
 {
-    size_t i;
-    size_t count;
+	size_t	i;
+	size_t	count;
 
-    i = 0;
-    count = 0;
-    while (s[i])
-    {
-        while (s[i] && ft_isblank(s[i]))
-            i++;
-        if (s[i])
-            count++;
-        while (s[i] && !ft_isblank(s[i]))
-            i++;
-    }
-    return (count);
+	i = 0;
+	count = 0;
+	while (s[i])
+	{
+		while (s[i] && ft_isblank(s[i]))
+			i++;
+		if (s[i])
+			count++;
+		while (s[i] && !ft_isblank(s[i]))
+			i++;
+	}
+	return (count);
 }
 
 char	**ft_split_whitespaces(char *s)
@@ -143,7 +138,6 @@ static double	parse_unsigned_float(const char *s, size_t *i)
 	res = 0.0;
 	while (s[*i] && ft_isdigit(s[*i]))
 		res = res * 10.0 + (s[(*i)++] - '0');
-
 	if (s[*i] == '.')
 	{
 		(*i)++;
@@ -175,7 +169,6 @@ double	ft_atof(const char *nptr)
 	}
 	else if (nptr[i] == '+')
 		i++;
-
 	res = parse_unsigned_float(nptr, &i);
 	return (res * (double)sign);
 }

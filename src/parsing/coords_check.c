@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 17:58:41 by cafabre           #+#    #+#             */
-/*   Updated: 2025/12/19 17:59:28 by cafabre          ###   ########.fr       */
+/*   Updated: 2026/01/12 16:04:25 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,17 @@ static char	**split_coords(char *s, t_data *data)
 	char	**coords;
 
 	if (ft_strcnt(s, ',') != 2)
-	{
-		data->detail = DETAIL_BAD_FORMAT;
-		return (NULL);
-	}
+		return (detail_error(data, DETAIL_BAD_FORMAT));
 	coords = ft_split(s, ',');
 	if (!coords || ft_tablen(coords) != 3)
 	{
 		free_tab(coords);
-		data->detail = DETAIL_BAD_FORMAT;
-		return (NULL);
+		return (detail_error(data, DETAIL_BAD_FORMAT));
 	}
 	return (coords);
 }
 
-static bool	coords_are_num(char **coords, t_data *data)
+static	bool	coords_are_num(char **coords, t_data *data)
 {
 	int	i;
 
@@ -39,10 +35,7 @@ static bool	coords_are_num(char **coords, t_data *data)
 	while (i < 3)
 	{
 		if (!ft_isnumber(coords[i]))
-		{
-			data->detail = DETAIL_NOT_A_NUMBER;
-			return (false);
-		}
+			return (detail_error(data, DETAIL_NOT_A_NUMBER));
 		i++;
 	}
 	return (true);
@@ -63,23 +56,23 @@ char	**check_coords(char *s, t_data *data)
 	return (coords);
 }
 
-char **check_coords_range(char *s, float r_min, float r_max, t_data *data)
+char	**check_coords_range(char *s, float r_min, float r_max, t_data *data)
 {
-    int     i;
-    char **coords;
-    
-    coords = check_coords(s, data);
-    if (!coords)
-        return (NULL);
-    i = 0;
-    while (i <= 2)
-    {
-        if (!check_val(coords[i], r_min, r_max, data))
-        {
-            free_tab(coords);
-            return (NULL);
-        }
-        i++;
-    }
-    return (coords);
+	int		i;
+	char	**coords;
+
+	coords = check_coords(s, data);
+	if (!coords)
+		return (NULL);
+	i = 0;
+	while (i <= 2)
+	{
+		if (!check_val(coords[i], r_min, r_max, data))
+		{
+			free_tab (coords);
+			return (NULL);
+		}
+		i++;
+	}
+	return (coords);
 }

@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:45 by rshin             #+#    #+#             */
-/*   Updated: 2026/01/09 18:51:40 by cafabre          ###   ########.fr       */
+/*   Updated: 2026/01/12 15:31:02 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,6 +237,7 @@ bool check_val(char *s, float r_min, float r_max, t_data *data);
 /*** clean.c ***/
 void    free_tab(char **tab);
 void    free_tabs(char **t1, char **t2, char **t3);
+bool	ret_error(t_data *data, int err);
 
 /*** misconfig.c ***/
 void    display_error_message(t_data *data);
