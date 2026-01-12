@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 15:04:29 by cafabre           #+#    #+#             */
-/*   Updated: 2026/01/12 16:03:32 by cafabre          ###   ########.fr       */
+/*   Updated: 2026/01/12 17:02:48 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ bool	ret_error(t_data *data, int err)
 	return (false);
 }
 
-bool	detail_error(t_data *data, int det)
+char	**detail_error(t_data *data, int det)
 {
 	data->detail = det;
 	return (NULL);

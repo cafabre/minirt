@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:45 by rshin             #+#    #+#             */
-/*   Updated: 2026/01/12 15:31:02 by cafabre          ###   ########.fr       */
+/*   Updated: 2026/01/12 17:02:41 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,6 +238,7 @@ bool check_val(char *s, float r_min, float r_max, t_data *data);
 void    free_tab(char **tab);
 void    free_tabs(char **t1, char **t2, char **t3);
 bool	ret_error(t_data *data, int err);
+char	**detail_error(t_data *data, int det);
 
 /*** misconfig.c ***/
 void    display_error_message(t_data *data);
@@ -258,11 +259,8 @@ t_obj	*create_cy(t_vec4 point, t_vec4 vec, float d, float h, t_vec4 color);
 t_scene	*create_scene(void);
 
 /********** LIBFT UTILS **********/
-double	ft_atof(const char *nptr);
 char	**ft_split_whitespaces(char *s);
 size_t  ft_count_whitespace(char *s);
-int     ft_tablen(char **tab);
-bool		ft_isnumber(char *s);
 float	min_positive(float f1, float f2);
 
 //fonction de tests, a supprimer

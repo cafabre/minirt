@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 15:50:21 by cafabre           #+#    #+#             */
-/*   Updated: 2026/01/12 16:00:17 by cafabre          ###   ########.fr       */
+/*   Updated: 2026/01/12 17:00:50 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static bool	dispatch_cam(char **tab, t_scene *s,
 	new_cam = create_cam(parse_vector(*coords, 1, data),
 			parse_vector(*coords_r, 2, data), ft_atof(tab[3]));
 	if (!new_cam)
-		return (ret_erro(data, ERR_MALLOC_CAMERA));
+		return (ret_error(data, ERR_MALLOC_CAMERA));
 	s->cam = new_cam;
 	return (true);
 }

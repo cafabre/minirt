@@ -6,7 +6,7 @@
 #    By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/16 09:40:26 by rshin             #+#    #+#              #
-#    Updated: 2026/01/08 11:08:24 by rshin            ###   ########lyon.fr    #
+#    Updated: 2026/01/12 17:00:32 by cafabre          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,8 +76,7 @@ SRC += $(SRC_DIR)/parsing/parsing.c \
 		$(SRC_DIR)/parsing/misconfig.c \
 		$(SRC_DIR)/parsing/misconfig_utils.c \
 		$(SRC_DIR)/parsing/clean.c \
-		$(SRC_DIR)/parsing/libft_utils.c \
-		$(SRC_DIR)/parsing/test.c
+		$(SRC_DIR)/parsing/utils.c \
 
 INC = include
 
