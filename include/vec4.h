@@ -6,7 +6,7 @@
 /*   By: syukna <syukna@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 14:36:46 by syukna            #+#    #+#             */
-/*   Updated: 2026/01/08 12:28:05 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2026/01/12 16:00:34 by rshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,8 @@ float	vec4_dot_prod(t_vec4 a, t_vec4 b);
 t_vec4	vec4_scalar_prod(t_vec4 a, float scalar);
 t_vec4	vec4_scalar_div(t_vec4 a, float scalar);
 float	vec4_len(t_vec4 vec);
-float	vec4_dist(t_vec4 a, t_vec4 b);
 t_vec4	vec4_neg(t_vec4 a);
 t_vec4	vec4_norm(t_vec4 vec);
-t_vec4	vec4_lerp(t_vec4 a, t_vec4 b, float factor);
 t_vec4	vec4_mat4_prod(t_vec4 v, const t_mat4 *m);
 
 #endif

@@ -3,20 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+         #
+#    By: rshin <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/12/16 09:40:26 by rshin             #+#    #+#              #
-#    Updated: 2026/01/08 11:08:24 by rshin            ###   ########lyon.fr    #
-#                                                                              #
-# **************************************************************************** #
-
-# **************************************************************************** #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: syukna <syukna@student.42.fr>              +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/03/03 17:37:30 by rshin             #+#    #+#              #
-#    Updated: 2025/10/09 13:10:02 by syukna           ###   ########.fr        #
+#    Created: 2026/01/12 16:02:20 by rshin             #+#    #+#              #
+#    Updated: 2026/01/12 16:02:22 by rshin            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,10 +51,8 @@ SRC += $(SRC_DIR)/vec4/vec4_point.c \
 	   $(SRC_DIR)/vec4/vec4_mat4_prod.c \
 	   $(SRC_DIR)/vec4/vec4_scalar_div.c \
 	   $(SRC_DIR)/vec4/vec4_len.c \
-	   $(SRC_DIR)/vec4/vec4_dist.c \
 	   $(SRC_DIR)/vec4/vec4_neg.c \
-	   $(SRC_DIR)/vec4/vec4_norm.c \
-	   $(SRC_DIR)/vec4/vec4_lerp.c
+	   $(SRC_DIR)/vec4/vec4_norm.c
 
 SRC += $(SRC_DIR)/parsing/parsing.c \
 		$(SRC_DIR)/parsing/parsing_utils.c \
