@@ -6,11 +6,20 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 13:23:45 by cafabre           #+#    #+#             */
-/*   Updated: 2026/01/13 21:54:09 by cafabre          ###   ########.fr       */
+/*   Updated: 2026/01/13 22:19:59 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+static bool	parse_lines_clean(char **tab, char *tmp, int fd)
+{
+	free_tab(tab);
+	if (tmp)
+		free(tmp);
+	clean_gnl(fd);
+	return (false);
+}
 
 static bool	parse_lines(int fd, t_scene *s, t_data *data, bool *empty_fd)
 {
@@ -35,13 +44,7 @@ static bool	parse_lines(int fd, t_scene *s, t_data *data, bool *empty_fd)
 			continue ;
 		}
 		if (!dispatch_ids(tab, s, data))
-		{
-			free_tab(tab);
-			if (tmp)
-				free(tmp);
-			clean_gnl(fd);
-			return (false);
-		}
+			return (parse_lines_clean(tab, tmp, fd));
 		free_tab(tab);
 	}
 	return (*empty_fd);

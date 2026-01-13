@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 18:28:08 by cafabre           #+#    #+#             */
-/*   Updated: 2026/01/12 15:39:40 by cafabre          ###   ########.fr       */
+/*   Updated: 2026/01/13 22:34:02 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ bool	display_input_error(t_error e)
 	if (e == ERR_INVALID_ARGS_COUNT)
 		ft_printf("Invalid number of arguments, one expected (file name)");
 	else if (e == ERR_INVALID_FILE_TYPE)
-		ft_printf("Invalid file type, need to be '.rt");
+		ft_printf("Invalid file type, need to be .rt");
 	else if (e == ERR_INVALID_FILE_NAME)
-		ft_printf("Invalid file name, need to be '[name].rt");
+		ft_printf("Invalid file name, need to be [name].rt");
 	else if (e == ERR_OPEN)
 	{
 		perror("Open failed");

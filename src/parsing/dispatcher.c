@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 12:43:50 by cafabre           #+#    #+#             */
-/*   Updated: 2026/01/13 13:10:26 by cafabre          ###   ########.fr       */
+/*   Updated: 2026/01/13 22:25:23 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,8 @@ static bool	dispatch_util(char **tab, t_scene *s,
 			if (!dispatch_scene(tab, s, data))
 				return (false);
 		}
-		else
-		{
-			if (!dispatch_obj(tab, s, data))
-				return (false);
-		}
+		else if (!dispatch_obj(tab, s, data))
+			return (false);
 	}
 	else
 		return (ret_error(data, ERR_INVALID_ARGS_LINE));

@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:45 by rshin             #+#    #+#             */
-/*   Updated: 2026/01/13 21:06:50 by cafabre          ###   ########.fr       */
+/*   Updated: 2026/01/13 22:26:16 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -244,7 +244,8 @@ t_vec4			parse_vector(char **coords, int type, t_data *data);
 int				parsing(t_env *env, t_data *data);
 
 /*** values_check.c ***/
-char			**check_coords_range(char *s, float r_min, float r_max, t_data *data);
+char			**check_coords_range(char *s, float r_min, float r_max,
+					t_data *data);
 char			**check_coords(char *s, t_data *data);
 bool			check_val(char *s, float r_min, float r_max, t_data *data);
 
