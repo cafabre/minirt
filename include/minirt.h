@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:45 by rshin             #+#    #+#             */
-/*   Updated: 2026/01/13 13:56:46 by cafabre          ###   ########.fr       */
+/*   Updated: 2026/01/13 14:03:09 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef enum e_objtype
 	CYLINDER,
 }	t_objtype;
 
-typedef enum e_error //erreurs de parsing uniquement
+typedef enum e_error
 {
     ERR_NONE,
 	ERR_INVALID_ARGS_COUNT,

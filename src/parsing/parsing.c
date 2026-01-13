@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 13:23:45 by cafabre           #+#    #+#             */
-/*   Updated: 2026/01/13 12:57:06 by cafabre          ###   ########.fr       */
+/*   Updated: 2026/01/13 14:10:08 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,9 @@ static bool	parse_lines(int fd, t_scene *s, t_data *data, bool *empty_fd)
 static bool	parse_scene(t_scene *s, t_data *data, bool *empty_fd)
 {
 	if (*empty_fd)
-	{
-		data->error = ERR_EMPTY_FILE;
-		return (false);
-	}
+		return (ret_error(data, ERR_EMPTY_FILE));
 	if (!s->cam || !s->amb || !s->l)
-	{
-		data->error = ERR_MISSING_ELEMENT;
-		return (false);
-	}
+		return (ret_error(data, ERR_MISSING_ELEMENT));
 	return (true);
 }
 

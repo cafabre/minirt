@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:54 by rshin             #+#    #+#             */
-/*   Updated: 2026/01/07 15:17:19 by cafabre          ###   ########.fr       */
+/*   Updated: 2026/01/13 14:08:40 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,17 @@ static bool	check_fd(int argc, char **argv, t_env *env, t_data *data)
 	int	len;
 
 	if (argc != 2)
-	{
-		data->error = ERR_INVALID_ARGS_COUNT;
-		return (false);
-	}
+		return (ret_error(data, ERR_INVALID_ARGS_COUNT));
 	len = ft_strlen(argv[1]);
-	if (len < 3)
-	{
-		data->error = ERR_INVALID_FILE_NAME;
-		return (false);
-	}
+	//test ne fonctionne pas si on appelle un fichier situe dans un sous dossier
+	//ex : scences/0_bad/.rt -> len du nom > 4
+	if (len < 4)
+		return (ret_error(data, ERR_INVALID_FILE_NAME));
 	if (ft_strncmp(argv[1] + len - 3, ".rt", 3))
-	{
-		data->error = ERR_INVALID_FILE_TYPE;
-		return (false);
-	}
+		return (ret_error(data, ERR_INVALID_FILE_TYPE));
 	env->fd = open(argv[1], O_RDONLY);
 	if (env->fd == -1)
-	{
-		data->error = ERR_OPEN;
-		return (false);
-	}
+		return (ret_error(data, ERR_OPEN));
 	return (true);
 }
 
