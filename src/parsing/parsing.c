@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 13:23:45 by cafabre           #+#    #+#             */
-/*   Updated: 2026/01/13 15:29:24 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2026/01/13 21:54:09 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,21 @@
 
 static bool	parse_lines(int fd, t_scene *s, t_data *data, bool *empty_fd)
 {
+	char	*tmp;
 	char	*line;
 	char	**tab;
 
 	*empty_fd = true;
-	line = ft_gnl(fd);
-	while (line != NULL)
+	tmp = ft_gnl(fd);
+	line = NULL;
+	while (tmp)
 	{
 		*empty_fd = false;
-		line = ft_strtrim(line, " \t\n");
+		line = ft_strtrim(tmp, " \t\n");
+		free(tmp);
 		tab = ft_split_whitespaces(line);
 		free (line);
-		line = ft_gnl(fd);
+		tmp = ft_gnl(fd);
 		if (!tab || !tab[0] || ft_strcmp(tab[0], "\n") == 0)
 		{
 			free_tab(tab);
@@ -34,17 +37,23 @@ static bool	parse_lines(int fd, t_scene *s, t_data *data, bool *empty_fd)
 		if (!dispatch_ids(tab, s, data))
 		{
 			free_tab(tab);
+			if (tmp)
+				free(tmp);
+			clean_gnl(fd);
 			return (false);
 		}
 		free_tab(tab);
 	}
-	return (empty_fd);
+	return (*empty_fd);
 }
 
-static bool	parse_scene(t_scene *s, t_data *data, bool *empty_fd)
+static bool	parse_scene(t_scene *s, t_data *data, bool *empty_fd, int fd)
 {
 	if (*empty_fd)
+	{
+		clean_gnl(fd);
 		return (ret_error(data, ERR_EMPTY_FILE));
+	}
 	if (!s->cam || !s->amb || !s->l)
 		return (ret_error(data, ERR_MISSING_ELEMENT));
 	return (true);
@@ -59,7 +68,7 @@ int	parsing(t_env *env, t_data *data)
 		return (EXIT_FAILURE);
 	if (!parse_lines(env->fd, env->scene, data, &empty_fd))
 		return (EXIT_FAILURE);
-	if (!parse_scene(env->scene, data, &empty_fd))
+	if (!parse_scene(env->scene, data, &empty_fd, env->fd))
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

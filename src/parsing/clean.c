@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 15:04:29 by cafabre           #+#    #+#             */
-/*   Updated: 2026/01/12 17:02:48 by cafabre          ###   ########.fr       */
+/*   Updated: 2026/01/13 21:06:32 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,16 @@ char	**detail_error(t_data *data, int det)
 {
 	data->detail = det;
 	return (NULL);
+}
+
+void	clean_gnl(int fd)
+{
+	char	*line;
+
+	line = ft_gnl(fd);
+	while (line)
+	{
+		free(line);
+		line = ft_gnl(fd);
+	}
 }
