@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 13:23:45 by cafabre           #+#    #+#             */
-/*   Updated: 2026/01/12 15:41:38 by cafabre          ###   ########.fr       */
+/*   Updated: 2026/01/13 12:57:06 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,14 @@ static bool	parse_lines(int fd, t_scene *s, t_data *data, bool *empty_fd)
 	char	**tab;
 
 	*empty_fd = true;
-	while ((line = ft_gnl(fd)) != NULL)
+	line = ft_gnl(fd);
+	while (line != NULL)
 	{
 		*empty_fd = false;
 		line = ft_strtrim(line, " \t\n");
 		tab = ft_split_whitespaces(line);
 		free (line);
+		line = ft_gnl(fd);
 		if (!tab || !tab[0] || ft_strcmp(tab[0], "\n") == 0)
 		{
 			free_tab(tab);

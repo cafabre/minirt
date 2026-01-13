@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:45 by rshin             #+#    #+#             */
-/*   Updated: 2026/01/12 17:02:41 by cafabre          ###   ########.fr       */
+/*   Updated: 2026/01/13 13:56:46 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ typedef enum e_error //erreurs de parsing uniquement
 	ERR_MISSING_ELEMENT,
 }	t_error;
 
-//pour preciser les messages d erreur si necessaire
 typedef enum e_err_detail
 {
 	DETAIL_NONE,
@@ -258,10 +257,11 @@ t_obj	*create_pl(t_vec4 point, t_vec4 vec, t_vec4 color);
 t_obj	*create_cy(t_vec4 point, t_vec4 vec, float d, float h, t_vec4 color);
 t_scene	*create_scene(void);
 
-/********** LIBFT UTILS **********/
+/********** parsing -> utils.c **********/
 char	**ft_split_whitespaces(char *s);
 size_t  ft_count_whitespace(char *s);
 float	min_positive(float f1, float f2);
+void	fill_coords(t_coords *c);
 
 //fonction de tests, a supprimer
 void	display_scene(t_scene *s);
