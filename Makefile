@@ -29,7 +29,6 @@ SRC_DIR = src
 BLD_DIR = .build
 
 SRC = $(SRC_DIR)/main.c \
-	  $(SRC_DIR)/create.c \
 	  $(SRC_DIR)/utils.c 
 
 SRC += $(SRC_DIR)/exec/render.c\
@@ -66,6 +65,8 @@ SRC += $(SRC_DIR)/parsing/parsing.c \
 		$(SRC_DIR)/parsing/misconfig_utils.c \
 		$(SRC_DIR)/parsing/clean.c \
 		$(SRC_DIR)/parsing/utils.c \
+		$(SRC_DIR)/parsing/create_scene.c \
+		$(SRC_DIR)/parsing/create_obj.c
 
 INC = include
 

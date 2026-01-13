@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:45 by rshin             #+#    #+#             */
-/*   Updated: 2026/01/13 09:24:52 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2026/01/13 16:21:02 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,12 @@ typedef struct s_ray
 	float	t;
 	size_t	rebound;
 }	t_ray;
+
+typedef struct s_dimension
+{
+	float	d;
+	float	h;
+}	t_dim;
 
 typedef struct s_object
 {
@@ -220,7 +226,6 @@ void			hook_controls(t_env *env);
 
 void			free_env(t_env *env);
 void			free_scene(t_scene *scene);
-//void			free_splitted(char **args); // ou est il ?
 
 /********** PARSING **********/
 /*** dispatcher.c ***/
@@ -236,7 +241,7 @@ bool			dispatch_obj(char **tab, t_scene *s, t_data *data);
 t_vec4			parse_vector(char **coords, int type, t_data *data);
 
 /*** parsing.c ***/
-int				parsing(int fd, t_scene *s, t_data *data);
+int				parsing(t_env *env, t_data *data);
 
 /*** values_check.c ***/
 char			**check_coords_range(char *s, float r_min, float r_max, t_data *data);
@@ -244,10 +249,10 @@ char			**check_coords(char *s, t_data *data);
 bool			check_val(char *s, float r_min, float r_max, t_data *data);
 
 /*** clean.c ***/
-void    free_tab(char **tab);
-void    free_tabs(char **t1, char **t2, char **t3);
-bool	ret_error(t_data *data, int err);
-char	**detail_error(t_data *data, int det);
+void			free_tab(char **tab);
+void			free_tabs(char **t1, char **t2, char **t3);
+bool			ret_error(t_data *data, int err);
+char			**detail_error(t_data *data, int det);
 
 /*** misconfig.c ***/
 void			display_error_message(t_data *data);
@@ -264,16 +269,14 @@ t_light			*create_light(t_vec4 point, float light, t_vec4 color);
 t_light			*create_amb(float light, t_vec4 rgb);
 t_obj			*create_sp(t_vec4 point, float d, t_vec4 color);
 t_obj			*create_pl(t_vec4 point, t_vec4 vec, t_vec4 color);
-t_obj			*create_cy(t_vec4 point, t_vec4 vec, float d, float h, t_vec4 color);
-t_scene			*create_scene(void);
+t_obj			*create_cy(t_vec4 point, t_vec4 vec, t_dim dim, t_vec4 color);
 
 /********** parsing -> utils.c **********/
-char	**ft_split_whitespaces(char *s);
-size_t  ft_count_whitespace(char *s);
-float	min_positive(float f1, float f2);
-void	fill_coords(t_coords *c);
+char			**ft_split_whitespaces(char *s);
+size_t			ft_count_whitespace(char *s);
+float			min_positive(float f1, float f2);
+void			fill_coords(t_coords *c);
 
-//fonction de tests, a supprimer
 void			display_scene(t_scene *s);
 
 #endif

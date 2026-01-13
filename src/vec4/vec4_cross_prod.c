@@ -6,13 +6,14 @@
 /*   By: rshin <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 14:45:10 by rshin             #+#    #+#             */
-/*   Updated: 2025/12/11 13:17:23 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2026/01/13 15:14:48 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vec4.h"
 
-// use case : find surface normals for polygons, computes perpendicular vecs, calc tangent spaces
+/* use case : find surface normals for polygons,
+computes perpendicular vecs, calc tangent spaces*/
 
 t_vec4	vec4_cross_prod(t_vec4 a, t_vec4 b)
 {

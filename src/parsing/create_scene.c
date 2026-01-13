@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create.c                                           :+:      :+:    :+:   */
+/*   create_scene.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:45:02 by rshin             #+#    #+#             */
-/*   Updated: 2026/01/12 15:28:11 by rshin            ###   ########.fr       */
+/*   Updated: 2026/01/13 15:20:59 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,63 +48,4 @@ t_light	*create_amb(float light, t_vec4 rgb)
 	a->col = rgb;
 	a->lum = light;
 	return (a);
-}
-
-t_obj	*create_sp(t_vec4 point, float d, t_vec4 color)
-{
-	t_obj	*sp;
-
-	sp = ft_calloc(1, sizeof(t_obj));
-	if (!sp)
-		return (NULL);
-	sp->type = SPHERE;
-	sp->pos = point;
-	sp->diam = d;
-	sp->rad = sp->diam / 2;
-	sp->col = color;
-	sp->next = NULL;
-	return (sp);
-}
-
-t_obj	*create_pl(t_vec4 point, t_vec4 vec, t_vec4 color)
-{
-	t_obj	*pl;
-
-	pl = ft_calloc(1, sizeof(t_obj));
-	if (!pl)
-		return (NULL);
-	pl->type = PLANE;
-	pl->pos = point;
-	pl->dir = vec;
-	pl->col = color;
-	pl->next = NULL;
-	return (pl);
-}
-
-t_obj	*create_cy(t_vec4 point, t_vec4 vec, float d, float h, t_vec4 color)
-{
-	t_obj	*cy;
-
-	cy = ft_calloc(1, sizeof(t_obj));
-	if (!cy)
-		return (NULL);
-	cy->type = CYLINDER;
-	cy->pos = point;
-	cy->dir = vec4_norm(vec);
-	cy->diam = d;
-	cy->rad = cy->diam / 2.0f;
-	cy->height = h;
-	cy->col = color;
-	cy->next = NULL;
-	return (cy);
-}
-
-t_scene	*create_scene(void)
-{
-	t_scene	*s;
-
-	s = ft_calloc(1, sizeof(t_scene));
-	if (!s)
-		return (NULL);
-	return (s);
 }

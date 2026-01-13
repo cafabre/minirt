@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:54 by rshin             #+#    #+#             */
-/*   Updated: 2026/01/13 14:08:40 by cafabre          ###   ########.fr       */
+/*   Updated: 2026/01/13 15:27:53 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,7 @@ int	main(int argc, char **argv)
 		display_error_message(&data);
 		return (EXIT_FAILURE);
 	}
-	env.scene = create_scene();
-	if (!env.scene)
-	{
-		free_env(&env);
-		return (EXIT_FAILURE);
-	}
-	if (parsing(env.fd, env.scene, &data) == EXIT_FAILURE)
+	if (parsing(&env, &data) == EXIT_FAILURE)
 	{
 		free_env(&env);
 		display_error_message(&data);

@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 15:52:06 by cafabre           #+#    #+#             */
-/*   Updated: 2026/01/13 13:57:35 by cafabre          ###   ########.fr       */
+/*   Updated: 2026/01/13 15:42:30 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ static bool	dispatch_pl(char **tab, t_scene *s, t_coords *c, t_data *data)
 static bool	dispatch_cy(char **tab, t_scene *s, t_coords *c, t_data *data)
 {
 	t_obj	*new_cy;
+	t_dim	dim;
 
 	c->coords = check_coords(tab[1], data);
 	c->coords_r = check_coords_range(tab[2], -1, 1, data);
@@ -89,9 +90,11 @@ static bool	dispatch_cy(char **tab, t_scene *s, t_coords *c, t_data *data)
 		|| ft_atof(tab[3]) < 0 || !ft_isnumber(tab[4])
 		|| ft_atof(tab[4]) < 0 || !c->coords_r2)
 		return (ret_error(data, ERR_INVALID_CYLINDER_DATA));
+	dim.d = ft_atof(tab[3]);
+	dim.h = ft_atof(tab[4]);
 	new_cy = create_cy(parse_vector(c->coords, 1, data),
-			parse_vector(c->coords_r, 2, data), ft_atof(tab[3]),
-			ft_atof(tab[4]), parse_vector(c->coords_r2, 3, data));
+			parse_vector(c->coords_r, 2, data), dim,
+			parse_vector(c->coords_r2, 3, data));
 	if (!new_cy)
 		return (ret_error(data, ERR_MALLOC_CYLINDER));
 	if (!add_obj_to_scene(s, new_cy))

@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 13:23:45 by cafabre           #+#    #+#             */
-/*   Updated: 2026/01/13 14:10:08 by cafabre          ###   ########.fr       */
+/*   Updated: 2026/01/13 15:29:24 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,16 @@ static bool	parse_scene(t_scene *s, t_data *data, bool *empty_fd)
 	return (true);
 }
 
-int	parsing(int fd, t_scene *s, t_data *data)
+int	parsing(t_env *env, t_data *data)
 {
 	bool	empty_fd;
 
-	if (!parse_lines(fd, s, data, &empty_fd))
+	env->scene = ft_calloc(1, sizeof(t_scene));
+	if (!env->scene)
 		return (EXIT_FAILURE);
-	if (!parse_scene(s, data, &empty_fd))
+	if (!parse_lines(env->fd, env->scene, data, &empty_fd))
+		return (EXIT_FAILURE);
+	if (!parse_scene(env->scene, data, &empty_fd))
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 18:32:15 by syukna            #+#    #+#             */
-/*   Updated: 2026/01/12 15:26:11 by rshin            ###   ########.fr       */
+/*   Updated: 2026/01/13 15:18:22 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	free_objs(t_obj *lst)
 {
-	t_obj *tmp;
+	t_obj	*tmp;
 
 	while (lst)
 	{
@@ -26,8 +26,8 @@ static void	free_objs(t_obj *lst)
 
 void	free_scene(t_scene *scene)
 {
-	if (!scene) //added nullcheck
-		return ; //added
+	if (!scene)
+		return ;
 	if (scene->cam)
 		ft_nullfree((void **)&scene->cam);
 	if (scene->amb)
@@ -40,12 +40,12 @@ void	free_scene(t_scene *scene)
 		scene->cy = NULL;
 	if (scene->pl)
 		scene->pl = NULL;
-    if (scene->sp)
+	if (scene->sp)
 		scene->sp = NULL;
-	ft_nullfree((void **)&scene); //added now mallocked scene free
+	ft_nullfree((void **)&scene);
 }
 
-void	free_env(t_env *env) //added 
+void	free_env(t_env *env)
 {
 	if (!env)
 		return ;
