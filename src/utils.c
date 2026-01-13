@@ -6,13 +6,13 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 18:32:15 by syukna            #+#    #+#             */
-/*   Updated: 2025/12/18 18:09:45 by cafabre          ###   ########.fr       */
+/*   Updated: 2026/01/12 15:26:11 by rshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	free_objs(t_obj *lst)
+static void	free_objs(t_obj *lst)
 {
 	t_obj *tmp;
 
