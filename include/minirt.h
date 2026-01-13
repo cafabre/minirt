@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:45 by rshin             #+#    #+#             */
-/*   Updated: 2026/01/12 15:27:38 by rshin            ###   ########.fr       */
+/*   Updated: 2026/01/13 09:24:52 by rshin            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,8 +199,9 @@ void			set_pixel(t_env *e, t_pix p);
 t_mat4			get_inv_view_mat(const t_cam *c);
 
 /*** intersect_utils.c ***/
-float	height_filter(t_ray *r, t_obj *cy);
-float	intersect_caps(t_ray *r, t_obj *cy);
+float			solve_quad(t_quad q);
+float			intersect_disc(t_ray *r, t_obj *cy, int side);
+float			intersect_tube(t_ray *r, t_obj *cy);
 
 /*** shader.c ***/
 t_vec4			shade(t_scene *s, t_hit *hit);
