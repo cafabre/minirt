@@ -19,7 +19,7 @@ static t_vec4	compute_ambient(t_scene *s, t_hit *hit)
 	t_vec4	amb_col;
 
 	amb_col = vec4_mul(hit->obj->col, s->amb->col);
-	amb_col = vec4_scalar_prod(amb_col, s->amb->lum);
+	amb_col = vec4_scalar_mul(amb_col, s->amb->lum);
 	return (amb_col);
 }
 
@@ -40,7 +40,7 @@ static t_ray	compute_light(t_scene *s, t_hit *hit)
 	t_ray	light;
 
 	light.dir = vec4_norm(vec4_sub(s->l->pos, hit->pos));
-	light.pos = vec4_add(hit->pos, vec4_scalar_prod(light.dir, SHADOW_BIAS));
+	light.pos = vec4_add(hit->pos, vec4_scalar_mul(light.dir, SHADOW_BIAS));
 	light.t = vec4_len(vec4_sub(s->l->pos, light.pos));
 	return (light);
 }
@@ -58,7 +58,7 @@ static t_vec4	compute_diffuse(t_scene *s, t_hit *hit)
 	shadow = compute_shadow(s, hit, light) * ndotl;
 	diffuse = ndotl * shadow;
 	diff_col = vec4_mul(hit->obj->col, s->l->col);
-	diff_col = vec4_scalar_prod(diff_col, s->l->lum * diffuse);
+	diff_col = vec4_scalar_mul(diff_col, s->l->lum * diffuse);
 	return (diff_col);
 }
 

@@ -50,7 +50,7 @@ static float	intersect_cylinder(t_ray *r, t_obj *cy)
 	tube_t = intersect_tube(r, cy);
 	if (tube_t != INFINITY)
 	{
-		p = vec4_add(r->pos, vec4_scalar_prod(r->dir, tube_t));
+		p = vec4_add(r->pos, vec4_scalar_mul(r->dir, tube_t));
 		h = vec4_dot_prod(vec4_sub(p, cy->pos), cy->dir);
 		if (h < -cy->height / 2.0f || h > cy->height / 2.0f)
 			tube_t = INFINITY;

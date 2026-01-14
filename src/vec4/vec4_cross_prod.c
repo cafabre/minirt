@@ -12,8 +12,7 @@
 
 #include "vec4.h"
 
-/* use case : find surface normals for polygons,
-computes perpendicular vecs, calc tangent spaces*/
+// use case : compute perpendicular vectors, calc tangent spaces
 
 t_vec4	vec4_cross_prod(t_vec4 a, t_vec4 b)
 {

@@ -12,7 +12,7 @@
 
 #include "vec4.h"
 
-// use case :  normalizing vectors (after computing len), scaling down vecs
+// use case : scaling down vecs
 
 t_vec4	vec4_scalar_div(t_vec4 vec, float scalar)
 {

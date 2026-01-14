@@ -12,7 +12,7 @@
 
 #include "vec4.h"
 
-// use case : calculate length || magnitude of a single vector
+// use case : calc vector magnitude
 
 float	vec4_len(t_vec4 vec)
 {

@@ -12,7 +12,7 @@
 
 #include "vec4.h"
 
-// use case : component wise multiplication (for colors)
+// use case : component wise multiplication
 
 t_vec4	vec4_mul(t_vec4 a, t_vec4 b)
 {

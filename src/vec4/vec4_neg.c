@@ -12,7 +12,7 @@
 
 #include "vec4.h"
 
-// use case : reverse a direction (reflection / refraction)
+// use case : reverse a vector dir
 
 t_vec4	vec4_neg(t_vec4 vec)
 {

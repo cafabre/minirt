@@ -12,8 +12,7 @@
 
 #include "vec4.h"
 
-/* use case : calc angles between vecs,
-light intensity (Lambertian), tests for perpendicularity */
+// use case : calc angles between vectors, tests for perpendicularity
 
 float	vec4_dot_prod(t_vec4 a, t_vec4 b)
 {

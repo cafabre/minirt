@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec4_scalar_prod.c                                 :+:      :+:    :+:   */
+/*   vec4_scalar_mul.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rshin <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,10 +12,9 @@
 
 #include "vec4.h"
 
-/* use case : scaling vectors || directions,
-convert normalized vecs to desired len */
+// use case : scaling up vectors
 
-t_vec4	vec4_scalar_prod(t_vec4 vec, float scalar)
+t_vec4	vec4_scalar_mul(t_vec4 vec, float scalar)
 {
 	t_vec4	res;
 

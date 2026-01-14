@@ -47,7 +47,7 @@ SRC += $(SRC_DIR)/vec4/vec4_point.c \
 	   $(SRC_DIR)/vec4/vec4_mul.c \
 	   $(SRC_DIR)/vec4/vec4_cross_prod.c \
 	   $(SRC_DIR)/vec4/vec4_dot_prod.c \
-	   $(SRC_DIR)/vec4/vec4_scalar_prod.c \
+	   $(SRC_DIR)/vec4/vec4_scalar_mul.c \
 	   $(SRC_DIR)/vec4/vec4_mat4_prod.c \
 	   $(SRC_DIR)/vec4/vec4_scalar_div.c \
 	   $(SRC_DIR)/vec4/vec4_len.c \

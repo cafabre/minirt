@@ -12,7 +12,7 @@
 
 #include "vec4.h"
 
-// use case : find direction from point b to point a
+// use case : move pos coords / find b to a dir vector / substract color
 
 t_vec4	vec4_sub(t_vec4 a, t_vec4 b)
 {

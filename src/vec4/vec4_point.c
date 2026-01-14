@@ -12,7 +12,7 @@
 
 #include "vec4.h"
 
-// use case : create a new point
+// use case : create new point coords
 
 t_vec4	vec4_point(float x, float y, float z)
 {

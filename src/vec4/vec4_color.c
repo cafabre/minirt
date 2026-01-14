@@ -12,7 +12,7 @@
 
 #include "vec4.h"
 
-// use case : create a new color
+// use case : create new color
 
 t_vec4	vec4_color(float x, float y, float z)
 {

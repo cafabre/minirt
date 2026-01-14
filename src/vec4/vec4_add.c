@@ -12,7 +12,7 @@
 
 #include "vec4.h"
 
-// use case : move points (pos update)
+// use case : move pos coords / combine dir vectors / combine colors
 
 t_vec4	vec4_add(t_vec4 a, t_vec4 b)
 {

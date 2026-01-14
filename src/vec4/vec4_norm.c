@@ -12,7 +12,7 @@
 
 #include "vec4.h"
 
-// use case : converts any vec to a unit vector
+// use case : normalize vector (len = 1 && 0 >= x/y/z <= 1)
 
 t_vec4	vec4_norm(t_vec4 vec)
 {

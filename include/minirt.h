@@ -195,6 +195,7 @@ typedef struct s_coords
 
 /*---FUNCTIONS---*/
 
+/********** EXEC **********/
 /*** exec_utils.c ***/
 unsigned int	pack_to_uint(t_vec4 color);
 void			set_pixel(t_env *e, t_pix p);
@@ -262,10 +263,12 @@ void			display_file_error(t_error e);
 void			display_alloc_error(t_error e);
 void			display_data_error(t_error e);
 
-/*** create.c ***/ //-> pas dans le parsing
+/*** create_scene.c ***/
 t_cam			*create_cam(t_vec4 point, t_vec4 vec, float f);
 t_light			*create_light(t_vec4 point, float light, t_vec4 color);
 t_light			*create_amb(float light, t_vec4 rgb);
+
+/*** create_obj.c ***/
 t_obj			*create_sp(t_vec4 point, float d, t_vec4 color);
 t_obj			*create_pl(t_vec4 point, t_vec4 vec, t_vec4 color);
 t_obj			*create_cy(t_vec4 point, t_vec4 vec, t_dim dim, t_vec4 color);

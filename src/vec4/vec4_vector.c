@@ -12,7 +12,7 @@
 
 #include "vec4.h"
 
-// use case : create a new vector
+// use case : create new dir vector
 
 t_vec4	vec4_vector(float x, float y, float z)
 {

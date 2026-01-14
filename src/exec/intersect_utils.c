@@ -35,9 +35,9 @@ float	intersect_tube(t_ray *r, t_obj *cy)
 	t_quad	q;
 
 	oc = vec4_sub(r->pos, cy->pos);
-	oc_perp = vec4_scalar_prod(cy->dir, vec4_dot_prod(oc, cy->dir));
+	oc_perp = vec4_scalar_mul(cy->dir, vec4_dot_prod(oc, cy->dir));
 	oc_perp = vec4_sub(oc, oc_perp);
-	d_perp = vec4_scalar_prod(cy->dir, vec4_dot_prod(r->dir, cy->dir));
+	d_perp = vec4_scalar_mul(cy->dir, vec4_dot_prod(r->dir, cy->dir));
 	d_perp = vec4_sub(r->dir, d_perp);
 	q.a = vec4_dot_prod(d_perp, d_perp);
 	q.b = 2 * vec4_dot_prod(oc_perp, d_perp);
@@ -53,7 +53,7 @@ float	intersect_disc(t_ray *r, t_obj *cy, int side)
 	float	denom;
 	float	t;
 
-	cap_center = vec4_scalar_prod(cy->dir, cy->height / 2.0f);
+	cap_center = vec4_scalar_mul(cy->dir, cy->height / 2.0f);
 	if (side == 1)
 		cap_center = vec4_add(cy->pos, cap_center);
 	else
@@ -64,7 +64,7 @@ float	intersect_disc(t_ray *r, t_obj *cy, int side)
 	t = vec4_dot_prod(vec4_sub(cap_center, r->pos), cy->dir) / denom;
 	if (t < 0)
 		return (INFINITY);
-	p = vec4_add(r->pos, vec4_scalar_prod(r->dir, t));
+	p = vec4_add(r->pos, vec4_scalar_mul(r->dir, t));
 	d = vec4_sub(p, cap_center);
 	if (vec4_dot_prod(d, d) > pow(cy->rad, 2))
 		return (INFINITY);

@@ -47,7 +47,7 @@ t_vec4	vec4_sub(t_vec4 a, t_vec4 b);
 t_vec4	vec4_mul(t_vec4 a, t_vec4 b);
 t_vec4	vec4_cross_prod(t_vec4 a, t_vec4 b);
 float	vec4_dot_prod(t_vec4 a, t_vec4 b);
-t_vec4	vec4_scalar_prod(t_vec4 a, float scalar);
+t_vec4	vec4_scalar_mul(t_vec4 a, float scalar);
 t_vec4	vec4_scalar_div(t_vec4 a, float scalar);
 float	vec4_len(t_vec4 vec);
 t_vec4	vec4_neg(t_vec4 a);
