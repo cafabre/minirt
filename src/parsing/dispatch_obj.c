@@ -6,13 +6,13 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 15:52:06 by cafabre           #+#    #+#             */
-/*   Updated: 2026/01/13 15:42:30 by rshin            ###   ########lyon.fr   */
+/*   Updated: 2026/01/14 13:27:59 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static bool	add_obj_to_scene(t_scene *s, t_obj *o)
+static void	add_obj_to_scene(t_scene *s, t_obj *o)
 {
 	t_obj	*tmp;
 
@@ -32,7 +32,6 @@ static bool	add_obj_to_scene(t_scene *s, t_obj *o)
 		s->pl = o;
 	else
 		s->cy = o;
-	return (true);
 }
 
 static bool	dispatch_sp(char **tab, t_scene *s, t_coords *c, t_data *data)
@@ -48,11 +47,7 @@ static bool	dispatch_sp(char **tab, t_scene *s, t_coords *c, t_data *data)
 			parse_vector(c->coords_r, 3, data));
 	if (!new_sp)
 		return (ret_error(data, ERR_MALLOC_SPHERE));
-	if (!add_obj_to_scene(s, new_sp))
-	{
-		free(new_sp);
-		return (ret_error(data, ERR_ADD_SPHERE));
-	}
+	add_obj_to_scene(s, new_sp);
 	return (true);
 }
 
@@ -70,11 +65,7 @@ static bool	dispatch_pl(char **tab, t_scene *s, t_coords *c, t_data *data)
 			parse_vector(c->coords_r2, 3, data));
 	if (!new_pl)
 		return (ret_error(data, ERR_MALLOC_PLANE));
-	if (!add_obj_to_scene(s, new_pl))
-	{
-		free(new_pl);
-		return (ret_error(data, ERR_ADD_PLANE));
-	}
+	add_obj_to_scene(s, new_pl);
 	return (true);
 }
 
@@ -97,11 +88,7 @@ static bool	dispatch_cy(char **tab, t_scene *s, t_coords *c, t_data *data)
 			parse_vector(c->coords_r2, 3, data));
 	if (!new_cy)
 		return (ret_error(data, ERR_MALLOC_CYLINDER));
-	if (!add_obj_to_scene(s, new_cy))
-	{
-		free(new_cy);
-		return (ret_error(data, ERR_ADD_CYLINDER));
-	}
+	add_obj_to_scene(s, new_cy);
 	return (true);
 }
 
@@ -110,7 +97,7 @@ bool	dispatch_obj(char **tab, t_scene *s, t_data *data)
 	t_coords	c;
 	bool		res;
 
-	fill_coords(&c);
+	ft_memset(&c, 0, sizeof(t_coords));
 	res = true;
 	if (ft_strcmp(tab[0], "sp") == 0)
 		res = dispatch_sp(tab, s, &c, data);

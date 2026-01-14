@@ -6,18 +6,17 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 13:23:45 by cafabre           #+#    #+#             */
-/*   Updated: 2026/01/13 22:19:59 by cafabre          ###   ########.fr       */
+/*   Updated: 2026/01/14 13:51:36 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static bool	parse_lines_clean(char **tab, char *tmp, int fd)
+static bool	parse_lines_clean(char **tab, char *tmp)
 {
 	free_tab(tab);
 	if (tmp)
 		free(tmp);
-	clean_gnl(fd);
 	return (false);
 }
 
@@ -44,19 +43,16 @@ static bool	parse_lines(int fd, t_scene *s, t_data *data, bool *empty_fd)
 			continue ;
 		}
 		if (!dispatch_ids(tab, s, data))
-			return (parse_lines_clean(tab, tmp, fd));
+			return (parse_lines_clean(tab, tmp));
 		free_tab(tab);
 	}
-	return (*empty_fd);
+	return (true);
 }
 
-static bool	parse_scene(t_scene *s, t_data *data, bool *empty_fd, int fd)
+static bool	parse_scene(t_scene *s, t_data *data, bool *empty_fd)
 {
 	if (*empty_fd)
-	{
-		clean_gnl(fd);
 		return (ret_error(data, ERR_EMPTY_FILE));
-	}
 	if (!s->cam || !s->amb || !s->l)
 		return (ret_error(data, ERR_MISSING_ELEMENT));
 	return (true);
@@ -71,7 +67,7 @@ int	parsing(t_env *env, t_data *data)
 		return (EXIT_FAILURE);
 	if (!parse_lines(env->fd, env->scene, data, &empty_fd))
 		return (EXIT_FAILURE);
-	if (!parse_scene(env->scene, data, &empty_fd, env->fd))
+	if (!parse_scene(env->scene, data, &empty_fd))
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

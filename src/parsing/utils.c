@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 13:56:38 by cafabre           #+#    #+#             */
-/*   Updated: 2026/01/13 13:55:57 by cafabre          ###   ########.fr       */
+/*   Updated: 2026/01/14 13:28:18 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,6 @@ float	min_positive(float f1, float f2)
 	if (f2 > 0.0)
 		return (f2);
 	return (INFINITY);
-}
-
-void	fill_coords(t_coords *c)
-{
-	c->coords = NULL;
-	c->coords_r = NULL;
-	c->coords_r2 = NULL;
 }
 
 size_t	ft_count_whitespace(char *s)

@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:45 by rshin             #+#    #+#             */
-/*   Updated: 2026/01/13 22:26:16 by cafabre          ###   ########.fr       */
+/*   Updated: 2026/01/14 13:28:29 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,6 @@ typedef enum e_error
 	ERR_MALLOC_SPHERE,
 	ERR_MALLOC_PLANE,
 	ERR_MALLOC_CYLINDER,
-	ERR_ADD_SPHERE,
-	ERR_ADD_PLANE,
-	ERR_ADD_CYLINDER,
 	ERR_INVALID_SPHERE_DATA,
 	ERR_INVALID_PLANE_DATA,
 	ERR_INVALID_CYLINDER_DATA,
@@ -277,7 +274,6 @@ t_obj			*create_cy(t_vec4 point, t_vec4 vec, t_dim dim, t_vec4 color);
 char			**ft_split_whitespaces(char *s);
 size_t			ft_count_whitespace(char *s);
 float			min_positive(float f1, float f2);
-void			fill_coords(t_coords *c);
 
 void			display_scene(t_scene *s);
 

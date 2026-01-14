@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:54 by rshin             #+#    #+#             */
-/*   Updated: 2026/01/13 22:34:37 by cafabre          ###   ########.fr       */
+/*   Updated: 2026/01/14 13:54:27 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static bool	check_fd(int argc, char **argv, t_env *env, t_data *data)
 		return (ret_error(data, ERR_INVALID_FILE_NAME));
 	if (ft_strncmp(argv[1] + len - 3, ".rt", 3))
 		return (ret_error(data, ERR_INVALID_FILE_TYPE));
-	if (filename[len - 4] =='/')
+	if (filename[len - 4] == '/')
 		return (ret_error(data, ERR_INVALID_FILE_NAME));
 	env->fd = open(argv[1], O_RDONLY);
 	if (env->fd == -1)

@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 15:50:21 by cafabre           #+#    #+#             */
-/*   Updated: 2026/01/13 13:55:35 by cafabre          ###   ########.fr       */
+/*   Updated: 2026/01/14 13:28:07 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ bool	dispatch_scene(char **tab, t_scene *s, t_data *data)
 	t_coords	c;
 	bool		res;
 
-	fill_coords(&c);
+	ft_memset(&c, 0, sizeof(t_coords));
 	res = true;
 	if (ft_strcmp(tab[0], "A") == 0)
 	{

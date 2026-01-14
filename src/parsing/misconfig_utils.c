@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 18:28:08 by cafabre           #+#    #+#             */
-/*   Updated: 2026/01/13 22:34:02 by cafabre          ###   ########.fr       */
+/*   Updated: 2026/01/14 13:25:39 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,6 @@ void	display_alloc_error(t_error e)
 		ft_printf("Malloc failed: couldn't allocate plane");
 	else if (e == ERR_MALLOC_CYLINDER)
 		ft_printf("Malloc failed: couldn't allocate cylinder");
-	else if (e == ERR_ADD_SPHERE)
-		ft_printf("Couldn't add the sphere to the scene");
-	else if (e == ERR_ADD_PLANE)
-		ft_printf("Couldn't add the plane to the scene");
-	else if (e == ERR_ADD_CYLINDER)
-		ft_printf("Couldn't add the cylinder to the scene");
 }
 
 void	display_data_error(t_error e)
