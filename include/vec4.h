@@ -13,8 +13,6 @@
 #ifndef VEC4_H
 # define VEC4_H
 
-# include <math.h>
-
 typedef union u_vector_4d
 {
 	struct

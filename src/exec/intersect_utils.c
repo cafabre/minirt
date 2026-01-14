@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include <math.h>
 
 float	solve_quad(t_quad q)
 {

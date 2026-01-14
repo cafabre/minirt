@@ -14,17 +14,9 @@
 
 # define MINIRT_H
 
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdio.h>
-# include <stdlib.h>
 # include <stdbool.h>
-# include <string.h>
-# include <math.h>
-
+# include <stdlib.h>
 # include "libft.h"
-# include "mlx.h"
-# include "mlx_int.h"
 # include "vec4.h"
 
 # define WIN_W 1600

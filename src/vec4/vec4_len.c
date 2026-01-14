@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "vec4.h"
+#include "math.h"
 
 // use case : calc vector magnitude
 

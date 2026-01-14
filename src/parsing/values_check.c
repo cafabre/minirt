@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "minirt.h"
-#include <errno.h>
 
 static bool	is_in_range(float f, float r_min, float r_max, t_data *data)
 {

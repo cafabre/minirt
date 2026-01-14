@@ -11,6 +11,9 @@
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include <math.h>
+#include "mlx_int.h"
+#include "mlx.h"
 
 static bool	init_mlx(t_env *e)
 {

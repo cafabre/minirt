@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include <math.h>
 
 static float	intersect_sphere(t_ray *r, t_obj *sp)
 {

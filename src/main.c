@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include <fcntl.h>
+#include "mlx.h"
 
 static bool	check_fd(int argc, char **argv, t_env *env, t_data *data)
 {

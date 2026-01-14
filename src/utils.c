@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include "mlx.h"
 
 static void	free_objs(t_obj *lst)
 {

@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include <stdio.h>
 
 bool	display_input_error(t_error e)
 {
