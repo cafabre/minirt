@@ -19,16 +19,10 @@ static bool	init_mlx(t_env *e)
 		return (false);
 	e->win = mlx_new_window(e->mlx, WIN_W, WIN_H, "minirt");
 	if (e->win == NULL)
-	{
-		mlx_destroy_display(e->mlx);
-		free(e->mlx);
 		return (false);
-	}
 	e->img = mlx_new_image(e->mlx, WIN_W, WIN_H);
 	if (!e->img)
-	{
 		return (false);
-	}
 	e->addr = mlx_get_data_addr(e->img, &e->bpp, &e->size_line, &e->endian);
 	e->bytes_pp = e->bpp / 8;
 	e->max_bytes = WIN_H * e->size_line;
