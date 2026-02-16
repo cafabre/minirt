@@ -1,114 +1,150 @@
 # **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: rshin <marvin@42.fr>                       +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2026/01/12 16:02:20 by rshin             #+#    #+#              #
-#    Updated: 2026/01/12 16:02:22 by rshin            ###   ########.fr        #
-#                                                                              #
+#                                 LIBRARY NAME                                 #
 # **************************************************************************** #
-
 NAME = miniRT
 
-# === CONFIG ===
-
+# **************************************************************************** #
+#                                 CONFIG & FLAGS                               #
+# **************************************************************************** #
 CC = cc
-
 CFLAGS = -Wall -Werror -Wextra -g
-
 IFLAGS = -I $(INC) -I $(LIBMLX) -I $(LIBFT)/$(INC) -MMD -MP
-
 RM = rm -rf
 
-# === PATHING ===
+# **************************************************************************** #
+#                                    PATHS                                     #
+# **************************************************************************** #
+LIBFT_DIR   = ./libft
+LIBFT       = $(LIBFT_DIR)/libft.a
 
-SRC_DIR = src
+MLX_DIR     = ./minilibx-linux
+MLX         = $(MLX_DIR)/libmlx.a
 
-BLD_DIR = .build
+INC         = -Iinclude -I$(LIBFT_DIR) -I$(MLX_DIR)
 
-SRC = $(SRC_DIR)/main.c \
-	  $(SRC_DIR)/utils.c 
+SRC_DIR     = src
+OBJ_DIR     = .build
 
-SRC += $(SRC_DIR)/exec/render.c\
-	   $(SRC_DIR)/exec/intersect.c \
-	   $(SRC_DIR)/exec/exec_utils.c \
-	   $(SRC_DIR)/exec/intersect_utils.c \
-	   $(SRC_DIR)/exec/tracer.c \
-	   $(SRC_DIR)/exec/shader.c \
-	   $(SRC_DIR)/exec/controls.c 
+# **************************************************************************** #
+#                                    SOURCES                                   #
+# **************************************************************************** #
+# Core files
+CORE_FILES  = main.c \
+              utils.c
 
-SRC += $(SRC_DIR)/vec4/vec4_point.c \
-	   $(SRC_DIR)/vec4/vec4_vector.c \
-	   $(SRC_DIR)/vec4/vec4_color.c \
-	   $(SRC_DIR)/vec4/vec4_add.c \
-	   $(SRC_DIR)/vec4/vec4_sub.c \
-	   $(SRC_DIR)/vec4/vec4_mul.c \
-	   $(SRC_DIR)/vec4/vec4_cross_prod.c \
-	   $(SRC_DIR)/vec4/vec4_dot_prod.c \
-	   $(SRC_DIR)/vec4/vec4_scalar_mul.c \
-	   $(SRC_DIR)/vec4/vec4_mat4_prod.c \
-	   $(SRC_DIR)/vec4/vec4_scalar_div.c \
-	   $(SRC_DIR)/vec4/vec4_len.c \
-	   $(SRC_DIR)/vec4/vec4_neg.c \
-	   $(SRC_DIR)/vec4/vec4_norm.c
+# Execution files
+EXEC_DIR    = exec/
+EXEC_FILES  = render.c \
+              intersect.c \
+              exec_utils.c \
+              intersect_utils.c \
+              tracer.c \
+              shader.c \
+              controls.c
 
-SRC += $(SRC_DIR)/parsing/parsing.c \
-		$(SRC_DIR)/parsing/parsing_utils.c \
-		$(SRC_DIR)/parsing/dispatcher.c \
-		$(SRC_DIR)/parsing/dispatch_obj.c \
-		$(SRC_DIR)/parsing/dispatch_scene.c \
-		$(SRC_DIR)/parsing/values_check.c \
-		$(SRC_DIR)/parsing/coords_check.c \
-		$(SRC_DIR)/parsing/misconfig.c \
-		$(SRC_DIR)/parsing/misconfig_utils.c \
-		$(SRC_DIR)/parsing/clean.c \
-		$(SRC_DIR)/parsing/utils.c \
-		$(SRC_DIR)/parsing/create_scene.c \
-		$(SRC_DIR)/parsing/create_obj.c
+# Vector math files
+VEC_DIR     = vec4/
+VEC_FILES   = vec4_point.c \
+              vec4_vector.c \
+              vec4_color.c \
+              vec4_add.c \
+              vec4_sub.c \
+              vec4_mul.c \
+              vec4_cross_prod.c \
+              vec4_dot_prod.c \
+              vec4_scalar_mul.c \
+              vec4_mat4_prod.c \
+              vec4_scalar_div.c \
+              vec4_len.c \
+              vec4_neg.c \
+              vec4_norm.c
 
-INC = include
+# Parsing files
+PARS_DIR    = parsing/
+PARS_FILES  = parsing.c \
+              parsing_utils.c \
+              dispatcher.c \
+              dispatch_obj.c \
+              dispatch_scene.c \
+              values_check.c \
+              coords_check.c \
+              misconfig.c \
+              misconfig_utils.c \
+              clean.c \
+              utils.c \
+              create_scene.c \
+              create_obj.c
 
-LIBMLX = minilibx-linux
+# **************************************************************************** #
+#                                 COMPILATION                                  #
+# **************************************************************************** #
+SRC_FILES   = $(CORE_FILES) \
+              $(addprefix $(EXEC_DIR), $(EXEC_FILES)) \
+              $(addprefix $(VEC_DIR), $(VEC_FILES)) \
+              $(addprefix $(PARS_DIR), $(PARS_FILES))
 
-LIBFT = libft
+SRCS        = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
+OBJS        = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+DEPS        = $(OBJS:.o=.d)
 
-LIB_A = $(LIBMLX)/libmlx.a \
-		$(LIBFT)/libft.a
+# **************************************************************************** #
+#                                    COLORS                                    #
+# **************************************************************************** #
+GREEN       = \033[0;32m
+RED         = \033[0;31m
+RESET       = \033[0m
 
-OBJ = $(patsubst $(SRC_DIR)/%.c, $(BLD_DIR)/%.o, $(SRC))
-
-DEP = $(patsubst $(SRC_DIR)/%.c, $(BLD_DIR)/%.d, $(SRC))
-
-# === TARGET RULES ===
-
+# **************************************************************************** #
+#                                     RULES                                    #
+# **************************************************************************** #
 all: $(NAME)
 
-$(NAME): $(OBJ) $(LIB_A)
-	$(CC) $(CFLAGS) $(IFLAGS) $(OBJ) $(LIB_A) -lX11 -lXext -lm -lz -o $(NAME)
+$(NAME): $(LIBFT) $(MLX) $(OBJS)
+	@echo "🔗 Linking $(NAME)..."
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MLX) -lX11 -lXext -lm -lz -o $(NAME)
+	@echo "$(GREEN)✨ $(NAME) compiled successfully!$(RESET)"
 
-$(BLD_DIR)/%.o: $(SRC_DIR)/%.c Makefile
-	mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
+$(LIBFT):
+	@echo "🛠️  Compiling Libft..."
+	@$(MAKE) -C $(LIBFT_DIR) --no-print-directory
 
-$(LIB_A): FORCE
-	make -C $(LIBFT)
-	make -C $(LIBMLX)
+$(MLX):
+	@if [ ! -d "$(MLX_DIR)" ]; then \
+		echo "📥 Cloning MinilibX..."; \
+		git clone --depth 1 https://github.com/42Paris/minilibx-linux.git $(MLX_DIR); \
+	fi
+	@echo "🛠️  Compiling MinilibX..."
+	@$(MAKE) -C $(MLX_DIR) --no-print-directory > /dev/null 2>&1
 
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
+	@mkdir -p $(dir $@)
+	@echo "Compiling: $<"
+	@$(CC) $(CFLAGS) $(INC) -MMD -MP -c $< -o $@
+
+$(OBJ_DIR):
+	@mkdir -p $(OBJ_DIR)
+
+# **************************************************************************** #
+#                                 CLEAN RULES                                  #
+# **************************************************************************** #
 clean:
-	make -C $(LIBFT) clean
-	make -C $(LIBMLX) clean
-	$(RM) $(OBJ)
+	@echo "🧹 Cleaning objects..."
+	@$(RM) -r $(OBJ_DIR)
+	@$(MAKE) clean -C $(LIBFT_DIR) --no-print-directory
+	@if [ -d "$(MLX_DIR)" ]; then \
+		$(MAKE) clean -C $(MLX_DIR) --no-print-directory; \
+	fi
+	@echo "$(RED)Objects and dependencies cleaned.$(RESET)"
+
+fclean: clean
+	@echo "🗑️  Full clean..."
+	@$(RM) $(NAME)
+	@$(MAKE) fclean -C $(LIBFT_DIR) --no-print-directory
+	@$(RM) -rf $(MLX_DIR)
+	@echo "$(RED)Everything removed (including MLX source).$(RESET)"
 
 re: fclean all
 
-fclean: clean
-	$(RM) $(LIBFT)/$(BLD_DIR) $(LIB_A)
-	$(RM) $(BLD_DIR) $(NAME)
+-include $(DEPS)
 
-FORCE:
-
--include $(DEP)
-
-.PHONY: all clean fclean re FORCE
+.PHONY: all clean fclean re

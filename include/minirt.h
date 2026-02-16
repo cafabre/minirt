@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:48:45 by rshin             #+#    #+#             */
-/*   Updated: 2026/01/14 13:28:29 by cafabre          ###   ########.fr       */
+/*   Updated: 2026/02/16 15:59:35 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 # include <stdbool.h>
 # include <stdlib.h>
-# include "libft.h"
+# include "libft/libft.h"
 # include "vec4.h"
 
 # define WIN_W 1600
