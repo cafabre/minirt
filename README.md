@@ -12,6 +12,8 @@
 	<img src="assets/score.png">
 </p>
 
+---
+
 ## 📖 Description
 **MiniRT** is a project from **42 School**, developed in C using the **MiniLibX** graphical library.  
 The goal is to build a simple **Raytracing engine** capable of rendering a 3D scene by simulating the behavior of light rays.
@@ -42,6 +44,8 @@ Each object is rendered by computing:
 	<img src="assets/cylinder_math.png">
 </p>
 
+---
+
 ## 🛠️ Installation & Compilation
 
 ### Prerequisites
@@ -56,22 +60,38 @@ Each object is rendered by computing:
 git clone --recurse-submodules git@github.com:cafabre/minirt.git
 cd minirt
 ```
-
 #### 2. Compile the program
 ```bash
 make
 ```
+
+---
 
 ## ⚙️ Usage
 Run MiniRT with any `.rt` scene file located in the scenes/ folder (or your own custom scene file) like so :
 ```bash
 ./miniRT scenes/1_basic/basic1.rt
 ```
-A valid `.rt` file contains a list of elements.
-The order of lines does not matter, and spaces / tabs / empty lines are ignored.
+A valid `.rt` file contains a list of elements
+- The order of lines does not matter
+- Spaces / tabs / empty lines are ignored.
 
-### Mandatory elements
-A scene must contain :
+## 📝 File Format
+Each line defines an element. Here's the **expected format**:
+
+| Type                  | Format | Notes                          | Example    |
+| --------------------- | ------ | ------------------------------ | ---------- |
+| **coords**            | x,y,z  | 3 numbers separated by commas  | -50,0,20.5 |
+| **orientation**       | x,y,z  | 3 numbers in range [-1.0, 1.0] | -1,0,1     |
+| **color**             | r,g,b  | 3 numbers in range [0, 255]    | 10,0,255   |
+| **FOV**               | number | Range [0, 180]                 | 70         |
+| **ratio**             | number | Range [0, 1]                   | 0.8        |
+| **diameter / height** | number | Any positive number            | 50         |
+
+---
+
+## 🎯 Mandatory Elements
+A scene **must contain** :
 
 #### ✅ One camera
 ```bash
@@ -85,8 +105,9 @@ L coords[x,y,z] ratio color[r,g,b]
 ```bash
 A ratio color[r,g,b]
 ```
-### Optional elements
-You can add as many objects as you want.
+### ✨ Optional elements
+You can add as many objects as you want :
+
 #### Plane
 ```bash
 pl coords[x,y,z] orientation[x,y,z] color[r,g,b]
@@ -99,6 +120,8 @@ sp coords[x,y,z] diameter color[r,g,b]
 ```bash
 cy coords[x,y,z] orientation[x,y,z] diameter height color[r,g,b]
 ```
+
+---
 
 ## 🧪 Provided test scenes
 The project includes a full set of test scenes inside the `scenes/` folder:
@@ -114,9 +137,11 @@ The project includes a full set of test scenes inside the `scenes/` folder:
 
 ⚠️ **Warning** : some scenes inside `7_fun` may take from a few seconds up to a minutes to render.
 
+---
+
 ## 📸 Screenshots
 <p align="center">
-	<img src="assets/blue_scene">
+	<img src="assets/blue_scene.png">
 </p>
 
 <p align="center">
