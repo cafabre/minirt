@@ -8,7 +8,7 @@ NAME = miniRT
 # **************************************************************************** #
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -g
-IFLAGS = -I $(INC) -I $(LIBMLX) -I $(LIBFT)/$(INC) -MMD -MP
+IFLAGS = $(INC) -MMD -MP
 RM = rm -rf
 
 # **************************************************************************** #
@@ -20,7 +20,7 @@ LIBFT       = $(LIBFT_DIR)/libft.a
 MLX_DIR     = ./minilibx-linux
 MLX         = $(MLX_DIR)/libmlx.a
 
-INC         = -Iinclude -I$(LIBFT_DIR) -I$(MLX_DIR)
+INC = -Iinclude -I$(LIBFT_DIR)/headers -I$(MLX_DIR)
 
 SRC_DIR     = src
 OBJ_DIR     = .build
