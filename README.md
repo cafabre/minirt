@@ -112,13 +112,13 @@ The project includes a full set of test scenes inside the `scenes/` folder:
 - **6_intersect** : scenes containing object intersections
 - **7_fun** : complex scenes representing more "realistic" objects
 
-⚠️ **Warning** : some scenes inside `7_fun` may take from a few seconds up to 2 minutes to render.
+⚠️ **Warning** : some scenes inside `7_fun` may take from a few seconds up to a minutes to render.
 
 ## 📸 Screenshots
 <p align="center">
-	<img src="assets/julia.png"> --> inserer une image de scene
+	<img src="assets/blue_scene">
 </p>
 
 <p align="center">
-	<img src="assets/mandelbrot.png"> --> idem (en ajouter plusieurs)
+	<img src="assets/western_scene.png">
 </p>
